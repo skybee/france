@@ -1,0 +1,139 @@
+#wrap{
+	float:left;
+	border:1px solid #ebebeb;
+	border-radius: 6px;-webkit-border-radius: 6px;-khtml-border-radius: 6px;border-radius: 6px;
+	font-family:arial;
+	margin-top:12px;
+	margin-bottom:7px;
+}
+#wrap li{
+	float:left;
+	margin-left:6px;
+}
+#wrap img{
+	
+	border:1px solid #fff;
+	background:#fff;
+	margin-top:5px;
+}
+
+#wrap a:hover img{
+	border:1px solid #fff;
+}
+
+#wrap div.date{width:40px; height:41px; position:absolute; left:0; margin-top:59px; margin-left:76px; background: url(date-shadow.png);overflow:hidden; float:left;}
+#wrap div.date .month h1{ font-size:16px; color:#FFF; font-weight:bold; text-transform:uppercase; text-shadow:1px 1px 1px #000; float:left; margin:0; padding:0; margin-left:2px; }
+#wrap div.date .month h1 a{color:#fff; text-decoration:none; text-shadow:1px 1px 1px #000;}
+#wrap div.date .day h2{ font-size:27px; float:left; color:#e7e7e7; text-shadow:1px 1px 1px #000; font-weight:bold;  margin:0; padding:0; position:absolute; margin-top:13px; margin-left:4px; left:0; }
+#wrap div.date .day h2 a{color:#e7e7e7; text-shadow:1px 1px 1px #000; text-decoration:none;}
+
+.jcarousel-skin-skyali .jcarousel-container {
+    -moz-border-radius: 10px;
+    background: #fff url(shadow.png) repeat-x;
+    border: 1px solid #fff;
+	
+}
+
+.jcarousel-skin-skyali .jcarousel-direction-rtl {
+	direction: rtl;
+}
+
+.jcarousel-skin-skyali .jcarousel-container-horizontal {
+    width: 532px;
+    padding: 5px 40px;
+	border-radius: 6px; -webkit-border-radius: 6px; -khtml-border-radius: 6px; border-radius: 6px;
+	height:106px;
+	overflow:hidden;
+	position:relative;
+}
+
+
+.jcarousel-skin-skyali .jcarousel-clip-horizontal {
+    width:  534px;
+    height: 106px;
+}
+
+.jcarousel-skin-skyali .jcarousel-item {
+    width: 125px;
+    height: 106px;
+	position:relative;
+}
+
+.jcarousel-skin-skyali .jcarousel-item-horizontal {
+	margin-left: 0;
+    margin-right: 4px;
+}
+
+.jcarousel-skin-skyali .jcarousel-direction-rtl .jcarousel-item-horizontal {
+	margin-left: 10px;
+    margin-right: 0;
+}
+.jcarousel-skin-skyali .jcarousel-item-placeholder {
+    background: #fff;
+    color: #000;
+}
+
+/**
+ *  Horizontal Buttons
+ */
+.jcarousel-skin-skyali .jcarousel-next-horizontal {
+    position: absolute;
+    top: 27px;
+    right: 5px;
+    width: 32px;
+    height: 67px;
+    cursor: pointer;
+    background: transparent url(next-horizontal.png) no-repeat 0 0;
+}
+
+.jcarousel-skin-skyali .jcarousel-direction-rtl .jcarousel-next-horizontal {
+    left: 5px;
+    right: auto;
+    background-image: url(prev-horizontal.png);
+}
+
+.jcarousel-skin-skyali .jcarousel-next-horizontal:hover {
+    background-position: -32px 0;
+}
+
+.jcarousel-skin-skyali .jcarousel-next-horizontal:active {
+    background-position: -64px 0;
+}
+
+.jcarousel-skin-skyali .jcarousel-next-disabled-horizontal,
+.jcarousel-skin-skyali .jcarousel-next-disabled-horizontal:hover,
+.jcarousel-skin-skyali .jcarousel-next-disabled-horizontal:active {
+    cursor: default;
+    background-position: -96px 0;
+}
+
+.jcarousel-skin-skyali .jcarousel-prev-horizontal {
+    position: absolute;
+    top: 27px;
+    left: 5px;
+    width: 32px;
+    height: 67px;
+    cursor: pointer;
+    background: transparent url(prev-horizontal.png) no-repeat 0 0;
+}
+
+.jcarousel-skin-skyali .jcarousel-direction-rtl .jcarousel-prev-horizontal {
+    left: auto;
+    right: 5px;
+    background-image: url(next-horizontal.png);
+}
+
+.jcarousel-skin-skyali .jcarousel-prev-horizontal:hover {
+    background-position: -32px 0;
+}
+
+.jcarousel-skin-skyali .jcarousel-prev-horizontal:active {
+    background-position: -64px 0;
+}
+
+.jcarousel-skin-skyali .jcarousel-prev-disabled-horizontal,
+.jcarousel-skin-skyali .jcarousel-prev-disabled-horizontal:hover,
+.jcarousel-skin-skyali .jcarousel-prev-disabled-horizontal:active {
+    cursor: default;
+    background-position: -96px 0;
+}

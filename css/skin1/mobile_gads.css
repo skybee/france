@@ -1,0 +1,29 @@
+
+
+@media screen and (max-width: 980px) {
+    #left div.single .content-gAd,
+    #left div.single div.thumb-gAd{
+        float: none;
+        padding: 5px 0px;
+        border: 1px solid #009ddb;
+        border-width: 1px 0px;
+        margin: 30px 0 20px 0px;
+        background: #F7F7F7;
+    }
+    #left div.single .content-gAd{ float: left;}
+    
+    #left div.single div.mobile-in-txt{
+        border-top: 1px solid #009ddb;
+        padding-top: 15px;
+        margin-top: 15px;
+        /*margin-left: -15px;*/
+        /*width: 100%;*/
+    }
+    
+    #left div.single .mobile-noimg,
+    #left div.single div.mobile-in-txt .mobile-intxt-grey
+    {
+        /*width: 300px; height: 250px;*/
+        margin: 0 auto;
+    }
+}

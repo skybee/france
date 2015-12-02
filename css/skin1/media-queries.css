@@ -1,0 +1,289 @@
+@media screen and (max-width: 980px) {
+    
+    
+
+    /*===============================*/
+    body{font-size: 100%;}
+    #left div.single div.copy-url p{ font-size: 1em;}
+    #headernavigation div.navigation{font-size: 0.7em;}
+    #left div.single h1, #page h1, #left div.single h1 a{font-size: 1.6em;}
+    
+    #right{ display: none;}
+    #left div.single{ width: auto; }
+    #middle{ background: #fff; }
+    #content{ width: auto;}
+    #left{ width: auto !important; padding-right: 20px; }
+    .top_gads{ display: none;}
+    #headernavigation div.navigation{ width: auto; }
+    #left div.single .doc-date-bottom { width: 100%; }
+    p.look_more_hdn{ display: none;}
+    #left div.single div.content h2.look_more_hdn{ padding-bottom: 15px !important; border-bottom-width: 1px;}
+    ul.firstnav-menu{ padding-left: 12px;}
+    #content_holder{padding-left: 5px;}
+    #left{padding-right: 5px;}
+    #headernavigation div.navigation a{padding-right: 0px;}
+    #headernavigation #mobile_nav_btn{ display: block;}
+    .firstnav-menu li .firstnav-menu-arrow{ left: 3px;}
+    .firstnav-menu li:first-child .firstnav-menu-arrow{ left: -6px;}
+    #left div.single div.content li, #page div.entry-content li{ width: auto;}
+    #left div.single div.content ul, 
+    #left div.single div.content ol, 
+    #page div.entry-content ul, 
+    #page div.entry-content ol{ margin-left: 0; list-style: none;}
+    #mobile_logo{ display: block;}
+    #left div.single div.thumb{ float: none;}
+    #bottom-games{display: none;}
+    /*===============================*/
+    
+    
+    
+    #left div.single div.content img{
+        width: auto !important;
+        height: auto !important;
+        max-width: 100% !important;
+    }
+    #container{ width: auto;}
+    
+    
+    #footer div.inside{ width: auto;}
+    
+    #content_holder{
+        float: left;
+        width: auto;
+    }
+    
+    #left div.single div.content{ width: auto;}
+    .cat_line{ width: auto;}
+    
+    /*==== <Date Str> ====*/
+    #left  .long_date_str{display: none;}
+    #left  .short_date_str{display: block;}
+    #left div.single .doc-date .dd_left{ width: 95px; }
+    /*==== </Date Str> ====*/
+    
+    
+    /*==== <Like News> ====*/
+    #left div.othernews #like-acle-slider .slider-block .listing{ width: 100%;}
+    #left div.othernews #like-acle-slider .bx-wrapper .bx-next{ right: 0px; }
+    #left #like-acle-slider div.listing div.content div.left img{ 
+        width: 240px !important; 
+        height: 155px !important;
+        box-shadow: none; 
+    }
+    #left .single div.listing{
+        width: 100%;
+        margin-right: 0px; 
+    }
+    #left div.single .slider-block-item div.content .right{
+        width: auto !important;
+        float: none;
+    }
+    #left div.othernews #like-acle-slider .slider-block .right .small-desc,
+    #left div.listing div.content div.right div.small-desc{ width: auto; }
+    #left div.listing div.header{ width: 100%; }
+    
+    #left div.othernews #like-acle-slider .slider-block{
+        height: auto;
+        overflow: visible;
+    }
+    
+    /*==== </Like News> ====*/
+    
+    
+    
+    /*==== <Top News Img> ====*/
+    #left div.single div.thumb-fix-block{
+        height: auto;
+        width: 100%;
+        padding: 0;
+        border: 0;
+    }
+    #left div.single div.content img.imgf{
+        position: relative;
+        width: 100% !important;
+        max-width: 400px !important;
+        height: auto;
+        max-height: 400px;
+        margin: 0 auto;
+        display: block;
+    }
+    /*==== </Top News Img> ====*/
+    
+    
+    /*========== TMP ============*/
+    #categories, #header, #featured, #footer_widget{ display: none;}
+    #left div.single .content-gAd-bottom{width: 100%;}
+    #left div.single .content-gAd-bottom .content-gAd-center{width: 100%;}
+    
+    
+    /*==== <Video> ====*/
+    .respon_video{
+        position:relative;
+        padding-bottom:56.25%;
+        padding-top:30px;
+        height:0;
+        overflow:hidden;
+    }
+    .respon_video iframe, .respon_video object, .respon_video embed {
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+    }
+    /*==== </Video> ====*/
+    
+    
+    /*====== <Top Block> ======*/
+    #headernavigation{
+        background-image: none;
+        height: 50px;
+        border-bottom: 2px solid #009DDB;
+    }
+    #headernavigation .navigation{ display: none;}
+    /*====== </Top Block> ======*/
+}
+
+
+
+
+@media screen and (max-width: 640px){
+    
+    /* ============= <Main Page> ============= */
+    #left div.cat_listing div.content div.left{
+        float: none;
+        width: auto;
+        background: #000;
+    }
+    #left div.cat_listing div.header{
+        width: 100%;
+    }
+    #left div.cat_listing{ width: 100%; }
+    
+    #left div.cat_listing div.content div.right div.small-listing{
+        width: 100%;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #009DDB;
+    }
+    #left div.cat_listing div.content div.right div.small-listing div.thumb{
+        width: 30%; height: auto;
+    }
+    #left div.cat_listing div.content div.right div.small-listing div.thumb img{
+        width: 100%; height: auto;
+    }
+    #left div.cat_listing div.content div.right div.small-listing div.description{
+        width: 65%; height: auto;
+        padding-left: 2%;
+    }
+    #left div.cat_listing div.content div.left div.imgholder{
+        float: none;
+        width: 290px;
+        height: 220px;
+        box-shadow: none;
+        margin: 0 auto;
+    }
+    #left div.cat_listing div.content div.left img{
+        min-width: 290px;
+        min-height: 220px;
+    }
+    #left div.cat_listing div.content div.right div.small-listing div.description h4 a{
+        font-size: 1.1em; line-height: 1.4em;
+        text-decoration: underline;
+        color: #4c8296;
+    }
+    #left div.cat_listing div.content div.right div.small-listing div.thumb{
+        box-shadow: none;
+    }
+    /* ============= </Main Page> ============= */
+    
+    /* ============= <Cat List Page> ============= */
+    #left #list_categories div.listing div.content div.left .imgholder{
+        float: none;
+        width: 100%;
+        height: auto;
+    }
+    #left #list_categories div.listing div.content div.left .imgholder a{
+        display: block;
+        /*margin: 0 auto;*/
+    }
+    #left #list_categories div.listing div.content div.left img{
+        width: auto; 
+        height: auto; 
+        padding: 0px; 
+        border: none;
+        box-shadow:none;
+        float: none;
+        margin: 0 auto;
+        display: block;
+    }
+    #left #list_categories div.listing div.content div.left{
+        width: 100%; height: auto; 
+        /*padding-right: 5%;*/
+        background-color: #000;
+    }
+    #left #list_categories div.listing div.content{padding-bottom: 20px;}
+    #left #list_categories div.listing{ width: 100%; }
+    #list_categories div.active{ width: 100%;}
+    #list_categories{ width: 100%;}
+    #left #list_categories div.listing div.content div.right{width: auto; height: auto; float: none;}
+    #left #list_categories div.listing div.content div.right .small-desc {float:none;}
+    #left #list_categories div.listing div.content div.right .small-desc p{ display:none; float:none; font-size: 0.9em; line-height: 1.3em; margin: 0;}
+    #left #list_categories div.listing h2.cat-list-title a {font-size: 0.8em; line-height: 1.2em}
+    #left #list_categories .news_pager{ width: 100%;}
+    
+    
+    #left div.listing div.content div.right div.small-desc div.date_source{display: none;}
+    /* ============= </Cat List Page> ============= */
+}
+
+
+
+
+@media screen and (max-width: 480px)
+{
+    /*==== <Like News> ====*/
+    #left div.othernews #like-acle-slider .slider-block .listing .content .left{ width: 200px;}
+    #left #like-acle-slider div.listing div.content div.left div.imgholder{ width: 190px; height: 130px;}
+    #left #like-acle-slider div.listing div.content div.left img{ width: 180px !important; height: 120px !important;}
+    
+    #left div.othernews #like-acle-slider .slider-block .right .small-desc h3 a{ font-size: 1em; line-height: 1.4em;}
+    #left div.othernews #like-acle-slider .slider-block .right .small-desc p{display: none;}
+    
+    #left div.othernews #like-acle-slider .slider-block .right .small-desc{ height: auto;}
+    /*#left .single div.listing div.content div.right {height: 145px;}*/
+    #left div.othernews #like-acle-slider .slider-block .left .imgholder .like-art-date{right: 6px;}
+    #left div.othernews #like-acle-slider .bx-wrapper .bx-controls-direction a{margin-top: -100px;}
+    /*==== </Like News> ====*/
+    
+    /*==== <Top Social> ====*/
+    #left div.single .doc-date-top{height: 20px;}
+    #left div.single .doc-date-top .social_btn_top{display: none;}
+    #left div.single .doc-date-top .dd_right{float:left; margin-left: 5px; line-height: 20px;}
+    /*==== </Top Social> ====*/
+}
+
+
+
+
+@media screen and (max-width: 320px)
+{
+    /*==== <Like News> ====*/
+    #left div.othernews #like-acle-slider .slider-block .listing .content .left{ width: 160px;}
+    #left #like-acle-slider div.listing div.content div.left div.imgholder{ width: 150px; height: 100px;}
+    #left #like-acle-slider div.listing div.content div.left img{ width: 140px !important; height: 90px !important;}
+    
+    #left div.othernews #like-acle-slider .slider-block .right .small-desc h3 a{ font-size: 0.9em; line-height: 1.4em;}
+    
+    #left div.listing div.content div.right {height: 117px;}
+    #left div.othernews #like-acle-slider .bx-wrapper .bx-controls-direction a{margin-top: -90px;}
+    /*==== </Like News> ====*/
+    
+/*    #left div.single .content-gAd-bottom{
+        max-width: 293px;
+        padding-left: -3px;
+        overflow: hidden;
+    }*/
+    #left {padding-right: 0;}
+    #content_holder {padding-left: 0;}
+}

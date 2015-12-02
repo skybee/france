@@ -1,0 +1,149 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*** Featured Slider ***/
+
+
+#featured{
+	width:934px;
+	position:relative;
+	height:298px;
+	padding-left:22px;
+	padding-top:19px;
+	overflow:hidden;
+	/*margin-top:22px;*/
+	float:left;
+        /*border-bottom: #009DDB 2px solid;*/
+        
+        position: absolute;
+        
+        top: 164px; left: 20px;
+}
+
+.featured_long_title{float:left; width:412px; background:#006;}
+.featured_long_title h1 a{color:#fff; font-size:21px; text-decoration:none; text-shadow:1px 1px 1px #000;}
+.featured_long_date{width:406px; top:25px;}
+.featured_long_content{width:412px; top:19px; background:#030; position:absolute; left:520px; height:190px;}
+
+/*** Navigation Tabs ***/
+
+#featured ul.ui-tabs-nav{
+	position:absolute;
+	top:214px;
+        left: 11px;
+	/*left:507px;*/
+	list-style:none;
+	padding:0; margin:0;
+	/*width:446px;*/
+	height:84px;
+	z-index:1;
+	
+}
+
+#featured ul.ui-tabs-nav li{
+	padding:0px 0; 
+	height:84px;
+	font-size:12px;
+	float:left;
+}
+#featured ul.ui-tabs-nav li span{
+    font-size:11px; 
+	font-family:Arial, Verdana, Geneva, sans-serif;
+	line-height:18px;
+	text-shadow:1px 1px 1px #000;
+}
+
+#featured .ui-tabs-panel{
+	width:913px;
+	height:278px;
+	position:relative;
+    overflow:hidden;
+	
+}
+
+#featured .ui-tabs-hide{
+	display:none;
+}
+
+#featured li.ui-tabs-nav-item a{/*On Hover Style*/
+	display:block;
+	height:84px;
+	line-height:20px;
+	outline:none;
+	text-decoration:none;
+	
+}
+
+/*** Thumbs ***/
+
+#featured ul.ui-tabs-nav li img{
+	float:left; 
+	margin:2px 11px;
+	width:93px;
+	height:63px;
+	margin-top:10px;
+}
+
+/*** Other ***/
+
+#featured .ui-tabs-panel .info{
+	position:absolute;
+	left:295px;
+	top:0px;
+	height:72px; 
+	/*width: 420px;*/
+}
+
+#featured .ui-tabs-panel .info .date{ 
+   font-size:14px; color:#9f9f9f;
+   text-shadow:1px 1px #000; 
+   margin-left:5px; 
+   float:left; 
+   width:100%; 
+   padding-top:10px; 
+   padding-bottom:10px;
+   }
+   
+#featured .ui-tabs-panel .info .date a{
+   color:#9f9f9f; 
+   text-shadow:1px 1px #000;
+	}
+
+#featured .info h2{
+	font-size:22px;
+        line-height: 24px;
+	font-family:"Arial", Gadget, sans-serif;
+	padding:0px 5px; 
+	margin:0;
+	overflow:hidden;
+        font-weight: normal;
+}
+#featured .info p{
+	margin-left:5px;
+	margin-top:4px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;
+	line-height:22px;
+        text-align: justify;
+	/*color:#fff !important;*/
+	/*width:429px;*/
+	
+}
+#featured .info a{
+	text-decoration:none;
+}
+#featured .info a:hover{
+	text-decoration:underline;
+}
+
+.top_slide_main_img{
+    display: block; 
+    border: #fff 1px solid; 
+    overflow: hidden;
+    width: 275px; height: 175px;
+}
+
+.top_slide_main_img img{
+    width: 275px;
+    min-height: 175px; max-height: 250px;
+}

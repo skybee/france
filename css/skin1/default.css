@@ -1,0 +1,168 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*** Theme Styles ***/
+body{
+	background-color:#FFF;
+}
+
+/*** Header Navigation ***/
+
+#headernavigation{
+	background:url(/img/header_navigation.png) repeat-x #151515;
+}
+
+#headernavigation div.navigation a{
+	color:#cecece;
+}
+
+#headernavigation div.navigation a:hover{
+	color:#fff;
+}
+
+#headernavigation div.navigation .selected{
+	color:#fff;
+	padding-left:0;
+}
+
+#headernavigation div.navigation .current_page_item{
+	color:#fff;
+}
+
+#headernavigation div.navigation .current_page_item a{
+	color:#fff;
+}
+
+#headernavigation form.topsearch{
+	background-image:url(/img/search_bar.png);;
+}
+
+/*** Categories ***/
+
+#categories{
+	border:#000 solid 1px;
+	background:url(/img/categories_bg.png);
+	background-color:#000;
+	
+}
+
+#categories li{
+    border-right:1px solid #4d4a4a;
+	float:left;
+	
+}
+
+#categories a{
+	color:#fff;
+	border-right:1px solid #000;
+}
+
+#categories a:hover{
+	background-image:url(/img/categories_hover.png);
+}
+
+/*.secondnav-menu li li a:hover{
+	background-image:url(/img/categories_list_hover.png) !important;  Drop Down Hover Image 
+}*/
+
+#categories .current-cat{
+		background-image:url(/img/categories_hover.png);
+}
+
+#categories  .current_page_item{
+	background-image:url(/img/categories_hover.png);
+}
+
+/*** Featured Slider ***/
+
+#featured{
+	background:url(/img/slider-bg.png) #000;
+	
+}
+
+#featured ul.ui-tabs-nav{
+	
+}
+
+#featured ul.ui-tabs-nav li{
+	
+	
+}
+
+#featured .ui-tabs-panel{
+	background:#999;
+}
+#featured li.ui-tabs-nav-item a{/*On Hover Style*/
+	color:#FFF;  
+}
+
+#featured li.ui-tabs-nav-item a:hover{
+	color:#808080;
+}
+
+#featured li.ui-tabs-nav-item a:hover img{
+	border:1px solid #fff;
+}
+
+#featured li.ui-tabs-selected{ /*Selected tab style*/
+	background:url('/img/selected_item.png') top left ;
+	
+}
+#featured ul.ui-tabs-nav li.ui-tabs-selected a{
+	
+	
+}
+#featured ul.ui-tabs-nav li img{
+	background:#fff;
+	border:1px solid #000;
+}
+#featured .info h2{
+	color:#fff;
+}
+#featured .info p{
+    color:#cecece;
+}
+
+#featured .info a{
+	color:#fff;
+}
+
+#featured .bx-wrapper .bx-viewport{
+    box-shadow: none;
+    border: none;
+    background: none;
+}
+
+#featured #bx-pager a.active{
+    background:url('/img/selected_item.png') top left ;
+}
+
+
+/*** Featured Post ***/
+#featured_post{
+	border:1px solid #090909;
+	background-color:#414141;	
+	background:url(/img/feature_post.jpg);
+}
+#featured_post img{
+	border:solid #000 1px;
+}
+#featured_post h1 a{
+	color:#ffffff;
+}
+#featured_post h1 a:hover{
+	color:#d1d1d1;
+}
+#featured_post p{
+	color:#dfdfdf;
+}
+#featured_post .date a{
+	color:#c0c0c0;
+}
+#featured_post .read_more a{
+	background-color:#1a1a1a;
+	color:#fff;
+}
+#featured_post .read_more a:hover{
+	background-color:#292929;
+}

@@ -1,0 +1,12 @@
+User-Agent: *
+Disallow: /search/
+#Disallow: /js/skin1/sb.js
+Crawl-delay: 3
+
+User-agent: Yandex
+Disallow: /search/
+Crawl-delay: 3
+Host: odnako.su
+
+User-agent: Mediapartners-Google
+Disallow:
