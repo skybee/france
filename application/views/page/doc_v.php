@@ -31,7 +31,7 @@
             </span>
             <span class="long_date_str">
             Источник:&nbsp;&nbsp;
-            <a class="doc-donor-link" href="http://<?=$doc_data['d_host']?>/" <?=$donor_rel;?> target="_blank" style="background-image: url('http://favicon.yandex.net/favicon/<?=$doc_data['d_host']?>');">
+            <a class="doc-donor-link" href="http://<?=$doc_data['d_host']?>/" <?=$donor_rel;?> target="_blank" style="background-image: url('/upload/donor-logo/<?=$doc_data['d_img']?>');">
                 <?=$doc_data['d_name']?>
             </a>
             </span>
@@ -41,17 +41,8 @@
     
 
     <div class="content copy-url">
-        
-        <?php  if( !empty($doc_data['main_img']) ): ?>
-        <div class="thumb thumb-fix-block">
-            <div class="thumb-fix-block-bg">
-                <a href="/upload/images/real/<?=$doc_data['main_img']?>" title="<?=$doc_data['title']?>" class="image-popup-no-margins" >
-                    <img src="/upload/images/medium/<?=$doc_data['main_img']?>" alt="<?=$doc_data['title']?>" class="imgf" style="opacity: 1;" onerror="imgError(this);" />
-                </a>
-            </div>
-        </div>
-        <?php  endif; ?>
-        
+
+<!--        
         <style>
             @media(max-width: 980px){ #left div.single div.thumb-gAd .mobile-noimg{width: 336px; height: 280px;} }
             @media(max-width: 340px){ #left div.single div.thumb-gAd .mobile-noimg{width: 300px; height: 250px;} }
@@ -60,6 +51,7 @@
         <div class="thumb thumb-gAd">
             <span class="gAd" data="content noImg"></span>
         </div>
+-->
         
     <?=$doc_data['text']?>
         
@@ -102,61 +94,21 @@
                 <h2 class="doc-cat-title">смотрите также:</h2>
             </div><!-- #header -->
             
-            <div class="slider-block">
-                
+            <div class="like-article-list">
                 <?php
-                    $cntNews = count($like_articles);
-
-                    for($i   = 1; $i<=$cntNews; $i = $i+3 ):
+                    foreach ($like_articles as $likeArts):
+                        $newsUrl    = "/{$likeArts['full_uri']}-{$likeArts['id']}-{$likeArts['url_name']}/";
+                        $imgUrl     = '/upload/images/small/' . $likeArts['main_img']
                 ?>
-
-                <div>
-                    <div class="slider-block-item">    
-
-                        <?php
-                            $ii = 0;
-                            foreach( $like_articles as $key=>$likeArts ):
-
-                            $newsUrl    = "/{$likeArts['full_uri']}-{$likeArts['id']}-{$likeArts['url_name']}/";
-                            $dateAr     =& $likeArts['date_ar'];
-                            $dateStr    = $dateAr['day_str'].' &nbsp;'.$dateAr['time'].', &nbsp;&nbsp;'.$dateAr['day_nmbr'].' '.$dateAr['month_str'].' '.$dateAr['year_nmbr'];
-
-                            if (!empty($likeArts['main_img']))
-                                $imgUrl = '/upload/images/medium/' . $likeArts['main_img'];
-                            else
-                                $imgUrl = '/img/default_news.jpg';
-                        ?>
-
-                        <div class="listing">
-                            <div class="content">
-                                <div class="left">
-                                    <div class="imgholder">
-                                        <a href="<?=$newsUrl?>">
-                                            <img src="<?=$imgUrl?>" class="imgf" style="opacity: 1;" onerror="imgError(this);">
-                                        </a>
-                                        <div class="like-art-date"><?=$likeArts['date_ar']['day_nmbr'].' '.$likeArts['date_ar']['month_str'].' '.$likeArts['date_ar']['year_nmbr']?></div>
-                                    </div><!-- #imgholder -->
-                                </div><!-- #left -->
-                                <div class="right">
-                                    <div class="small-desc">
-                                        <h3><a href="<?=$newsUrl?>"><?=$likeArts['title']?></a></h3>
-                                        <p><?=$likeArts['text']?></p>
-                                    </div><!-- #small-desc -->
-                                </div><!-- #right -->
-                            </div><!-- #content -->
-                        </div><!-- #listing -->
-
-                        <?php
-                            unset( $like_articles[$key] );
-                            $ii++;
-                            if($ii >= 3 ) break;
-                            endforeach; 
-                        ?>
-
-                    </div>
+                <div class="like-article-item">
+                    <a href="<?=$newsUrl?>">
+                        <img src="<?=$imgUrl?>" alt="<?=$likeArts['title']?>" />
+                        <?=$likeArts['title']?>
+                    </a>
                 </div>
-                <?php endfor; ?>
-                
+                <?php
+                    endforeach;
+                ?>
             </div>
         </div>
         <!-- /likeArticlesSlider -->

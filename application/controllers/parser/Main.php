@@ -12,10 +12,12 @@ class Main extends CI_Controller
         
         $this->load->database();
 //        $this->load->helper('parser/download');
+        $this->load->helper('donor_info_helper');
         $this->load->helper('parser/simple_html_dom');
         $this->load->library('parser/rss_url_lib');
         $this->load->library('parser/parse_lib');
         $this->load->library('parser/news_parser_lib');
+        $this->load->library('parser/news_parser_msn_lib');
         $this->load->library('parser/parse_page_lib');
         $this->load->library('parser/video_replace_lib');
         $this->load->model('parser_m');
@@ -72,11 +74,10 @@ class Main extends CI_Controller
     }
     
     function parse_news( $cnt_news = 1 ){
-        set_time_limit( 300 );
+        set_time_limit( 3600 );
         header("Content-type:text/html;Charset=utf-8");
         
-        
-        if( $this->single_work( 15, 'parse_news') == false ) exit('The work temporary Lock');
+//        if( $this->single_work( 5, 'parse_news') == false ) exit('The work temporary Lock');
         
         $parse_list = $this->parser_m->get_news_url_to_parse( $cnt_news );
         
@@ -90,9 +91,11 @@ class Main extends CI_Controller
             $this->parser_m->set_url_scaning( $news_ar['id'] );
 			
             #<for test>
-//            $news_ar['url']     = 'http://hochu.ua/cat-sex/we-and-men/article-56119-kak-reagirovat-esli-kenu-perestali-nravitsya-barbi/';  
-//            $news_ar['host']    = 'hochu.ua';
+//            $news_ar['url']     = 'http://www.msn.com/ru-ru/news/politics/%d1%81%d1%8b%d1%80%d1%8c%d0%b5-%d0%b2-%d0%be%d0%b1%d0%bc%d0%b5%d0%bd-%d0%bd%d0%b0-%d0%b8%d0%bd%d0%b2%d0%b5%d1%81%d1%82%d0%b8%d1%86%d0%b8%d0%b8-%d0%b7%d0%b0%d1%87%d0%b5%d0%bc-%d0%b4%d0%bc%d0%b8%d1%82%d1%80%d0%b8%d0%b9-%d0%bc%d0%b5%d0%b4%d0%b2%d0%b5%d0%b4%d0%b5%d0%b2-%d0%b5%d0%b4%d0%b5%d1%82-%d0%b2-%d0%ba%d0%b8%d1%82%d0%b0%d0%b9/ar-BBnvvcV';  
+//            $news_ar['host']    = 'www.msn.com';
             #</for test>
+            
+            echo "<br />\n $i - <i>".$news_ar['url']."</i><br />\n";
             
             $html = $this->news_parser_lib->down_with_curl( $news_ar['url'] );
             
@@ -114,37 +117,37 @@ class Main extends CI_Controller
             
             if( !empty($news_ar['main_img_url']) && empty($insert_data['img']) ){ 
                 $insert_data['img']         = $news_ar['main_img_url'];
-            }    
-            
-            
-            echo "<br />\n$i - <i>".$news_ar['url']."</i><br />\n";
+            }
             
 //            echo '<pre>'.print_r($news_ar,1).'</pre>';
 //            echo '<pre>'.print_r($insert_data,1).'</pre>';
-
-            $this->news_parser_lib->insert_news( $insert_data );
+            
+            $this->news_parser_msn_lib->insert_news( $insert_data );
     
             flush(); $i++;
-//            sleep(5);
+            sleep(5);
         }
 
     }
     
-    function get_articles_url(){
-        if( $this->single_work( 2, 'parse_articles_url') == false ) exit('The work temporary Lock');
+    function get_articles_url($scanUrl){
+//        if( $this->single_work( 2, 'parse_articles_url') == false ) exit('The work temporary Lock');
         
         $this->load->library('parser/articles_lib');
         
-        $scanUrl    = $this->donor_m->getScanPageListUrl();
+        if(!isset($scanUrl) OR !  is_array($scanUrl) )
+        {
+            $scanUrl    = $this->donor_m->getScanPageListUrl();
+        }
         
         $this->donor_m->updScanUrlTime( $scanUrl['id'] );
         
-        echo '<pre>'.print_r( $scanUrl, 1 ).'</pre>';
+//        $scanUrl['url']         = 'http://www.msn.com/ru-ru/money/markets';
+//        $scanUrl['host']        = 'www.msn.com';
+//        $scanUrl['cat_id']      = 12;
+//        $scanUrl['donor_id']    = 1;
         
-//        $scanUrl['url']         = 'http://www.womenshealthmag.com/channel_ui/ajax/1/5/';
-//        $scanUrl['host']        = 'www.womenshealthmag.com';
-//        $scanUrl['cat_id']      = 43;
-//        $scanUrl['donor_id']    = 19;
+        echo '<pre>'.print_r( $scanUrl, 1 ).'</pre>';
         
         $this->articles_lib->setScanUrl( $scanUrl['url'] );
         $data = $this->articles_lib->getData( $scanUrl['host'] );
@@ -155,6 +158,25 @@ class Main extends CI_Controller
         
         foreach( $data as $urlAr ){
             $this->parser_m->add_to_scanlist( $urlAr['url'], $scanUrl['cat_id'], $scanUrl['donor_id'], $urlAr['img'] );
+        }
+    }
+    
+    function get_articles_url_all(){
+        set_time_limit(180);
+        $scanUrlAr = $this->donor_m->getAllScanPageListUrl();
+        
+        if(count($scanUrlAr)<1)
+        {
+            echo "<br />\n!Нет URL для сканирования\n<br />";
+        }
+        else 
+        {
+            foreach ($scanUrlAr as $scanUrl)
+            {
+                $this->get_articles_url($scanUrl);
+                flush();
+                sleep(5);
+            }
         }
     }
       

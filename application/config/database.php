@@ -84,27 +84,21 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
-if( $_SERVER['HTTP_HOST'] == 'odnako.su')
+if( $_SERVER['HTTP_HOST'] == 'smiexpress.ru')
 {
     $db['default']['pconnect'] = TRUE;
 }
 
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'admin_sb';
-$db['default']['password'] = '1865tsbqwerty';
-$db['default']['database'] = 'admin_news';
+$db['default']['hostname'] = '127.0.0.1';
+$db['default']['username'] = 'mysql';
+$db['default']['password'] = 'mysql';
+$db['default']['database'] = 'france';
 
 
-if( $_SERVER['HTTP_HOST'] != 'odnako.su' ){
-//    $db['default']['hostname'] = '127.0.0.1';
-//    //$db['default']['hostname'] = 'localhost';
-//    $db['default']['username'] = 'mysql';
-//    $db['default']['password'] = 'mysql';
-//    $db['default']['database'] = 'sb';
-
-    $db['default']['hostname'] = 'odnako.su';
-    $db['default']['username'] = 'admin_sb';
-    $db['default']['password'] = '1865tsbqwerty';
-    $db['default']['database'] = 'admin_news';
+if( $_SERVER['HTTP_HOST'] == 'smiexpress.ru' ){
+    $db['default']['hostname'] = 'localhost';
+    $db['default']['username'] = 'admin_smi_ru';
+    $db['default']['password'] = 'smi-ru-ujyrjyu8444';
+    $db['default']['database'] = 'admin_smi_ru';
 }

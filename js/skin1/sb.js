@@ -46,9 +46,7 @@ $( document ).ready(function(){
     
     setTimeout('setTop()', 15000);
     
-    // <likeArt in Text Add Link>
-    likeInTxtLink = $('h2.look_more_hdn').attr('rel');
-    $('h2.look_more_hdn').wrapInner('<a href="'+likeInTxtLink+'"></a>');
+    
 
     
     if(!$('#right').is(':visible')){
@@ -64,6 +62,30 @@ $( document ).ready(function(){
         toWrite = loadGAd(blockName);
         $(this).replaceWith(toWrite);
     });
+    
+    
+    // <Content Link>
+    if($('span.out-link').length > 0)
+    {
+        $('span.out-link').each(function(){
+            url = $(this).attr('src');
+            txt = $(this).text();
+            aHtml = '<a target="_blank" href="'+url+'" >'+txt+'</a>';
+            $(this).replaceWith(aHtml);
+        });
+    }
+    // <Content Link>
+    
+    
+    // <Like Link in Text>
+    if($('h2.look_more_hdn').length > 0)
+    {
+        $('h2.look_more_hdn').each(function(){
+            likeInTxtLink = $(this).attr('rel');
+            $(this).wrapInner('<a href="'+likeInTxtLink+'"></a>');
+        });
+    }
+    // <Like Link in Text>
     
 });
 
@@ -244,23 +266,28 @@ function ifDesktop(){
     }
     loadSliderPagerImg();
 
-    $('.slider-block').bxSlider(
-        {
-            speed: 1000,
-            pause: 6000,
-            auto: true,
-            //randomStart: true,
-            pager: false
-        });
-
-    $('#right-top-news-slider').bxSlider({
-        speed: 1000,
-        pause: 6000,
-        auto: true,
-        //randomStart: true,
-        pager: false,
-        onSlideBefore: lazySliderBefore
+//    $('.slider-block').bxSlider(
+//        {
+//            speed: 1000,
+//            pause: 6000,
+//            auto: true,
+//            //randomStart: true,
+//            pager: false
+//        });
+        
+    $('ul.slideshow').bxSlider({
+        mode: 'fade',
+        pager: false
     });    
+
+//    $('#right-top-news-slider').bxSlider({
+//        speed: 1000,
+//        pause: 6000,
+//        auto: true,
+//        //randomStart: true,
+//        pager: false,
+//        onSlideBefore: lazySliderBefore
+//    });    
 
     $('.bxslider').bxSlider({
         mode: 'fade',
@@ -315,6 +342,9 @@ function ifDesktop(){
         }
     }
     // <serp result add link>
+    
+    
+    
     
     
     //Load Games

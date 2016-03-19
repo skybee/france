@@ -35,6 +35,7 @@ class Parse_page_lib{
             case 'www.goodhouse.ru':            return 'parseGoodhous';
             case 'lady.tsn.ua':                 return 'parseLadyTsnUa';
             case 'www.womenshealthmag.com':     return 'parseWomensHealthMag';
+            case 'www.msn.com':                 return 'parseMsn';    
             default: return false;
         }
     }
@@ -63,12 +64,20 @@ class cleanDOM{
             } 
         }
     }
+    
+    function delAllWrapper($selector){
+        if( is_array( $this->DOM->find($selector) ) ){
+            foreach( $this->DOM->find($selector) as $nextElement ){
+                $nextElement->outertext = $nextElement->innertext;
+            } 
+        }
+    }
 }
 
 
 abstract class parse_page{
     
-    protected $donorData, $cleaner, $html_obj, $data = array('img'=>false,'title'=>false,'text'=>false,'date'=>false);
+    protected $donorData, $cleaner, $html_obj, $data = array('img'=>false,'title'=>false,'description'=>false,'text'=>false,'date'=>false,'canonical'=>false);
     
     function __construct( $donorData ) {
         $this->donorData = $donorData;
@@ -139,7 +148,7 @@ class parseTsn extends parse_page{
             if( !is_object( $this->html_obj->find('#news_text',0)->find('.v_player', 0) ) && is_object( $this->html_obj->find('.v_player',0) ) ){
 //                $this->data['text'] .= $this->html_obj->find('.v_player',0)->outertext;
                 $html = $this->html_obj->find('body',0)->innertext;
-                preg_match("#<div class='v_player' id='video_player'></div>[\s]+<script[\s\S]+?addVariable\('media_id', '[\d]+'\);[\s\S]+?</script>#i", $html, $videoJsArr );
+                preg_match("#<div class='v_player' id='video_player'></div>[\s]+<script[\s\S]+?addVariable\('media_id', '[\d]+'\);[\s\S]+?</script>#iu", $html, $videoJsArr );
                 $this->data['text'] .= "\n\n".$videoJsArr[0];
             }
         }
@@ -148,7 +157,7 @@ class parseTsn extends parse_page{
         $this->data['text']         = preg_replace("#>[\s]*Читайте также:[\s\S]+?</a>#iu", '> </a>', $this->data['text']); //удаление Читайте также:
         
         #<video>
-//        $this->data['text']         = preg_replace( "#<script[\s\S]+?addVariable\('media_id', '([\d]+)'\);[\s\S]+?</script>#i", 
+//        $this->data['text']         = preg_replace( "#<script[\s\S]+?addVariable\('media_id', '([\d]+)'\);[\s\S]+?</script>#iu", 
 //                                                    parse_lib::comment_tags("<p style='text-align:center;'><embed src='http://ru.tsn.ua/bin/player/embed.php/$1' type='application/x-shockwave-flash' width='600' height='537' allowfullscreen='true' allowscriptaccess='always'></embed></p>"), 
 //                                                    $this->data['text']); 
         #</video>
@@ -186,13 +195,13 @@ class parseSegodnya extends parse_page{
         
         if( is_object( $this->html_obj->find('h1',0) ) ){
             $this->data['title']    = $this->html_obj->find('h1',0)->innertext;
-            $this->data['title']    = preg_replace("#\(\s*в(и|і)део\s*\)#i", ' ', $this->data['title']); //удаление слова "видео"
+            $this->data['title']    = preg_replace("#\(\s*в(и|і)део\s*\)#iu", ' ', $this->data['title']); //удаление слова "видео"
         }
         
         if( is_array( $this->html_obj->find('.article p') ) ){
             foreach( $this->html_obj->find('.article p') as $p ){
                 $tmpP = $p->outertext;
-                if( preg_match("#<strong>Читайте также:<br />#i", $tmpP) ) continue;
+                if( preg_match("#<strong>Читайте также:<br />#iu", $tmpP) ) continue;
                 $this->data['text']    .= $tmpP."\n";
             }
         }
@@ -269,7 +278,7 @@ class parseNewsLiga extends parse_page{
         if( is_object( $this->html_obj->find('.text',0) ) )
             $this->data['text']    .= $this->html_obj->find('.text',0)->innertext;
         
-        $this->data['text']         = preg_replace("#<b>Подписывайтесь на аккаунт[\s\S]+?</b>#i", '', $this->data['text']); //удаление "Подписывайтесь***" и т.д.
+        $this->data['text']         = preg_replace("#<b>Подписывайтесь на аккаунт[\s\S]+?</b>#iu", '', $this->data['text']); //удаление "Подписывайтесь***" и т.д.
     }
 }
 
@@ -403,7 +412,7 @@ class parseItc extends parse_page{
         $imgURL = $this->donorData['main_img_url'];
         if( empty($imgURL) ) return $html;
         
-        $pattern    = "#<img[\s\S]+?src=['\"]{$imgURL}['\"][\s\S]+?>#i";
+        $pattern    = "#<img[\s\S]+?src=['\"]{$imgURL}['\"][\s\S]+?>#iu";
 //        $html       = preg_replace($pattern, '', $html);
         
         return $html;
@@ -468,7 +477,7 @@ class parseItc extends parse_page{
             }
             
             //del first img without text
-            $firstImgPattern = "#^[^а-яёА-ЯЁ]+?<img\s*[\s\S]+?>#i";
+            $firstImgPattern = "#^[^а-яёА-ЯЁ]+?<img\s*[\s\S]+?>#iu";
             while( preg_match($firstImgPattern, $this->data['text']) ){
                 $this->data['text'] = preg_replace($firstImgPattern, '', $this->data['text']);
             }
@@ -482,8 +491,8 @@ class parseItc extends parse_page{
     }
     
     private function chengeH1( $html ){
-        $pattern[]      = "#<h1#i";
-        $pattern[]      = "#h1>#i";
+        $pattern[]      = "#<h1#iu";
+        $pattern[]      = "#h1>#iu";
         $replacement[]  = '<h3';
         $replacement[]  = 'h3>';
         
@@ -494,7 +503,7 @@ class parseItc extends parse_page{
     
     private function getDate( $dateStr ){
         $date = false;
-        $pattern = "#\d{4}-\d{2}-\d{2}#i";
+        $pattern = "#\d{4}-\d{2}-\d{2}#iu";
         if( preg_match($pattern, $dateStr, $matches) ){
 //            echo '<pre>'.print_r($matches,1).'</pre>';
             $date = $matches[0].' '.rand(10,22).':00:00';
@@ -517,7 +526,7 @@ class parseHabr extends parse_page{
         if( is_object( $this->html_obj->find('.content',0) ) ){
             $this->data['text'] = $this->html_obj->find('.content',0)->innertext;
             
-            $firstImgPattern = "#^[^а-яёА-ЯЁ]+?<img\s*[\s\S]+?>#i";
+            $firstImgPattern = "#^[^а-яёА-ЯЁ]+?<img\s*[\s\S]+?>#iu";
             while( preg_match($firstImgPattern, $this->data['text']) ){
                 $this->data['text'] = preg_replace($firstImgPattern, '', $this->data['text']);
             }
@@ -591,7 +600,7 @@ class parse4PDA extends parse_page{
     
     private function getDate( $dateStr ){
         $date = false;
-        $pattern = "#(\d{1,2})\.(\d{1,2})\.(\d{2})#i";
+        $pattern = "#(\d{1,2})\.(\d{1,2})\.(\d{2})#iu";
         if( preg_match($pattern, $dateStr, $matches) ){
 //            echo '<pre>'.print_r($matches,1).'</pre>';
             
@@ -624,7 +633,7 @@ class parseComputerra extends parse_page{
         
         if( is_object( $this->html_obj->find('.article',0) ) ){
             $article = $this->html_obj->find('.article',0)->innertext;
-            $pattern = "#<!-- start -->[\s\S]+?<!-- fin -->#i";
+            $pattern = "#<!-- start -->[\s\S]+?<!-- fin -->#iu";
             
             preg_match($pattern, $article, $matches);
             $this->data['text'] = $matches[0];
@@ -662,7 +671,7 @@ class parseSupreme extends parse_page{
     
     private function getDate( $dateStr ){
         $date = false;
-        $pattern = "#(\d{1,2})\.(\d{1,2})\.(\d{4})#i";
+        $pattern = "#(\d{1,2})\.(\d{1,2})\.(\d{4})#iu";
         if( preg_match($pattern, $dateStr, $matches) ){
 //            echo '<pre>'.print_r($matches,1).'</pre>';
             
@@ -699,7 +708,7 @@ class parseHochu extends parse_page{
         
         if( is_object( $this->html_obj->find('.article-content',0) ) ){
             $this->data['text']     = $this->html_obj->find('.article-content',0)->innertext;
-            $this->data['text']     = preg_replace("#<em>Следите за нашими новостями в соцсетях[\s\S]*?</em>#i", '', $this->data['text']);
+            $this->data['text']     = preg_replace("#<em>Следите за нашими новостями в соцсетях[\s\S]*?</em>#iu", '', $this->data['text']);
         }
         
         if( is_object( $this->html_obj->find('span.date',0) ) ){
@@ -709,7 +718,7 @@ class parseHochu extends parse_page{
     
     private function getDate( $dateStr ){
         $date = false;
-        $pattern = "#(\d{1,2})\.(\d{1,2})\.(\d{4})#i";
+        $pattern = "#(\d{1,2})\.(\d{1,2})\.(\d{4})#iu";
         if( preg_match($pattern, $dateStr, $matches) ){
 //            echo '<pre>'.print_r($matches,1).'</pre>';
             
@@ -920,6 +929,324 @@ class parseWomensHealthMag extends parse_page{
             $pattern = "/<p><strong>More from[\s\S]*?:[\s\S]*?<\/p>/i";
             $this->data['text'] = preg_replace($pattern, '', $this->data['text']);
         }
+    }
+}
+
+class parseMsn extends parse_page{
+    
+    function parseDOM() {
+        
+        if( is_object( $this->html_obj->find('.collection-headline h1',0) ) ){
+            $this->data['title'] = $this->html_obj->find('.collection-headline h1',0)->innertext;
+        }
+        
+        if( is_object( $this->html_obj->find('section.articlebody',0) ) ){
+            $textObj = $this->html_obj->find('section.articlebody',0);
+            $textObj = $this->imgInTxt($textObj);
+            $textObj = $this->slideerRewrite($textObj);
+            $textObj = $this->delTagFromObj($textObj);
+            $textObj = $this->changeLink($textObj);
+            $htmlTxt = $textObj->innertext;
+            $htmlTxt = $this->delHtmlTagData($htmlTxt);
+            $htmlTxt = $this->delAttrFromHtml($htmlTxt);
+            $htmlTxt = $this->delTagFromHtml($htmlTxt);
+            $htmlTxt = preg_replace("#<(/|)h1#iu", "<$1h2", $htmlTxt); // h1 to h2
+            $htmlTxt = $this->addLikeMarker($htmlTxt, 500);
+            $htmlTxt = iconv('utf-8', 'utf-8//IGNORE', $htmlTxt ); //исправление некорректных символов
+            $this->data['text'] = '<div data-parse-version="1" class="parse-version p-version-1">'.$htmlTxt.'</div>';
+        }
+        
+        #<DonorData>
+        if( is_object( $this->html_obj->find('.partnerlogo-img .partnermainlogo img',0) ) )
+        {
+            $imgJson    = $this->html_obj->find('.partnerlogo-img .partnermainlogo img',0)->attr['data-src'];
+            $imgJson    = html_entity_decode($imgJson);
+            $imgAr      = json_decode($imgJson, true);
+            $imgSrc     = 'http:'.$imgAr['default'];
+
+            $searchAr   = array("#h=\d{2,3}#iu","#w=\d{2,3}#iu","#q=\d{1,2}#iu");
+            $replaceAr  = array("h=32","w=32","q=100");
+            $imgSrc     = preg_replace($searchAr, $replaceAr, $imgSrc);
+            
+            $this->data['donor-data']['img'] = $imgSrc;
+        }
+        
+        if( is_object( $this->html_obj->find('.sourcename-txt a',0) ) )
+        {
+            $this->data['donor-data']['name'] = $this->html_obj->find('.sourcename-txt a',0)->innertext;
+            
+            $donorUrl   = $this->html_obj->find('.sourcename-txt a',0)->href;
+            $donorUrlAr = parse_url($donorUrl);
+            
+            $this->data['donor-data']['host'] = trim($donorUrlAr['host']);
+        }
+        else
+        {   
+            if( is_object($this->html_obj->find('.sourcename-txt',0)) ){ //получение хоста по имени из массива сохраненных
+                $donorName      = trim($this->html_obj->find('.sourcename-txt',0)->innertext);
+                echo "<br />\n--Text Source--".$donorName."--/Text Source--\n<br />";
+                $donorInfoAr    = get_donor_info_by_name($donorName);
+                
+                if(is_array($donorInfoAr))
+                {
+                    $this->data['donor-data']['name'] = $donorName;
+                    $this->data['donor-data']['host'] = $donorInfoAr['host'];
+                }
+            }
+            
+            if(isset($donorInfoAr) == false OR $donorInfoAr == false)
+            {
+                $this->data['donor-data']['host'] = 'www.msn.com';
+                $this->data['donor-data']['name'] = 'MSN';
+                if( is_object( $this->html_obj->find('link[rel=shortcut icon]',0) ) ){
+                    $this->data['donor-data']['img'] = 'http:'.$this->html_obj->find('link[rel=shortcut icon]',0)->href;
+                }
+            }
+        }
+        
+        if( is_object( $this->html_obj->find('meta[name=description]',0) ) ){
+            $description = $this->html_obj->find('meta[name=description]',0)->content;
+            $this->data['description'] = $this->getBigDescription($description, $this->data['text'], 600);
+        }
+        
+        if( is_object( $this->html_obj->find('link[rel=canonical]',0) ) ){
+            $this->data['canonical'] = $this->html_obj->find('link[rel=canonical]',0)->href;
+        }
+        #</DonorData>
+    }
+    
+    private function imgInTxt($textObj){
+        if( !is_object($textObj->find('img',0)) )
+        {
+            return $textObj;
+        }
+        
+        foreach($textObj->find('img') as $imgObj)
+        {
+            $imgJson    = $imgObj->attr['data-src'];
+            $imgJson    = html_entity_decode($imgJson);
+            $imgAr      = json_decode($imgJson, true);
+            if(is_array($imgAr['default']))
+            {
+                $imgSrc     = 'http:'.$imgAr['default']['src'];
+            }
+            else
+            {
+                $imgSrc     = 'http:'.$imgAr['default'];
+            }
+            
+            //<MaxImgSize>
+            preg_match("#w=(\d+)#iu", $imgSrc, $matches);
+            if(isset($matches[1]) && $matches[1] > 616)
+            {
+                $searchAr   = array("#h=\d{2,4}#iu","#w=\d{2,4}#iu","#q=\d{1,2}#iu");
+                $replaceAr  = array("h=","w=616");
+                $imgSrc     = preg_replace($searchAr, $replaceAr, $imgSrc);
+            }
+            //</MaxImgSize>
+            
+            $imgSrc = preg_replace("#q=\d{1,2}#iu", "q=100", $imgSrc); // quality 100%
+            
+            $imgObj->attr['src'] = $imgSrc;
+            
+            if( !isset($imgObj->attr['alt']) || empty($imgObj->attr['alt']) )
+            {
+                $imgObj->attr['alt'] = $this->data['title'];
+            }
+            unset($imgObj->attr['data-src']);
+        }
+        
+        return $textObj;
+    } 
+    
+    private function slideerRewrite($textObj){
+        if( !is_object($textObj->find('.inline-slideshow',0)) )
+        {
+            return $textObj;
+        }
+        
+        foreach($textObj->find('.inline-slideshow') as $sliderObj)
+        {
+            $i=0;
+            foreach($sliderObj->find('ul.slideshow li') as $slideLi)
+            {
+                $slideTxtData  = $sliderObj->find('.gallerydata div.slidemetadata-container',$i)->outertext;
+                $slideTxtData .= $sliderObj->find('.gallerydata div.body-text',$i)->outertext;
+                
+                $slideLi->innertext = $slideLi->innertext."\n".$slideTxtData;
+                $i++;
+            }
+            $sliderObj->find('.gallerydata',0)->outertext = '';
+        }
+        
+        return $textObj;
+    }
+    
+    private function delTagFromObj($textObj){
+        $cleaner  = new cleanDOM($textObj);
+        
+        $cleaner->delAll('div.thumbnail-container'); //del fullScreen btn in photoSlider
+        $cleaner->delAllWrapper('div.arsegment'); //del virtual page tag
+        
+        
+        return $textObj;
+    }
+    
+    private function delHtmlTagData($html){
+        $pattern = "#data-[\w-]+\s*=\s*\"[\s\S]*?\"#iu";
+        
+        $cleanHtml = preg_replace($pattern, '', $html);
+        
+        return $cleanHtml;
+    }
+    
+    private function delTagFromHtml($html){
+        
+        $pattern = "#</?(figure|figcaption)[\S\s]*?>#iu";
+        $newHtml = preg_replace($pattern, '', $html);
+        
+        $patternP = "#<p>\s*</p>#iu";
+        $newHtml = preg_replace($patternP, '', $newHtml);
+        
+        return $newHtml;
+    }
+    
+    private function delAttrFromHtml($html){
+        
+        $patternXmlns   = "#xmlns=\"http://www.w3.org/1999/xhtml\"#iu";
+        $newHtml        = preg_replace($patternXmlns, '', $html);
+        
+        $patternSpace   = "#\s+>#iu"; //space in tag 
+        $newHtml        = preg_replace($patternSpace, '>', $newHtml);
+        
+        $patternSpace2  = "#>\s+#iu"; //space in tag 
+        $newHtml        = preg_replace($patternSpace2, '> ', $newHtml);
+        
+        $patternSpace3  = "#\s+<#iu"; //space in tag 
+        $newHtml        = preg_replace($patternSpace3, ' <', $newHtml);
+        
+        return $newHtml;
+    }
+    
+    private function getBigDescription($descripion, $txtHtml, $lenth=300){
+        
+        $descripion = str_ireplace('...', '', $descripion);
+        
+        $descLenth = $this->txtLenth($descripion);
+        if($descLenth > $lenth){
+            $descripion  = preg_replace("#\.[^\.]+$#iu", '.', $descripion);
+            return $descripion;
+        }
+        
+        $intPlusDesc = $lenth - $descLenth + 30; //30 - deleted search str
+
+        $text       = strip_tags($txtHtml);
+        
+        $searchDescriptSrt = $this->getSearchDescription($descripion);
+        if($searchDescriptSrt)
+        {
+            $pos        = mb_stripos($text, $searchDescriptSrt);
+            if($pos!==false)
+            {
+                $descPlus   = mb_substr($text, $pos, $intPlusDesc);
+                $descPlus   = str_ireplace($searchDescriptSrt, ' ', $descPlus);
+                $descPlus   = preg_replace("#\.[^\.]+$#iu", '.', $descPlus);
+                
+                $descripion .=  $descPlus;
+            }
+            elseif(is_object($this->html_obj->find('section.articlebody',0))){ //add text in <p/> to description
+                $articleObj = $this->html_obj->find('section.articlebody',0);
+                if(is_object($articleObj->find('span.storyimage',0)))
+                {
+                    $articleObj->find('span.storyimage',0)->outertext = '';
+                }
+                if(is_object($articleObj->find('p',1)))
+                {
+                    $pTxt   = $articleObj->find('p',1)->innertext;
+                    $pTxt   = strip_tags($pTxt);
+                    $descPlus   = mb_substr($pTxt, 0, $intPlusDesc+30); //+30 - deleted search text in upper function
+                    $descPlus   = preg_replace("#\.[^\.]+$#iu", '.', $descPlus);
+                    
+                    $descripion .=  $descPlus;
+                }
+            }
+        }
+        
+        return $descripion;
+    }
+    
+    private function txtLenth($html){
+        $text   = strip_tags($html);
+        $text   = preg_replace("#[/,:;\!\?\(\)\.\s]#iu", '', $text);
+        $lenth  = mb_strlen($text);
+        
+        return $lenth;
+    }
+    
+    private function getSearchDescription($descripion){
+        if(preg_match("#.{30}$#iu", $descripion, $arr))
+        {
+            return $arr[0];
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    private function changeLink($textObj){
+        if(is_object($textObj->find('a',0)) == false){
+            return $textObj;
+        }
+        
+        foreach($textObj->find('a') as $linkObj){
+            $anchor = $linkObj->innertext;
+            $href   = $linkObj->href;
+            
+            $spanLink = '<span class="out-link" src="'.$href.'">'.$anchor.'</span>';
+            
+            $linkObj->outertext = $spanLink;
+        }
+        
+        return $textObj;
+    }
+    
+    private function addLikeMarker($htmlTxt, $afterCntSimbol = 500){
+        $startAfterCntSimbol = $afterCntSimbol;
+        $marker     = '<!--likeMarker-->'; //"\n".'<h1>likeMarker</h1>'."\n";
+        $tmpHtml    = $htmlTxt;
+        $pArr       = explode('</p>', $tmpHtml);
+        
+        if(count($pArr)<1){ return $htmlTxt; /*######*/ }
+        
+        $cntSimbol = 0;
+        foreach($pArr as $pStr)
+        {
+            $pStr .= '</p>';
+            $pLenth = $this->txtLenth($pStr);
+            
+            $cntSimbol = $cntSimbol + $pLenth;
+            
+            if($cntSimbol >= $afterCntSimbol){
+                $afterCntSimbol = round($afterCntSimbol * 1.2);
+                $cntSimbol = 0;
+                preg_match("#.{30}$#iu", $pStr, $matches);
+                
+                $searchStr  = $matches[0];
+                $replaceStr = $searchStr.$marker;
+                $replaceStr = str_ireplace('</p>', '<!--#--></p>', $replaceStr); //уникализация строки для исключения дублирования замены
+                
+//                echo $searchStr."<br />\n";
+                
+                $htmlTxt = str_ireplace($searchStr, $replaceStr, $htmlTxt);
+            }
+        }
+        
+        $lastCntTxt = round($startAfterCntSimbol * 0.7);
+        
+        $htmlTxt = preg_replace("#{$marker}(.{0,{$afterCntSimbol}})$#iu", "$1", $htmlTxt);
+        $htmlTxt = $marker.$htmlTxt;
+        return $htmlTxt;
     }
 }
 

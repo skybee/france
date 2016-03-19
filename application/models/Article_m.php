@@ -34,9 +34,16 @@ class Article_m extends CI_Model{
             $subCatWhere = " `article`.`cat_id` = '{$cat_id}' ";
         }        
                 
-        $sql = "SELECT `article`.`id`, `article`.`date`, `article`.`url_name`, `article`.`title`, `article`.`text`, `article`.`main_img`, `category`.`full_uri` "
+        $sql = "SELECT "
+                . "`article`.`id`, `article`.`date`, `article`.`url_name`, `article`.`title`, "
+                . "\n-- `article`.`text`, \n"
+                . "`article`.`main_img`, "
+                . "`category`.`full_uri`, "
+                . "`donor`.`img` AS 'd_img', `donor`.`name` AS 'd_name'  "
                 . "FROM "
-                . " `article` LEFT OUTER JOIN `category` ON `article`.`cat_id` = `category`.`id` "
+                . " `article` "
+                . "LEFT OUTER JOIN `category` ON `article`.`cat_id` = `category`.`id` "
+                . "LEFT OUTER JOIN `donor` ON `article`.`donor_id` = `donor`.`id` "
                 . "WHERE "
                 . "`article`.`date`>= '{$dateStart}' "
                 . "AND "
@@ -64,10 +71,10 @@ class Article_m extends CI_Model{
         $cacheName = 'last_news_'.$idParentId.'_'.$cnt;
         
         if( !$lastNewsCache = $this->cache->file->get($cacheName) ){
-            $data['first']  = $this->get_last_news($idParentId, 1, true, true /*, true*/);
-            $data['first']  = $data['first'][0];
+//            $data['first']  = $this->get_last_news($idParentId, 1, true, true /*, true*/);
+//            $data['first']  = $data['first'][0];
             $data['all']    = $this->get_last_news($idParentId, $cnt, false, true /*, true*/);
-            unset($data['all'][0]);
+//            unset($data['all'][0]);
             $this->cache->file->save($cacheName, $data, $this->catConfig['cache_time']['right_last_news'] * 60 );
         }
         else
@@ -179,7 +186,7 @@ class Article_m extends CI_Model{
         
         $result_ar = array();
         foreach( $query->result_array() as $row){
-            $row['text']    = $this->get_short_txt( $row['text'], $text_len );
+            $row['text']    = $this->get_short_txt($row['description'],$text_len); #$this->get_short_txt( $row['text'], $text_len );
             $row['date']    = get_date_str_ar( $row['date'] );
             $result_ar[]    = $row;
         }
@@ -241,7 +248,7 @@ class Article_m extends CI_Model{
         }
                         
         $sql = "SELECT 
-                    `article`.`id`, `article`.`title`, `article`.`url_name`, `article`.`main_img`, `article`.`date`, `article`.`text`, `article`.`views`, `category`.`full_uri` 
+                    `article`.`id`, `article`.`title`, `article`.`url_name`, `article`.`main_img`, `article`.`date`, `article`.`description`, `article`.`views`, `category`.`full_uri` 
                 FROM 
                     `article` LEFT OUTER JOIN `category` ON `article`.`cat_id` = `category`.`id`
                 WHERE 
@@ -251,7 +258,7 @@ class Article_m extends CI_Model{
                 AND 
                     `article`.`id` != '{$id}' 
                 {$dateSql} 
-                LIMIT 9
+                LIMIT {$cntNews}
                 ";      
                 
         $query = $this->db->query( $sql );
@@ -260,7 +267,7 @@ class Article_m extends CI_Model{
         
         $result = array();
         foreach( $query->result_array() as $row ){
-            $row['text']    = $this->get_short_txt( $row['text'], 600, 'dot' );
+//            $row['text']    = $this->get_short_txt( $row['text'], 600, 'dot' );
             $row['date_ar'] = get_date_str_ar( $row['date'] );
             $result[] = $row;
         }
@@ -343,7 +350,7 @@ class Article_m extends CI_Model{
         
         
         $sql = "SELECT  
-                    `article`.`id`,  `article`.`date`,  `article`.`url_name`,  `article`.`title`,  `article`.`text`,  `article`.`main_img`,  `category`.`full_uri` 
+                    `article`.`id`,  `article`.`date`,  `article`.`url_name`,  `article`.`title`,  `article`.`description`,  `article`.`main_img`,  `category`.`full_uri` 
                 FROM  
                     `article` LEFT OUTER JOIN `category` ON `article`.`cat_id` = `category`.`id`
                 WHERE    
@@ -362,7 +369,7 @@ class Article_m extends CI_Model{
         $result = array();
         
         foreach( $query->result_array() as $row ){
-            $row['text']    = $this->get_short_txt( $row['text'], $textLength );
+            $row['text']    = $this->get_short_txt($row['description'],$textLength); #$this->get_short_txt( $row['text'], $textLength );
             $row['date']    = get_date_str_ar( $row['date'] );
             $result[]       = $row;
         }
@@ -546,7 +553,7 @@ class Article_m extends CI_Model{
     
     private function get_like_articles_from_ids($idsStr){
         $sql = "SELECT 
-                    `article`.`id`, `article`.`title`, `article`.`url_name`, `article`.`main_img`, `article`.`date`, `article`.`text`, `article`.`views`, `category`.`full_uri` 
+                    `article`.`id`, `article`.`title`, `article`.`url_name`, `article`.`main_img`, `article`.`date`, `article`.`description`, `article`.`views`, `category`.`full_uri` 
                 FROM 
                     `article`, `category`
                 WHERE
@@ -561,7 +568,7 @@ class Article_m extends CI_Model{
         
         $result = array();
         foreach( $query->result_array() as $row ){
-            $row['text']    = $this->get_short_txt( $row['text'], 600, 'dot' );
+//            $row['text']    = $this->get_short_txt( $row['text'], 600, 'dot' );
             $row['date_ar'] = get_date_str_ar( $row['date'] );
             $result[] = $row;
         }

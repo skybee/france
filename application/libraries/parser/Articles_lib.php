@@ -28,7 +28,8 @@ class Articles_lib{
             case 'hochu.ua':                    return new parseHochuList( $this->scanUrl );
             case 'www.goodhouse.ru':            return new parseGoodhousList( $this->scanUrl );
             case 'lady.tsn.ua':                 return new parseLadyTsnUaList( $this->scanUrl );    
-            case 'www.womenshealthmag.com':     return new parseWomensHealthMagList( $this->scanUrl );     
+            case 'www.womenshealthmag.com':     return new parseWomensHealthMagList( $this->scanUrl );
+            case 'www.msn.com':                 return new parseMsnList( $this->scanUrl );    
             default: return false;
         }
     }
@@ -370,6 +371,76 @@ class parseWomensHealthMagList extends parseArticleList{
             $i++;
         }
           
+        return $data;
+    }
+}
+
+class parseMsnList extends parseArticleList{
+    function __construct($url) {
+        parent::__construct($url);
+    }
+    
+    protected function getUrlTitleImgFomPage() {
+        
+        return $this->secondLiParse();
+        
+//        if( !is_object($this->html_obj->find('.sectioncontent',0) ) ) return $this->secondLiParse();
+//        
+//        $i=0;
+//        foreach( $this->html_obj->find('li.smalla') as $list ){
+//            $data[$i]['url']    =  $list->find('a',0)->href;
+//            
+//            if( is_object($list->find('img',0)) ){
+//                $imgJson    = $list->find('img',0)->attr['data-src'];
+//                $imgJson    = html_entity_decode($imgJson);
+//                $imgAr      = json_decode($imgJson, true);
+//                $img        = 'http:'.$imgAr['default'];
+//                
+//                $searchAr   = array("#h=\d{2,3}#i","#w=\d{2,3}#i","#q=\d{1,2}#i");
+//                $replaceAr  = array("h=200","w=300","q=100");
+//                $img        = preg_replace($searchAr, $replaceAr, $img);
+//
+//                $data[$i]['img']    =  $img;
+//            }        
+//            else{
+//                $data[$i]['img']    =  '';
+//            }
+//            $i++;
+//        }
+//          
+//        return $data;
+    }
+    
+    protected function secondLiParse(){
+        
+        $i=0;
+        foreach( $this->html_obj->find('li[data-id]') as $list ){
+            
+            if( !is_object($list->find('span.sourcename',0)) ||  !is_object($list->find('a',0)) )
+            {
+                continue;
+            }
+            
+            $data[$i]['url']    =  $list->find('a',0)->href;
+            
+            if( is_object($list->find('img',0)) ){
+                $imgJson    = $list->find('img',0)->attr['data-src'];
+                $imgJson    = html_entity_decode($imgJson);
+                $imgAr      = json_decode($imgJson, true);
+                $img        = 'http:'.$imgAr['default'];
+                
+                $searchAr   = array("#h=\d{2,3}#i","#w=\d{2,3}#i","#q=\d{1,2}#i");
+                $replaceAr  = array("h=200","w=300","q=100");
+                $img        = preg_replace($searchAr, $replaceAr, $img);
+
+                $data[$i]['img']    =  $img;
+            }        
+            else{
+                $data[$i]['img']    =  '';
+            }
+            $i++;
+        }
+        
         return $data;
     }
 }

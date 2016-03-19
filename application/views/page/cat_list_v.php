@@ -23,11 +23,12 @@
                 <div class="imgholder">
                     <a href="<?=$news_url?>" target="_blank" >
                         <?php if( !empty($news_page_ar['main_img']) )
-                                $imgUrl = '/upload/images/medium/'.$news_page_ar['main_img'];
+                                $imgUrl = '/upload/images/real/'.$news_page_ar['main_img']; #<!--medium-->
                            else
                                 $imgUrl = '/img/default_news.jpg';
                         ?>
                         <img src="<?=$imgUrl?>" class="imgf" style="opacity: 1;" onerror="imgError(this);">
+                        <div class="cat-list-donor-logo" style="background-image: url('/upload/donor-logo/<?=$news_page_ar['d_img']?>');"></div>
                     </a>
                 </div><!-- #imgholder -->
             </div><!-- #left -->

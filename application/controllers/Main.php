@@ -40,7 +40,7 @@ class Main extends CI_Controller {
         $data_ar['meta']['title']       = $data_ar['main_cat_ar']['title'];
         
         $top_slider['articles']         = $this->article_m->get_top_slider_data($data_ar['main_cat_ar']['id'], 8, $this->catConfig['top_news_time'], $this->topSliderTxtLength, true, true); // 1.5 sec.
-        $right['right_top']             = $this->article_m->get_top_slider_data($data_ar['main_cat_ar']['id'], 5, $this->catConfig['right_top_news_time'], $this->topSliderTxtLength, true, true, 'right_top');
+        $right['right_top']             = $this->article_m->get_top_slider_data($data_ar['main_cat_ar']['id'], 8, $this->catConfig['right_top_news_time'], $this->topSliderTxtLength, true, true, 'right_top');
         $top_slider['main_cat_url']     = $data_ar['main_cat_ar']['url_name'];
         $right['last_news']             = $this->article_m->get_last_left_news( $data_ar['main_cat_ar']['id'], 50 ); // 1.5 sec.
 
@@ -79,7 +79,7 @@ class Main extends CI_Controller {
         }
         
         $data_ar['cat_ar']              = $this->category_m->get_cat_data_from_id($data_ar['doc_data']['cat_id']);
-        $data_ar['like_articles']       = $this->article_m->get_like_articles( $data_ar['doc_data']['id'], $data_ar['doc_data']['cat_id'] /*$data_ar['cat_ar']['parent_id']*/, $data_ar['doc_data']['title'], 9, $this->catConfig['like_news_day'], $data_ar['doc_data']['date'] );
+        $data_ar['like_articles']       = $this->article_m->get_like_articles( $data_ar['doc_data']['id'], $data_ar['doc_data']['cat_id'] /*$data_ar['cat_ar']['parent_id']*/, $data_ar['doc_data']['title'], 8, $this->catConfig['like_news_day'], $data_ar['doc_data']['date'] );
         
         $data_ar['main_menu_list']      = $this->list_m->get_cat(0);
         $data_ar['second_menu_list']    = $this->list_m->get_sCat_from_name($this->catNameAr[0]);
@@ -89,11 +89,11 @@ class Main extends CI_Controller {
         $data_ar['donor_rel']           = ' rel="nofollow" '; #botRelNofollow();
 
         //вставка like_articles[0] в текст
-        $data_ar['doc_data']['text'] = insertLikeArticleInTxt($data_ar['doc_data']['text'], $data_ar['like_articles']);
-        $data_ar['doc_data']['text'] = addResponsiveVideoTag($data_ar['doc_data']['text']);
+        $data_ar['doc_data']['text']    = insertLikeArtInTxt($data_ar['doc_data']['text'], $data_ar['like_articles']);
+        $data_ar['doc_data']['text']    = addResponsiveVideoTag($data_ar['doc_data']['text']);
 
         $top_slider['articles']         = $this->article_m->get_top_slider_data( $data_ar['cat_ar']['id'], 8, $this->catConfig['top_news_time'], $this->topSliderTxtLength, true, false);
-        $right['right_top']             = $this->article_m->get_top_slider_data( $data_ar['cat_ar']['parent_id'], 5, $this->catConfig['right_top_news_time'], $this->topSliderTxtLength, true, true, 'right_top');
+        $right['right_top']             = $this->article_m->get_top_slider_data( $data_ar['cat_ar']['parent_id'], 8, $this->catConfig['right_top_news_time'], $this->topSliderTxtLength, true, true, 'right_top');
         $right['last_news']             = $this->article_m->get_last_left_news( $data_ar['cat_ar']['parent_id'], 20 );
         
 //        $this->load->helper('sape');
@@ -141,7 +141,7 @@ class Main extends CI_Controller {
         }
 
         $top_slider['articles']         = $this->article_m->get_top_slider_data( $data_ar['cat_ar']['id'], 8, $this->catConfig['top_news_time'], $this->topSliderTxtLength, true, false);
-        $right['right_top']             = $this->article_m->get_top_slider_data( $data_ar['cat_ar']['parent_id'], 5, $this->catConfig['right_top_news_time'], $this->topSliderTxtLength, true, true, 'right_top');
+        $right['right_top']             = $this->article_m->get_top_slider_data( $data_ar['cat_ar']['parent_id'], 8, $this->catConfig['right_top_news_time'], $this->topSliderTxtLength, true, true, 'right_top');
         $right['last_news']             = $this->article_m->get_last_left_news( $data_ar['cat_ar']['parent_id'], 50 );
         
         $tpl_ar                 = $data_ar; //== !!! tmp
@@ -173,7 +173,7 @@ class Main extends CI_Controller {
         $data_ar['meta']['title']       = 'Поиск: &laquo;'.$searchStr.'&raquo;  - страница '.$page;
         
         $top_slider['articles']         = $this->article_m->get_top_slider_data(1, 8, $this->catConfig['right_top_news_time'], $this->topSliderTxtLength, true, true); // 1.5 sec.
-        $right['right_top']             = $this->article_m->get_top_slider_data(1, 5, $this->catConfig['right_top_news_time'], $this->topSliderTxtLength, true, true, 'right_top');
+        $right['right_top']             = $this->article_m->get_top_slider_data(1, 8, $this->catConfig['right_top_news_time'], $this->topSliderTxtLength, true, true, 'right_top');
         
         $right['last_news']              = $this->article_m->get_last_left_news( 1, 50 );
         

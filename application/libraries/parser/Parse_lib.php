@@ -18,7 +18,7 @@ class Parse_lib{
     }
     
     
-    function down_with_curl($url){
+    static function down_with_curl($url, $getInfo = false){
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko' );
@@ -29,10 +29,21 @@ class Parse_lib{
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_MAXREDIRS, 5);
 
-	$content = curl_exec($ch);
+	$content    = curl_exec($ch);
+        $httpData   = curl_getinfo($ch);
 	curl_close($ch);
         
-	return $content;
+        if($getInfo==false)
+        {
+            return $content;
+        }
+        else
+        {
+            $returnAr['data']       = $content;
+            $returnAr['http_data']  = $httpData;
+            
+            return $returnAr;
+        }
     }
     
     static function uri2absolute($link, $base){
@@ -153,18 +164,60 @@ class Parse_lib{
             return FALSE;
     }
     
-    function load_img( $img_url, $base_url){
+    function getImgExtensionFromMType($mimeType){
+        $exAr = array(
+            'image/png'     =>'png',
+            'image/jpeg'    =>'jpg', 
+            'image/gif'     =>'gif', 
+            'image/bmp'     =>'bmp', 
+            'image/vnd.microsoft.icon' =>'ico', 
+            'image/tiff'    =>'tiff', 
+            'image/svg+xml' => 'svg'
+        );
+        
+        if(isset($exAr[$mimeType]))
+        {
+            $extension = $exAr[$mimeType];
+        }
+        else
+        {
+            $extension = 'img';
+        }
+        
+        return '.'.$extension;
+    }
+    
+    function getLoadImgFname($mimeType, $alt = ''){
+        if(!empty($alt))
+        {
+            $newAlt     = url_slug( $alt ,array('transliterate' => true));
+            $newAlt     = $newAlt.'_';
+            $newAlt     = mb_substr($newAlt,0, 100); 
+            $newAlt     = preg_replace("#_[^_]+#i", '', $newAlt); //удаление обрезанного слова
+            $imgName    = $newAlt.'_'.mt_rand(100,999999).'_'.$this->getImgExtensionFromMType($mimeType);
+        }
+        else
+        {
+            $imgName    = md5(mt_rand(100,999999).'_'.time()).'_'.$this->getImgExtensionFromMType($mimeType);
+        }
+        
+        return $imgName;
+    }
+    
+    function load_img( $img_url, $base_url, $imgAlt = ''){
         if( empty($img_url) ) return FALSE;
         
         $absolute_url   = $this->uri2absolute($img_url, $base_url);
-        $new_img_name   = rand(100,999999).'_'.$this->get_fname_from_url($absolute_url);
+        $imgDataAr      = $this->down_with_curl($absolute_url, true); //скачивание изображения
+        
+//        $new_img_name   = $this->get_fname_from_url($img_url);
+        $new_img_name   = $this->getLoadImgFname($imgDataAr['http_data']['content_type'], $imgAlt);
         
         $this->lastLoadImgName  = $new_img_name;
         $savePathName           = $this->CI->dir_lib->getImgRdir().$new_img_name;
         $imgNameWithDatePath    = $this->CI->dir_lib->getDatePath().$new_img_name;
-            
-        $img_buffer     = $this->down_with_curl($absolute_url); //скачивание изображения
-        file_put_contents( $savePathName, $img_buffer ); //сохранение изображения
+        
+        file_put_contents( $savePathName, $imgDataAr['data'] ); //сохранение изображения
         
         return $imgNameWithDatePath;
     }
@@ -184,8 +237,8 @@ class Parse_lib{
                 break;
             case 'small' :
                 $savePath = $this->CI->dir_lib->getImgSdir().$this->lastLoadImgName;
-                $width  = '90';
-                $height = '90';
+                $width  = '120';
+                $height = '100';
                 break;
             default :
                 return false;
@@ -213,18 +266,25 @@ class Parse_lib{
         if( count($imgList) < 1 ) return $text; //прекращение обработки текста и возврат оригинала, в случае если карттинки не найдены
         
         foreach($imgList as $imgObj){
-             $imgPathName   = $this->load_img($imgObj->src, $base_url);
-             $imgPathName   = '/upload/images/real/'.$imgPathName; //!-- get from dir_lib
-             
-             if( isset($imgObj->slider) && $imgObj->slider == 'slider' ){
-                 $this->resizeImg('small', array('width'=>110, 'height'=>300) );
-                 $smallImgUri       = $this->CI->dir_lib->getImgSdir().$this->lastLoadImgName;
-                 $imgObj->src       = '/'.$smallImgUri;
-                 $imgObj->realimg   = $imgPathName;
-             }
-             else{
-                 $imgObj->src       = $imgPathName; 
-             }
+            
+            $imgAlt = '';
+            if(isset($imgObj->attr['alt']) && !empty($imgObj->attr['alt']))
+            {
+                $imgAlt = $imgObj->attr['alt'];
+            }
+            
+            $imgPathName   = $this->load_img($imgObj->src, $base_url, $imgAlt);
+            $imgPathName   = '/upload/images/real/'.$imgPathName; //!-- get from dir_lib
+
+            if( isset($imgObj->slider) && $imgObj->slider == 'slider' ){
+                $this->resizeImg('small', array('width'=>110, 'height'=>300) );
+                $smallImgUri       = $this->CI->dir_lib->getImgSdir().$this->lastLoadImgName;
+                $imgObj->src       = '/'.$smallImgUri;
+                $imgObj->realimg   = $imgPathName;
+            }
+            else{
+                $imgObj->src       = $imgPathName; 
+            }
         }
         
         return $html_obj->save();

@@ -1,0 +1,40 @@
+.parse-version{}
+.p-version-1{}
+
+.parse-version .parse-version .storyimage{
+    clear: both;
+    display: block;
+}
+.parse-version .storyimage .image, .storyimage img{
+    display: block;
+    position: relative;
+}
+
+.parse-version .storyimage.floated{
+    float: left;
+    margin-bottom: 14px;
+    margin-right: 24px;
+}
+.parse-version .storyimage.floated .caption{
+    width: 270px;
+}
+
+.parse-version .storyimage .caption{
+    font-size: 13px;
+    display: inline-block;
+    caption-side: bottom;
+    line-height: 1.3em;
+    margin-top: 8px;
+}
+.parse-version .storyimage .caption .attribution{color: #777;}
+
+#left div.single div.content .parse-version a{
+    color: #4c8296;
+    font-size: 16px;
+    font-weight: bold;
+    /*text-decoration: none;*/
+}
+#left div.single div.content .parse-version a:hover{
+    color:#009ddb;
+}
+

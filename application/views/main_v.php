@@ -6,7 +6,7 @@
         <title><?= $meta['title'] ?></title>
         <link rel="shortcut icon" href="/img/favico.png" type="image/png" />
         
-<!--        <link rel="stylesheet" type="text/css" href="/css/skin1/style.css" />
+        <link rel="stylesheet" type="text/css" href="/css/skin1/style.css" />
         <link rel="stylesheet" type="text/css" href="/css/skin1/featured_long_style.css" />
         <link rel="stylesheet" type="text/css" href="/css/skin1/featured_long.css" />
         <link rel="stylesheet" type="text/css" href="/css/skin1/default.css" />
@@ -14,11 +14,12 @@
         <link rel="stylesheet" type="text/css" href="/css/skin1/font.css" />
         <link rel="stylesheet" type="text/css" href="/css/skin1/magnific-popup.css" />
         <link rel="stylesheet" type="text/css" href="/css/skin1/jquery.bxslider.css" />
+        <link rel="stylesheet" type="text/css" href="/css/skin1/msn-parse.css" />
         <link rel="stylesheet" type="text/css" href="/css/skin1/mobile.css" />
         <link rel="stylesheet" type="text/css" href="/css/skin1/media-queries.css" />
-        <link rel="stylesheet" type="text/css" href="/css/skin1/mobile_gads.css" />-->
+        <link rel="stylesheet" type="text/css" href="/css/skin1/mobile_gads.css" />
         
-        <link rel="stylesheet" type="text/css" href="/css/all-style.min.css?v=21-11-02-07" />
+        <!--<link rel="stylesheet" type="text/css" href="/css/all-style.min.css?v=21-11-02-07" />-->
         
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,14 +30,14 @@
             <meta name="robots" content="noindex, follow" />
         <?php endif; ?>
 
-<!--        <script type='text/javascript' src='/js/skin1/jquery-1.11.3.min.js'></script>
+        <script type='text/javascript' src='/js/skin1/jquery-1.11.3.min.js'></script>
         <script type='text/javascript' src='/js/skin1/jquery-ui.min-tabs.js'></script>
         <script type='text/javascript' src='/js/skin1/jquery.magnific-popup.min.js'></script>
         <script type='text/javascript' src='/js/skin1/jquery.bxslider.min.js'></script>
-        <script type='text/javascript' src='/js/skin1/sb.js'></script>-->
+        <script type='text/javascript' src='/js/skin1/sb.js'></script>
             
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script async type='text/javascript' src='/js/all-files.min.js?v=21-11-01-35'></script>
+        <!--<script async type='text/javascript' src='/js/all-files.min.js?v=21-11-01-35'></script>-->
         
     </head>
 

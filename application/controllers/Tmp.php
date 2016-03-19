@@ -13,7 +13,7 @@ class Tmp extends CI_Controller{
         echo 'Tmp Index Controller';
     }
     
-    function _chenge_all_cat_uri(){
+    function chenge_all_cat_uri(){
         $query = $this->db->query("SELECT `id` FROM  `category` ORDER BY  `id`");
         
         foreach ($query->result_array() as $row){

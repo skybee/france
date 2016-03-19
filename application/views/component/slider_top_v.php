@@ -31,9 +31,9 @@
     <div id="fragment-<?=$i?>" class="ui-tabs-panel " style="margin-top:1px; background-color:transparent; float:left;">
         <a href="<?=$newsUrl?>" class="top_slide_main_img">
             <?php if($i==0): ?>
-            <img src="/upload/images/medium/<?=$article['main_img']?>" alt="" border="0" onerror="imgError(this);" />
+            <!--medium--><img src="/upload/images/real/<?=$article['main_img']?>" alt="" border="0" onerror="imgError(this);" />
             <?php else: ?>
-            <img data-src="/upload/images/medium/<?=$article['main_img']?>" src="/img/default_news.jpg" alt="" border="0" onerror="imgError(this);" />
+            <!--medium--><img data-src="/upload/images/real/<?=$article['main_img']?>" src="/img/default_news.jpg" alt="" border="0" onerror="imgError(this);" />
             <?php endif;?>
         </a>
         <div class="info">

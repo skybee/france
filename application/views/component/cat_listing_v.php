@@ -16,7 +16,7 @@
         <div class="left">
             <div class="imgholder">
                 <a href="<?="/{$catlist_ar['s_cat_ar']['full_uri']}-{$catlist_ar[0]['id']}-{$catlist_ar[0]['url_name']}/"?>">
-                    <img src="/upload/images/medium/<?=$catlist_ar[0]['main_img']?>" alt="<?=$catlist_ar[0]['title']?>" border="0" onerror="imgError(this);" />
+                    <!--medium--><img src="/upload/images/real/<?=$catlist_ar[0]['main_img']?>" alt="<?=$catlist_ar[0]['title']?>" border="0" onerror="imgError(this);" />
                 </a>
                 <div class="description"><h3><a href="<?="/{$catlist_ar['s_cat_ar']['full_uri']}-{$catlist_ar[0]['id']}-{$catlist_ar[0]['url_name']}/"?>"><?=$catlist_ar[0]['title']?></a></h3></div><!-- #description -->
             </div><!-- #imgholder -->

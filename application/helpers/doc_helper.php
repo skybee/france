@@ -46,6 +46,8 @@ function serpDataFromJson($json)
 
 function insertLikeArticleInTxt($text, $likeList)
 {   
+    return $text; # -- TMP -- #
+    
     if(!isset($likeList[0])){
         return $text; 
     }
@@ -81,6 +83,43 @@ function insertLikeArticleInTxt($text, $likeList)
 
     $text = preg_replace($search, $replace, $text, 1);
 
+    return $text;
+}
+
+function insertLikeArtInTxt($text, $likeList)
+{
+    if(!isset($likeList[0])){
+        return $text; 
+    }
+    
+    $i = 0;
+    foreach ($likeList as $likeArticle)
+    {
+        $newsUrl    = "/{$likeArticle['full_uri']}-{$likeArticle['id']}-{$likeArticle['url_name']}/";
+        $likeTitle  = str_replace('$', '&dollar;', $likeArticle['title']);
+        $likeText   = str_replace('$', '&dollar;', $likeArticle['description']);
+        
+        $likeArtHtml =  "\n"
+                        .' <h2 class="look_more_hdn" rel="'.$newsUrl.'">'
+                        //.'<span>Смотрите также:</span> '
+                        .$likeTitle
+                        . "</h2>\n"
+                        . '<p class="look_more_hdn"><span class="lmh_height_txt">'."\n"
+                        . '<img src="/upload/images/real/'.$likeArticle['main_img'].'" alt="'.$likeTitle.'" onerror="imgError(this);"/>'."\n"
+                        . $likeText."\n "
+                        . "</span></p>\n";
+        
+        if($i==0)
+        {
+            $likeArtHtml = "\n".'<span class="first-like-art-in-txt">'.$likeArtHtml.'</span>';
+        }
+        
+//        $text = str_ireplace('<!--likeMarker-->', $likeArtHtml, $text, 1);
+        $text = preg_replace("#<\!--likeMarker-->#iu", $likeArtHtml, $text, 1);
+        
+        $i++;
+    }
+    
     return $text;
 }
 

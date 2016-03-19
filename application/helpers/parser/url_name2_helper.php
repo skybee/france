@@ -16,8 +16,10 @@
  */
 function url_slug($str, $options = array()) {
 	// Make sure string is in UTF-8 and strip invalid UTF-8 characters
-        $str = html_entity_decode($str);
+        $str = html_entity_decode($str, ENT_COMPAT, 'UTF-8');
 	$str = mb_convert_encoding((string)$str, 'UTF-8', mb_list_encodings());
+        
+        $str = preg_replace("/&#\d+;/i", '', $str); //удаление не преобразованных элементов
 	
 	$defaults = array(
 		'delimiter' => '-',

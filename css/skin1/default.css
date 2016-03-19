@@ -113,9 +113,23 @@ body{
 	
 }
 #featured ul.ui-tabs-nav li img{
-	background:#fff;
-	border:1px solid #000;
+    background:#fff;
+    border:1px solid #000;
+/*    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray;  IE 6-9 */
 }
+/*#featured ul.ui-tabs-nav li a.active img{
+    -webkit-filter: none;
+    -moz-filter: none;
+    -ms-filter: none;
+    -o-filter: none;
+    filter: none;
+    filter: none;  IE 6-9 
+}*/
 #featured .info h2{
 	color:#fff;
 }
