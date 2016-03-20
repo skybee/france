@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller']                                    = "main";
 $route['[-a-z\d/]+?/(-\d+-.+)']                                 = "main/document/$1"; #/news/ukraine/-id-****/
 //$route['(actualite|divertissement|sport|finance|lifestyle)$']   = "main/main_page/$1";
-$route['(news|sports|money|lifestyle|health)$']                 = "main/main_page/$1";
+$route['^(news|finance|lifestyle)$']                 = "main/main_page/$1";
 $route['search/(:any)']                                         = "main/search/$1";
 $route['tmp/(:any)']                                            = "tmp/$1";
 $route['[-a-z\d/]+?/([-a-z\d]+?)/?(\d*)']                       = "main/cat_list/$1/$2";

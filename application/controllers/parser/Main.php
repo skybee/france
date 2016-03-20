@@ -130,7 +130,7 @@ class Main extends CI_Controller
 
     }
     
-    function get_articles_url($scanUrl){
+    function get_articles_url($scanUrl = false){
 //        if( $this->single_work( 2, 'parse_articles_url') == false ) exit('The work temporary Lock');
         
         $this->load->library('parser/articles_lib');

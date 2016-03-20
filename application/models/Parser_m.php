@@ -7,13 +7,30 @@ class Parser_m extends CI_Model{
         parent::__construct();
     }
     
+    private function getMsnUrlId($msn_url){
+        $pattern = "#/([a-z]{2}-[a-z\d]{7})[^/]*#i";
+        
+        preg_match($pattern, $msn_url, $matches);
+        
+        if(!empty($matches[1]))
+        {
+            return $matches[1];
+        }
+        else {
+            return '00-'.md5($msn_url); //если ID не найден, возврат Rand ID
+        }
+    }
+    
     function add_to_scanlist( $url, $cat_id, $donor_id, $img_url = null){
-        $query = $this->db->query("SELECT COUNT(`id`) AS 'cnt' FROM `scan_url` WHERE `url` = '{$url}' ");
+        
+        $msn_url_id = $this->getMsnUrlId($url);
+        
+        $query = $this->db->query("SELECT COUNT(`id`) AS 'cnt' FROM `scan_url` WHERE `url` = '{$url}' OR `donor_url_id` = '{$msn_url_id}' ");
         
         $row = $query->row();
         
         if( $row->cnt < 1 )
-            $this->db->query("INSERT INTO `scan_url` SET `url`='{$url}', `cat_id`='{$cat_id}', `donor_id`={$donor_id}, `main_img_url` = '{$img_url}' ");
+            $this->db->query("INSERT INTO `scan_url` SET `url`='{$url}', `cat_id`='{$cat_id}', `donor_id`={$donor_id}, `main_img_url` = '{$img_url}', `donor_url_id` = '{$msn_url_id}' ");
     }
     
     function get_news_url_to_parse( $limit ){
