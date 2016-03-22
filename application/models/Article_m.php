@@ -21,7 +21,7 @@ class Article_m extends CI_Model{
         else
             $img_sql = "";
                 
-        $hourAgo    = $this->catConfig['right_top_news_time'];
+        $hourAgo    = $this->catConfig['right_top_news_time_h'];
         $dateStart  = date("Y-m-d H:i:s", strtotime(" - {$hourAgo} hours" ) );
         
         $query  = $this->db->query("SELECT `sub_cat_id` FROM `category` WHERE `id` = '{$cat_id}' ");
@@ -75,7 +75,7 @@ class Article_m extends CI_Model{
 //            $data['first']  = $data['first'][0];
             $data['all']    = $this->get_last_news($idParentId, $cnt, false, true /*, true*/);
 //            unset($data['all'][0]);
-            $this->cache->file->save($cacheName, $data, $this->catConfig['cache_time']['right_last_news'] * 60 );
+            $this->cache->file->save($cacheName, $data, $this->catConfig['cache_time_right_last_news_m'] * 60 );
         }
         else
             $data = $lastNewsCache;
@@ -382,7 +382,7 @@ class Article_m extends CI_Model{
         $topSliderCacheName = $cacheName.'_'.$idParentId;
         if( !$sliderCache = $this->cache->file->get($topSliderCacheName) ){
             $data = $this->get_popular_articles( $idParentId, $cntNews, $hourAgo, $textLength, $img, $parentCat );
-            $this->cache->file->save($topSliderCacheName, $data, $this->catConfig['cache_time']['top_slider'] * 60 );
+            $this->cache->file->save($topSliderCacheName, $data, $this->catConfig['cache_time_top_slider_m'] * 60 );
         }
         else
             $data = $sliderCache;
@@ -523,17 +523,17 @@ class Article_m extends CI_Model{
         $timeNow        = time();
         
         $timeCreateNews = strtotime($newsDate); 
-        $timeOldNews    = strtotime('+ '.$this->catConfig['like_news_day'].' day', $timeCreateNews);
+        $timeOldNews    = strtotime('+ '.$this->catConfig['like_news_day_d'].' day', $timeCreateNews);
         
         $timeLastUpd    = strtotime($row['upd_time']);
         
         if($timeOldNews > $timeNow)
         {
-            $timeNewUpd     = strtotime('+ '.$this->catConfig['like_news_cache'].' hour', $timeLastUpd);
+            $timeNewUpd     = strtotime('+ '.$this->catConfig['like_news_cache_h'].' hour', $timeLastUpd);
         }
         else //время обновления для старой новости
         {
-            $timeNewUpd     = strtotime('+ '.$this->catConfig['like_news_cache_for_old'].' hour', $timeLastUpd);
+            $timeNewUpd     = strtotime('+ '.$this->catConfig['like_news_cache_for_old_h'].' hour', $timeLastUpd);
         }
         
 //        echo "timeCreateNews\t\t".date("Y-m-d H-i", $timeCreateNews).' - '.$timeCreateNews."\n";

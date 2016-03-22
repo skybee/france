@@ -55,5 +55,35 @@ class Category_m extends CI_Model{
         
         return $cat_url;
     }
+    
+    function getCatTimeSet($url_cat_name)
+    {
+        $sql = "SELECT `category_timeset`.* "
+                . "FROM "
+                . "`category`, `category_timeset` "
+                . "WHERE "
+                . "`category_timeset`.`id` = `category`.`timeset_tpl_id`"
+                . "AND "
+                . "`category`.`url_name` = '{$url_cat_name}' "
+                . "LIMIT 1";
+                
+        $query = $this->db->query($sql);
+        
+        if($query->num_rows()<1)
+        {
+            return false;
+        }
+        else
+        {
+            return $query->row_array();
+        }
+    }
+    
+    function getDefaultTimeSet()
+    {
+        $sql = "SELECT * FROM `category_timeset` WHERE `name` = 'default' LIMIT 1";
+        $query = $this->db->query($sql);
+        return $query->row_array();
+    }
         
 }
