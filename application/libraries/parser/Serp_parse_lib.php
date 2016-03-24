@@ -3,8 +3,9 @@
 
 class Serp_parse_lib
 {
-    private $yandexUrl  = 'https://xmlsearch.yandex.com/xmlsearch?user=skybee84&key=03.47372985:0ec36ca944189961ac6da27d41f5d404&maxpassages=5&groupby=groups-on-page%3D20';
+    private $yandexUrl  = 'https://xmlsearch.yandex.com/xmlsearch?user=skybee84&key=03.47372985:0ec36ca944189961ac6da27d41f5d404&maxpassages=5&groupby=groups-on-page%3D15';
     private $thisHost   = false;
+    private $lang       = 'ru';
 
     function setThisHost($thisHost)
     {
@@ -14,7 +15,7 @@ class Serp_parse_lib
     function getData($articleData)
     {
         $title      = $this->cleanQuery($articleData['title']);
-        $queryUrl   = $this->yandexUrl .'&query='.$title;
+        $queryUrl   = $this->yandexUrl .'&query='.$title.'&lang='.$this->lang;
         $serpXmlStr = $this->down_with_curl($queryUrl);
         $serpXmlStr = $this->cleanXmlStr($serpXmlStr);
 

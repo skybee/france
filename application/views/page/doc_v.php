@@ -5,7 +5,7 @@
 
 <div class="single">
     <div class="active">
-        <h1><?=$doc_data['title']?></h1>
+        <h1><?=$doc_data['title']?> <i><?=$cat_ar['name']?> <?=$doc_data['title']?></i></h1>
     </div>
     
     <div class="doc-date doc-date-top">

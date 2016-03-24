@@ -85,11 +85,11 @@ class Main extends CI_Controller {
         $data_ar['second_menu_list']    = $this->list_m->get_sCat_from_name($this->catNameAr[0]);
         $data_ar['footer_menu_list']    = $this->list_m->get_footer_cat_link();
         $mobile_menu_list               = $this->list_m->getMenuListForMobile();
-        $data_ar['meta']['title']       = $data_ar['cat_ar']['name'].': '.$data_ar['doc_data']['title'].' - Odnako.su';
+        $data_ar['meta']['title']       = $data_ar['cat_ar']['name'].': '.$data_ar['doc_data']['title'].' - СМИ Express';
         $data_ar['donor_rel']           = ' rel="nofollow" '; #botRelNofollow();
 
         //вставка like_articles[0] в текст
-        $data_ar['doc_data']['text']    = insertLikeArtInTxt($data_ar['doc_data']['text'], $data_ar['like_articles']);
+        $data_ar['doc_data']['text']    = insertLikeArtInTxt($data_ar['doc_data']['text'], $data_ar['like_articles'], $right['serp_list']);
         $data_ar['doc_data']['text']    = addResponsiveVideoTag($data_ar['doc_data']['text']);
 
         $top_slider['articles']         = $this->article_m->get_top_slider_data( $data_ar['cat_ar']['id'], 8, $this->catConfig['top_news_time_h'], $this->topSliderTxtLength, true, false);

@@ -42,7 +42,7 @@ class Serp_parse extends CI_Controller
             exit('No Articles');
         }
 
-        $this->serp_parse_lib->setThisHost('odnako.su');
+        $this->serp_parse_lib->setThisHost('smiexpress.su');
 
         foreach($articlesList as $articleData)
         {

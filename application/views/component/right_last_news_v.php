@@ -131,7 +131,7 @@
 
 
 
-<?php if( isset($serp_list) && $serp_list != false): ?>
+<?php if( FALSE && isset($serp_list) && $serp_list != false): // ЗАБЛОКИРОВАННО! ?> 
 
 <h3 class="widget-title" style="margin-top: 30px;">
     <span class="title">Похожее на других сайтах</span>

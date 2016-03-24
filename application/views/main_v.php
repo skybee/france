@@ -61,7 +61,7 @@
                     </ul>    
                 </div><!-- #navigation closer -->
                 
-                <a href="/" title="Odnako.su" id="mobile_logo"></a>
+                <a href="/" title="СМИ Express" id="mobile_logo"></a>
                 
                 <!-- Mobile Menu -->
                 <?=$mobile_menu;?>
@@ -73,7 +73,7 @@
                 <div id="white_space">
                     <div id="content_holder">
                         <div id="header">
-                            <a href="/"><img src="/img/logo3.png" border="0" alt="Однако Logo" class="logo"  /></a>
+                            <a href="/"><img src="/img/logo-ru.jpg" border="0" alt="Express Logo" class="logo"  /></a>
                             <!--                            <div class="ad "></div> #ad 468x60 closer -->
 
                             <div class="search_top_block">
@@ -148,14 +148,14 @@
                     </div>
                     <div class="footer_contact">
                         <span>Контакты</span><br />
-                        E-mail: <a href="mailto:mail@odnako.su">mail@odnako.su</a>
+                        E-mail: <a href="mailto:mail@smiexpress.ru">mail@smiexpress.ru</a>
                     </div>
                 </div><!-- #inside -->
             </div><!-- #footer_widget closer -->
   
             <div id="footer">
                 <div class="inside">
-                    <div class="left">&copy; 2013 Odnako.su. All Rights Reserved.</div><!-- #left -->
+                    <div class="left">&copy; 2016 СМИ Express. All Rights Reserved.</div><!-- #left -->
                     <div class="right"></div><!-- #right -->
                 </div><!-- #inside -->
             </div><!-- #footer -->
@@ -175,39 +175,7 @@
                         " часа, посетителей за 24 часа и за сегодня' " +
                         "border='0' width='88' height='31'><\/a>")
                         //--></script>
-            <!--/LiveInternet-->
-            
-            <!-- Yandex.Metrika counter -->
-            <script type="text/javascript">
-                                (function(d, w, c) {
-                                    (w[c] = w[c] || []).push(function() {
-                                        try {
-                                            w.yaCounter24764222 = new Ya.Metrika({id: 24764222,
-                                                webvisor: true,
-                                                clickmap: true,
-                                                accurateTrackBounce: true});
-                                        } catch (e) {
-                                        }
-                                    });
-
-                                    var n = d.getElementsByTagName("script")[0],
-                                            s = d.createElement("script"),
-                                            f = function() {
-                                                n.parentNode.insertBefore(s, n);
-                                            };
-                                    s.type = "text/javascript";
-                                    s.async = true;
-                                    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
-
-                                    if (w.opera == "[object Opera]") {
-                                        d.addEventListener("DOMContentLoaded", f, false);
-                                    } else {
-                                        f();
-                                    }
-                                })(document, window, "yandex_metrika_callbacks");
-            </script>
-            <noscript><div><img src="//mc.yandex.ru/watch/24764222" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-            <!-- /Yandex.Metrika counter -->            
+            <!--/LiveInternet-->            
         </div>
         
     </body>

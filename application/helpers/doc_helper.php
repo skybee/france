@@ -86,28 +86,43 @@ function insertLikeArticleInTxt($text, $likeList)
     return $text;
 }
 
-function insertLikeArtInTxt($text, $likeList)
+function insertLikeArtInTxt($text, $likeList, $likeSerpAr)
 {
     if(!isset($likeList[0])){
         return $text; 
     }
     
-    $i = 0;
+//    print_r($likeSerpAr);
+    
+    $i =0; 
+    $ii=0; //для LikeSerp
     foreach ($likeList as $likeArticle)
     {
-        $newsUrl    = "/{$likeArticle['full_uri']}-{$likeArticle['id']}-{$likeArticle['url_name']}/";
-        $likeTitle  = str_replace('$', '&dollar;', $likeArticle['title']);
-        $likeText   = str_replace('$', '&dollar;', $likeArticle['description']);
+        $newsUrl        = "/{$likeArticle['full_uri']}-{$likeArticle['id']}-{$likeArticle['url_name']}/";
+        $likeTitle      = str_replace('$', '&dollar;', $likeArticle['title']);
+        $likeText       = str_replace('$', '&dollar;', $likeArticle['description']);
+        $likeSerpTxt    = '';
+        if(is_array($likeSerpAr) AND isset($likeSerpAr[$ii]))
+        {
+            $likeSerpTxt    = "<p>\n".$likeSerpAr[$ii]['text']."\n</p>\n";
+            
+            if(isset($likeSerpAr[$ii+1]))
+            {
+                $likeSerpTxt   .= "<p>\n".$likeSerpAr[$ii+1]['text']."\n</p>";
+            }
+        }
         
         $likeArtHtml =  "\n"
                         .' <h2 class="look_more_hdn" rel="'.$newsUrl.'">'
                         //.'<span>Смотрите также:</span> '
                         .$likeTitle
                         . "</h2>\n"
-                        . '<p class="look_more_hdn"><span class="lmh_height_txt">'."\n"
+                        . '<p class="look_more_hdn"> '."\n "
+                        . "\t".'<span class="lmh_height_txt">'."\n"
                         . '<img src="/upload/images/real/'.$likeArticle['main_img'].'" alt="'.$likeTitle.'" onerror="imgError(this);"/>'."\n"
                         . $likeText."\n "
-                        . "</span></p>\n";
+                        . "\t</span>\n</p>\n "
+                        .'<blockquote class="serp-blockquote">'."\n".$likeSerpTxt."\n".'</blockquote>'."\n";
         
         if($i==0)
         {
@@ -117,8 +132,13 @@ function insertLikeArtInTxt($text, $likeList)
 //        $text = str_ireplace('<!--likeMarker-->', $likeArtHtml, $text, 1);
         $text = preg_replace("#<\!--likeMarker-->#iu", $likeArtHtml, $text, 1);
         
-        $i++;
+        $i++; 
+        $ii = $ii+2;
     }
+    
+    $lastLikeSerp = $likeList[count($likeList)-1];
+    
+    $text .= "\n".'<p class="serp-blockquote">'."\n".$lastLikeSerp['title'].".<br />\n".$lastLikeSerp['description']."\n</p>\n";
     
     return $text;
 }

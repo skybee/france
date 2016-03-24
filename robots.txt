@@ -1,5 +1,4 @@
 User-Agent: *
-Disallow: /
 Crawl-delay: 3
 
 User-agent: Mediapartners-Google
