@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+$hostRoutes['ru'] = array('smiexpress.ru','express.odnako.su');
+$hostRoutes['fr'] = array('france.lh');
+
+
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -52,7 +56,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller']                                    = "main";
 $route['[-a-z\d/]+?/(-\d+-.+)']                                 = "main/document/$1"; #/news/ukraine/-id-****/
 //$route['(actualite|divertissement|sport|finance|lifestyle)$']   = "main/main_page/$1";
-$route['^(news|finance|lifestyle)$']                 = "main/main_page/$1";
+
+//if ( in_array($_SERVER['HTTP_HOST'],$hostRoutes['ru']) )
+//{
+//    $route['^(news|finance|lifestyle)$']        = "main/main_page/$1";
+//}
+//if ( in_array($_SERVER['HTTP_HOST'],$hostRoutes['fr']) ) {
+//    $route['^(actualite|lifestyle)$']           = "main/main_page/$1";
+//}
+$route['^(:any)$']        = "main/main_page/$1";
+
 $route['search/(:any)']                                         = "main/search/$1";
 $route['tmp/(:any)']                                            = "tmp/$1";
 $route['[-a-z\d/]+?/([-a-z\d]+?)/?(\d*)']                       = "main/cat_list/$1/$2";

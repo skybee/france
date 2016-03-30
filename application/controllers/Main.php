@@ -25,7 +25,11 @@ class Main extends CI_Controller {
         $this->topSliderTxtLength       = 290;
     }
 
-    function index(){ $this->main_page('news'); }
+    function index(){ 
+        $mainCatData = $this->category_m->get_cat_data_from_id(1);
+        $this->catNameAr[0] = $mainCatData['url_name'];
+        $this->main_page($mainCatData['url_name']);
+    }
 
     function main_page($cat_name) {
         $this->output->cache( $this->catConfig['cache_time_main_page_m'] );
@@ -105,6 +109,11 @@ class Main extends CI_Controller {
         $tpl_ar['right']        = $this->load->view('component/right_last_news_v', $right, true);
         $tpl_ar['meta']['og']   = $this->load->view('component/meta_og_v', $data_ar['doc_data'], true);
         $tpl_ar['mobile_menu']  = $this->load->view('component/mobile_menu_v', array('mobile_menu_list'=>$mobile_menu_list), true);
+        
+        if($_SERVER['HTTP_HOST'] != 'smiexpress.ru')
+        {
+            $tpl_ar['meta']['canonical'] = 'http://smiexpress.ru'.$_SERVER['REQUEST_URI'];
+        }
 
         $this->load->view('main_v', $tpl_ar);
     }
@@ -114,10 +123,16 @@ class Main extends CI_Controller {
         $page = (int) $page;
         if (!$page) $page = 1;
 
-        $data_ar['cat_ar']              = $this->category_m->get_cat_data_from_url( $cat_name );
+        $data_ar['cat_ar'] = $this->category_m->get_cat_data_from_url( $cat_name );
+        
         if( !isset($data_ar['cat_ar']['id']) ){
-            show_404();
+            show_404(); exit();
         }
+        
+//        if($data_ar['cat_ar']['parent_id'] === 0)
+//        {
+//            return $this->main_page($data_ar['url_name']);
+//        }
         
         if($page > 100) { // temp redirect 
             header("Location: /{$data_ar['cat_ar']['full_uri']}", true, 302);
@@ -127,9 +142,11 @@ class Main extends CI_Controller {
         $data_ar['news_page_list']      = $this->article_m->get_page_list($data_ar['cat_ar']['id'], $page, 15, 250 );
         $data_ar['pager_ar']            = $this->article_m->get_pager_ar( $data_ar['cat_ar']['id'], $page, 15, 4);
         $data_ar['page_nmbr']           = $page;
-                
+        
         if (!$data_ar['news_page_list'])
+        {
             show_404();
+        }
         $data_ar['main_menu_list']      = $this->list_m->get_cat(0);
         $data_ar['second_menu_list']    = $this->list_m->get_sCat_from_name($this->catNameAr[0]);
         $data_ar['footer_menu_list']    = $this->list_m->get_footer_cat_link();

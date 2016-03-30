@@ -157,6 +157,14 @@ class Main extends CI_Controller
         if( $data == null ) exit("No URLs to add");
         
         foreach( $data as $urlAr ){
+            
+            $stopURLsPattern = "#(www\.bing\.com/news/apiclick\.aspx\?ref)#"; 
+            if( preg_match($stopURLsPattern, $urlAr['url']) )
+            {
+                echo "\n-- Bad URL -- {$urlAr['url']}<br />\n";
+                continue;
+            }
+            
             $this->parser_m->add_to_scanlist( $urlAr['url'], $scanUrl['cat_id'], $scanUrl['donor_id'], $urlAr['img'] );
         }
     }

@@ -1,5 +1,8 @@
 User-Agent: *
-Crawl-delay: 3
+
+# Fr
+Disallow: /actualite/
+Disallow: /lifestyle/
 
 User-agent: Mediapartners-Google
 Disallow:

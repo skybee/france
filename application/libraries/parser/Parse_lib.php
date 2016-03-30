@@ -204,7 +204,7 @@ class Parse_lib{
         return $imgName;
     }
     
-    function load_img( $img_url, $base_url, $imgAlt = ''){
+    function load_img( $img_url, $base_url, $imgAlt = '', $flip = true){
         if( empty($img_url) ) return FALSE;
         
         $absolute_url   = $this->uri2absolute($img_url, $base_url);
@@ -218,6 +218,11 @@ class Parse_lib{
         $imgNameWithDatePath    = $this->CI->dir_lib->getDatePath().$new_img_name;
         
         file_put_contents( $savePathName, $imgDataAr['data'] ); //сохранение изображения
+        
+        if($flip)
+        {
+            $this->flipImg($savePathName);
+        }
         
         return $imgNameWithDatePath;
     }
@@ -258,6 +263,52 @@ class Parse_lib{
         $this->CI->image_lib->resize();
     }  
     
+    function flipImg($imgPathName){
+        
+        $filename = $imgPathName;#$this->CI->dir_lib->getImgRdir().$this->lastLoadImgName;
+        
+        preg_match("#\.([a-z]{3,4})$#", $filename, $arr);
+
+        if(isset($arr[1]) && !empty($arr[1]))
+        {
+            switch ($arr[1])
+            {
+                case 'png':
+                    $header = 'image/png';
+                    $createImgFunc = '$im = imagecreatefrompng($filename);';
+                    $outputImgFunc = 'imagepng($im,$filename);';
+                    break;
+                case 'jpg':
+                    $header = 'image/jpeg';
+                    $createImgFunc = '$im = imagecreatefromjpeg($filename);';
+                    $outputImgFunc = 'imagejpeg($im,$filename,100);';
+                    break;
+                case 'jpeg':
+                    $header = 'image/jpeg';
+                    $createImgFunc = '$im = imagecreatefromjpeg($filename);';
+                    $outputImgFunc = 'imagejpeg($im,$filename,100);';
+                    break;
+                default :
+                    $header = false;
+            }
+        }
+        
+        if(!$header)
+        {
+            return false;
+        }
+
+        // Load
+        eval($createImgFunc);
+
+        // Flip it horizontally
+        imageflip($im, IMG_FLIP_HORIZONTAL);
+
+        // Output
+        eval($outputImgFunc);
+        imagedestroy($im);
+    }
+    
     function change_img_in_txt( $text, $base_url ){
         
         $html_obj   = str_get_html($text);
@@ -275,6 +326,8 @@ class Parse_lib{
             
             $imgPathName   = $this->load_img($imgObj->src, $base_url, $imgAlt);
             $imgPathName   = '/upload/images/real/'.$imgPathName; //!-- get from dir_lib
+            
+            
 
             if( isset($imgObj->slider) && $imgObj->slider == 'slider' ){
                 $this->resizeImg('small', array('width'=>110, 'height'=>300) );

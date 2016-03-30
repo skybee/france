@@ -432,6 +432,16 @@ class parseMsnList extends parseArticleList{
                 $searchAr   = array("#h=\d{2,3}#i","#w=\d{2,3}#i","#q=\d{1,2}#i");
                 $replaceAr  = array("h=200","w=300","q=100");
                 $img        = preg_replace($searchAr, $replaceAr, $img);
+                
+                if(preg_match("#\.img\?#i", $img)) //замена расширения .img
+                {
+                    preg_match("#f=(jpg|jpeg|png|gif)#", $img, $ar);
+                    
+                    if(isset($ar[1]) && !empty($ar[1]))
+                    {
+                        $img = preg_replace("#\.img\?#", ".{$ar[1]}?", $img);
+                    }
+                }
 
                 $data[$i]['img']    =  $img;
             }        

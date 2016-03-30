@@ -3,8 +3,8 @@
     RewriteBase /
     
 	#www redirect
-	#RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-	#RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+	RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+	RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
 #        RewriteCond %{HTTP_HOST} !^(mobile.|)odnako.(su|lh)$ [NC]
 #        RewriteRule ^(.*)$ http://odnako.su/$1 [L,R=301]
@@ -12,8 +12,8 @@
 	#Close slash 
 
     # <Image Flip>
-    RewriteCond %{HTTP_USER_AGENT} (Googlebot|YandexImages|msnbot)
-    RewriteRule ^upload/images/.*(jpg|jpeg|png)$ /imageflip/do.php [L]
+    #RewriteCond %{HTTP_USER_AGENT} (Googlebot|YandexImages|msnbot)
+    #RewriteRule ^upload/images/.*(jpg|jpeg|png)$ /imageflip/do.php [L]
     # </Image Flip>    
 
     RewriteRule ^(-_[a-z\d/]*[^/])$ $1/ [NC,L,R=301]
@@ -22,8 +22,8 @@
     RewriteRule ^(.*)/1/$ $1/ [NC,L,R=301] 
     
     #load img from server
-    #RewriteCond %{HTTP_HOST} !^odnako\.su$ [NC]
-    #RewriteRule ^(.*?\.(png|jpg|jpeg|gif))$ http://odnako.su/$1 [L]
+#    RewriteCond %{HTTP_HOST} !^smiexpress\.ru$ [NC]
+#    RewriteRule ^(.*?\.(png|jpg|jpeg|gif))$ http://smiexpress.ru/$1 [L]
 
     #Removes access to the system folder by users.
     #Additionally this will allow you to create a System.php controller,

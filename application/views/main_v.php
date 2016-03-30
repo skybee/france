@@ -29,6 +29,10 @@
         <?php if(isset($meta['noindex']) && $meta['noindex'] == true ): ?>
             <meta name="robots" content="noindex, follow" />
         <?php endif; ?>
+            
+        <?php if(isset($meta['canonical']) && !empty($meta['canonical']) ): ?>
+            <link rel="canonical" href="<?=$meta['canonical']?>" />
+        <?php endif; ?>    
 
         <script type='text/javascript' src='/js/skin1/jquery-1.11.3.min.js'></script>
         <script type='text/javascript' src='/js/skin1/jquery-ui.min-tabs.js'></script>

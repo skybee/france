@@ -54,6 +54,13 @@
 -->
         
     <?=$doc_data['text']?>
+
+    <?php
+        if($_SERVER['HTTP_HOST'] != 'smiexpress.ru')
+        {
+            echo '<p>Источник: '.'<a href="'.'http://smiexpress.ru'.$_SERVER['REQUEST_URI'].'" />'.'http://smiexpress.ru'.$_SERVER['REQUEST_URI'].'</a></p>';
+        }
+    ?>
         
     </div><!-- #content -->
     

@@ -24,6 +24,20 @@ body {
         background-attachment: fixed;
 }
 
+#featured img,
+div.like-article-list img,
+div.right-top-news img,
+div.left div.imgholder img,
+#left div.cat_listing div.content div.right div.small-listing div.thumb img,
+.copy-url img{
+   -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH"; 
+}
+
 
 
 #left_no_sidebar code,#left_no_sidebar pre {

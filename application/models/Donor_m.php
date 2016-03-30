@@ -29,12 +29,13 @@ class Donor_m extends CI_Model{
     }
     
     function getAllScanPageListUrl(){
-        $query = $this->db->query(
-                "   SELECT articles_donor_url.*, donor.host "
+        
+        $sql = "   SELECT `articles_donor_url`.*, `donor`.`host` "
                 . " FROM `articles_donor_url`, `donor` "
-                . " WHERE donor.id = articles_donor_url.donor_id "
-                . " ORDER BY `scan_sort` ASC, `scan_time` ASC "
-                );
+                . " WHERE `donor`.`id` = `articles_donor_url`.`donor_id` "
+                . " ORDER BY `scan_sort` ASC, `scan_time` ASC ";
+        
+        $query = $this->db->query($sql);
         
         $resultAr = array();
         
