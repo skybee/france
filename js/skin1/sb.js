@@ -7,7 +7,7 @@ function imgError(image){
 $( document ).ready(function(){
     
     // <add url link to copy post>
-    var source_link = '<p>Источник: <a href="' + location.href + '">' + location.href + '</a></p>';
+    var source_link = '<p>Source: <a href="' + location.href + '">' + location.href + '</a></p>';
     $(
         function($)
         {
@@ -70,7 +70,9 @@ $( document ).ready(function(){
         $('span.out-link').each(function(){
             url = $(this).attr('src');
             txt = $(this).text();
-            aHtml = '<a target="_blank" href="'+url+'" >'+txt+'</a>';
+            cls = $(this).attr('class');
+            stl = $(this).attr('style');
+            aHtml = '<a target="_blank" href="'+url+'" class="'+cls+'" style="'+stl+'" >'+txt+'</a>';
             $(this).replaceWith(aHtml);
         });
     }
@@ -87,10 +89,38 @@ $( document ).ready(function(){
     }
     // <Like Link in Text>
     
+    
+    // <show out window> //
+    setTimeout('setOutWindow()', 5000);
+    var cntShowOutWindow = 0;
+    $('#top_hide_line').mouseover(function(){
+        if(outWindow==1 && cntShowOutWindow < 2 && $("#out_window").length > 0){
+            $('#ow_bg').css({'display':'block'}).animate({opacity:'0.7'},400,function(){
+                $('#out_window').css({'display':'block'}).animate({top:'50px'},400);
+            });
+            cntShowOutWindow++;
+            outWindow = 0;
+            setTimeout('setOutWindow()', 10000);
+        }
+    });
+    $('#ow_close').click(function(){
+        $('#out_window').animate({top:'-800px'},400,function(){
+            $('#out_window').css({'display':'none'});
+            $('#ow_bg').animate({opacity:'0'},400,function(){
+                $('#ow_bg').css({'display':'none'});
+            })
+        });
+    });
+    // </show out window> //
+    
 });
+
+var outWindow = 0;
+function setOutWindow(){outWindow=1;}
 
 
 function loadGAd( blockName ){
+    //return false;
     width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     if( width <= 980 ){
         return loadGAdMobile(blockName);

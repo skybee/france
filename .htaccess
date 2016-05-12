@@ -22,8 +22,8 @@
     RewriteRule ^(.*)/1/$ $1/ [NC,L,R=301] 
     
     #load img from server
-#    RewriteCond %{HTTP_HOST} !^smiexpress\.ru$ [NC]
-#    RewriteRule ^(.*?\.(png|jpg|jpeg|gif))$ http://smiexpress.ru/$1 [L]
+    RewriteCond %{HTTP_HOST} ^express\.lh$ [NC]
+    RewriteRule ^(.*?\.(png|jpg|jpeg|gif))$ http://francais-express.com/$1 [L]
 
     #Removes access to the system folder by users.
     #Additionally this will allow you to create a System.php controller,

@@ -1,8 +1,8 @@
 User-Agent: *
-
-# Fr
-Disallow: /actualite/
-Disallow: /lifestyle/
+Disallow:
+#Fr
+#Disallow: /actualite/
+#Disallow: /lifestyle/
 
 User-agent: Mediapartners-Google
 Disallow:

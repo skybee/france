@@ -485,6 +485,44 @@ class Article_m extends CI_Model{
         }
     }
     
+    function get_like_video($articleId,$cnt=2)
+    {
+        $articleId = (int) $articleId;
+        $cnt = (int) $cnt;
+        
+        $sql = "SELECT `video_id`,`title`,`description` "
+                . "FROM `youtube_like` "
+                . "WHERE "
+                . "`article_id` = '{$articleId}' "
+                . "LIMIT {$cnt}";
+                
+        $query = $this->db->query($sql);
+        
+        if($query->num_rows()<1)
+        {
+            return false;
+        }
+        
+        $result_ar = array();
+        
+        foreach ($query->result_array() as $row)
+        {
+            if(!empty($row['video_id'])&&$row['video_id']!='none')
+            {
+                $result_ar[] = $row;
+            }
+        }
+        
+        if(count($result_ar)<1)
+        {
+            return false;
+        }
+        else
+        {
+            return $result_ar;
+        }
+    }
+    
     private function insert_like_article_id($articleId, $likeArticlesAr){
         $cntLike = count($likeArticlesAr);
         if($cntLike<1) {return false;}

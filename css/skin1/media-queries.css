@@ -1,3 +1,28 @@
+@media screen and (min-width: 981px) { /*-== Full Screen ==-*/
+    
+    #left div.single h1{ /*широкий заголовок*/
+    width: 941px;
+    background: #fff;
+    font-size: 34px;
+    line-height: 1em;
+    font-weight: normal !important;
+    }
+    #fscreen-right-top-padding{
+        background: #fff;
+        height: 115px;
+        margin-top: -29px;
+        margin-left: -5px;
+        margin-bottom: 20px;
+        width: 325px;
+        display: none;
+    }
+    #right{
+        overflow: visible !important;
+    }
+    
+}
+
+
 @media screen and (max-width: 980px) {
     
     
@@ -17,7 +42,8 @@
     #headernavigation div.navigation{ width: auto; }
     #left div.single .doc-date-bottom { width: 100%; }
     p.look_more_hdn{ display: none;}
-    #left div.single div.content h2.look_more_hdn{ padding-bottom: 15px !important; border-bottom-width: 1px;}
+    #left div.single div.content h2.look_more_hdn{ padding-bottom: 15px !important; border-bottom-width: 1px; height: 80px; min-height: 80px; padding-left: 0 !important;}
+    #left div.single div.content h2.look_more_hdn img.look_more_img_mobile{display: inline-block;}
     ul.firstnav-menu{ padding-left: 12px;}
     #content_holder{padding-left: 5px;}
     #left{padding-right: 5px;}
@@ -88,6 +114,8 @@
     }
     
     /*==== </Like News> ====*/
+    
+    div.parse-version{padding-bottom: 115px;} /*bottom padding to first like news in text*/
     
     
     
@@ -235,6 +263,17 @@
     
     #left div.listing div.content div.right div.small-desc div.date_source{display: none;}
     /* ============= </Cat List Page> ============= */
+    
+    /* <like news in doc> */
+    .like-article-list .like-article-item:nth-child(even){ margin-left: 0px; }
+    .like-article-list .like-article-item{width: 100%;}
+    /* </like news in doc> */
+    
+    
+    /* <Like Video in Doc> */
+    #like-video-container .like-video-item .like-video-item-right p{display:none;}
+    /* </Like Video in Doc> */
+    
 }
 
 
@@ -261,6 +300,12 @@
     #left div.single .doc-date-top .social_btn_top{display: none;}
     #left div.single .doc-date-top .dd_right{float:left; margin-left: 5px; line-height: 20px;}
     /*==== </Top Social> ====*/
+    
+    
+    /* <Like Video in Doc> */
+    #like-video-container .like-video-item .like-video-item-right{display:none;}
+    #like-video-container .like-video-item .like-video-item-left{width: 98%;}
+    /* </Like Video in Doc> */
 }
 
 
@@ -286,4 +331,5 @@
     }*/
     #left {padding-right: 0;}
     #content_holder {padding-left: 0;}
+    
 }

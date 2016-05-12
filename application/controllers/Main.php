@@ -14,7 +14,9 @@ class Main extends CI_Controller {
         $this->load->helper('date_convert');
         $this->load->helper('doc_helper');
         $this->load->driver('cache');
-        $this->load->config('category');
+        $this->load->config('category'); // -?
+        $this->load->config('multidomaine');
+        $this->load->library('multidomaine_lib');
         $this->load->library('cat_lib');
         
         $this->catNameAr = $this->cat_lib->getCatFromUri();
@@ -23,6 +25,8 @@ class Main extends CI_Controller {
         $this->cacheTime['footerCat']     = 180; //minutes
         
         $this->topSliderTxtLength       = 290;
+        
+        $this->multidomaine = $this->multidomaine_lib->getHostData();
     }
 
     function index(){ 
@@ -51,7 +55,7 @@ class Main extends CI_Controller {
         $tpl_ar = $data_ar; //== !!! tmp    
         $tpl_ar['content']  = $this->load->view('component/main_latest_v', $data_ar, true);
         $tpl_ar['content'] .= $this->load->view('component/cat_listing_v', $data_ar, true);
-        $tpl_ar['content'] .= $this->load->view('component/main_other_news_v', $data_ar, true);// .'<div>'.$msg.'</div>';
+        //$tpl_ar['content'] .= $this->load->view('component/main_other_news_v', $data_ar, true);// .'<div>'.$msg.'</div>';
         
         $tpl_ar['right']        = $this->load->view('component/right_last_news_v', $right, true);
         $tpl_ar['top_slider']   = $this->load->view('component/slider_top_v', $top_slider, true);
@@ -89,13 +93,15 @@ class Main extends CI_Controller {
         $data_ar['second_menu_list']    = $this->list_m->get_sCat_from_name($this->catNameAr[0]);
         $data_ar['footer_menu_list']    = $this->list_m->get_footer_cat_link();
         $mobile_menu_list               = $this->list_m->getMenuListForMobile();
-        $data_ar['meta']['title']       = $data_ar['cat_ar']['name'].': '.$data_ar['doc_data']['title'].' - СМИ Express';
+        $data_ar['meta']['title']       = $data_ar['cat_ar']['name'].': '.$data_ar['doc_data']['title'].' - '.$this->multidomaine['site_name_str'];
         $data_ar['donor_rel']           = ' rel="nofollow" '; #botRelNofollow();
 
         //вставка like_articles[0] в текст
         $data_ar['doc_data']['text']    = insertLikeArtInTxt($data_ar['doc_data']['text'], $data_ar['like_articles'], $right['serp_list']);
         $data_ar['doc_data']['text']    = addResponsiveVideoTag($data_ar['doc_data']['text']);
 
+        $data_ar['like_video']          = $this->article_m->get_like_video($data_ar['doc_data']['id'],2);
+        
         $top_slider['articles']         = $this->article_m->get_top_slider_data( $data_ar['cat_ar']['id'], 8, $this->catConfig['top_news_time_h'], $this->topSliderTxtLength, true, false);
         $right['right_top']             = $this->article_m->get_top_slider_data( $data_ar['cat_ar']['parent_id'], 8, $this->catConfig['right_top_news_time_h'], $this->topSliderTxtLength, true, true, 'right_top');
         $right['last_news']             = $this->article_m->get_last_left_news( $data_ar['cat_ar']['parent_id'], 20 );
@@ -109,11 +115,7 @@ class Main extends CI_Controller {
         $tpl_ar['right']        = $this->load->view('component/right_last_news_v', $right, true);
         $tpl_ar['meta']['og']   = $this->load->view('component/meta_og_v', $data_ar['doc_data'], true);
         $tpl_ar['mobile_menu']  = $this->load->view('component/mobile_menu_v', array('mobile_menu_list'=>$mobile_menu_list), true);
-        
-        if($_SERVER['HTTP_HOST'] != 'smiexpress.ru')
-        {
-            $tpl_ar['meta']['canonical'] = 'http://smiexpress.ru'.$_SERVER['REQUEST_URI'];
-        }
+        $tpl_ar['out_popup']    = $this->load->view('component/out_popup_v', $data_ar['like_articles'], true);
 
         $this->load->view('main_v', $tpl_ar);
     }

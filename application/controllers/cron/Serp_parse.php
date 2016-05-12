@@ -12,6 +12,11 @@ class Serp_parse extends CI_Controller
         $this->load->database();
         $this->load->model('serp_parse_m');
         $this->load->library('parser/serp_parse_lib');
+        
+        $this->load->config('multidomaine');
+        $this->load->library('multidomaine_lib');
+        
+        $this->multidomaine = $this->multidomaine_lib->getHostData();
     }
 
     function yandex_xml($cnt_scan = 1, $action)
@@ -42,7 +47,9 @@ class Serp_parse extends CI_Controller
             exit('No Articles');
         }
 
-        $this->serp_parse_lib->setThisHost('smiexpress.su');
+        $this->serp_parse_lib->setThisHost($_SERVER['HTTP_HOST']);
+        $this->serp_parse_lib->setLang($this->multidomaine['lang']);
+        $this->serp_parse_lib->setQueryUrl($this->multidomaine['xml_yandex_url']);
 
         foreach($articlesList as $articleData)
         {

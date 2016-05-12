@@ -3,7 +3,8 @@
 
 class Serp_parse_lib
 {
-    private $yandexUrl  = 'https://xmlsearch.yandex.com/xmlsearch?user=skybee84&key=03.47372985:0ec36ca944189961ac6da27d41f5d404&maxpassages=5&groupby=groups-on-page%3D15';
+    
+    private $yandexUrl  = 'https://xmlsearch.yandex.com/xmlsearch?user=mail@lalalay.com&key=03.1130000018332401:db8ac7bad789ba8f7aabca04b0aa6308&maxpassages=5&groupby=groups-on-page%3D15';
     private $thisHost   = false;
     private $lang       = 'ru';
 
@@ -16,6 +17,7 @@ class Serp_parse_lib
     {
         $title      = $this->cleanQuery($articleData['title']);
         $queryUrl   = $this->yandexUrl .'&query='.$title.'&lang='.$this->lang;
+        
         $serpXmlStr = $this->down_with_curl($queryUrl);
         $serpXmlStr = $this->cleanXmlStr($serpXmlStr);
 
@@ -30,6 +32,16 @@ class Serp_parse_lib
         }
 
         return $data;
+    }
+    
+    function setLang($lang)
+    {
+        $this->lang = $lang;
+    }
+    
+    function setQueryUrl($url)
+    {
+        $this->yandexUrl = $url;
     }
 
     private function getDataFromXml($xml)

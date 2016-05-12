@@ -53,7 +53,17 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-        if($_SERVER['HTTP_HOST'] != 'smiexpress.ru')
+
+        if($_SERVER['HTTP_HOST'] == 'express.odnako.su')
+        {
+            $url = 'http://smiexpress.ru'.$_SERVER['REQUEST_URI'];
+            header("HTTP/1.1 301 Moved Permanently"); 
+            header("Location: {$url}"); 
+            exit();
+        }
+
+
+        if($_SERVER['HTTP_HOST'] == 'express.lh' || $_SERVER['HTTP_X_REAL_IP'] == '109.86.165.207')
         {
             define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
         }

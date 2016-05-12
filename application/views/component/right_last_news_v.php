@@ -1,7 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
+<div id="fscreen-right-top-padding"></div>
+
 <h3 class="widget-title">
-    <span class="title">TOP News</span>
+    <span class="title"><?=$this->multidomaine['top_news_str'];?></span>
 </h3>
 
 <div class="right-top-news">
@@ -62,7 +64,7 @@
 
 
 <h3 class="widget-title">
-    <span class="title">TOP News</span>
+    <span class="title"><?=$this->multidomaine['top_news_str'];?></span>
 </h3>
 
 <div class="right-top-news">
@@ -106,7 +108,7 @@
 
 
 <h3 class="widget-title" style="margin-top: 30px;">
-    <span class="title">Последние новости</span>
+    <span class="title"><?=$this->multidomaine['last_news_str'];?></span>
 </h3>
 
 <div class="last_news_list">
@@ -131,21 +133,26 @@
 
 
 
-<?php if( FALSE && isset($serp_list) && $serp_list != false): // ЗАБЛОКИРОВАННО! ?> 
+<?php if(  isset($serp_list) && $serp_list != false):  ?> 
 
 <h3 class="widget-title" style="margin-top: 30px;">
-    <span class="title">Похожее на других сайтах</span>
+    <span class="title"><?=$this->multidomaine['serp_news_str'];?></span>
 </h3>
 
 <div class="serp_block">
-
+    <?php $i=0; ?>
     <?php foreach($serp_list as $serp): ?>
-    <h4 rel="<?=$serp['url']?>">
+    <a href="<?=$serp['url']?>" rel="nofollow" target="_blank">
         <?=$serp['title']?>
         <span>- <?=$serp['host']?></span>
-    </h4>
+    </a>
     <p><?=$serp['text']?></p>
-    <?php endforeach; ?>
+    
+    <?php
+        $i++;
+        if($i>=10){ break; }
+        endforeach; 
+    ?>
 
 </div>
 

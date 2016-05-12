@@ -97,8 +97,16 @@ function get_next_prev_date_for_payment( $period, $date_ar ){
 }
 
 function get_date_str_ar( $date = '2012-05-07' ){
-    $day_ar     = array('Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота');
-    $month_ar   = array( 1=>'января','февраля','мара','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря');
+//    $day_ar     = array('Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота');
+//    $month_ar   = array( 1=>'января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря');
+//    
+//    $day_ar     = array('Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi');
+//    $month_ar   = array( 1=>'janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre');
+    
+    $ci = &get_instance();
+    
+    $day_ar     = $ci->multidomaine['day_ar'];
+    $month_ar   = $ci->multidomaine['month_ar'];
     
     $dateInt = strtotime($date);
     

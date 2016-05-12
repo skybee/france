@@ -71,6 +71,6 @@ class Parser_m extends CI_Model{
     
     function set_url_scaning( $url_id ){
         if( !$url_id ) return FALSE;
-        $this->db->query(" UPDATE `scan_url` SET `scan`=1 WHERE `id`='$url_id' ");
+        $this->db->query(" UPDATE `scan_url` SET `scan`=1 WHERE `id`='{$url_id}' ");
     }
 }

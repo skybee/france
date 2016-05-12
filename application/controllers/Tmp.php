@@ -249,4 +249,24 @@ class Tmp extends CI_Controller{
             sleep(3);
         }
     }
+    
+    function test_out_ip()
+    {
+//        file_get_contents('http://odnako.su/tmp/test_server_ip_log/');
+        
+        $url = 'http://odnako.su/tmp/test_server_ip_log/';
+        
+        $ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko' );
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_ENCODING, '');
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_MAXREDIRS, 5);
+
+	$content = curl_exec($ch);
+	curl_close($ch);
+    }
 }

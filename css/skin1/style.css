@@ -29,7 +29,8 @@ div.like-article-list img,
 div.right-top-news img,
 div.left div.imgholder img,
 #left div.cat_listing div.content div.right div.small-listing div.thumb img,
-.copy-url img{
+.copy-url img,
+#out_window .ow_item img{
    -moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);
     -webkit-transform: scaleX(-1);
@@ -465,7 +466,7 @@ hr {
     height: 32px;
     /*padding: 5px 0px 5px 0px;*/
     /*border: #c00 1px dashed;*/
-    margin-top: 12px;
+    margin-top: 20px;
     color: #999;
     border:#eee 1px solid; border-width: 1px 0px;
     background: #fcfcfc;
@@ -479,7 +480,7 @@ hr {
 #left .short_date_str{display: none;}
 #left div.single .doc-date-bottom .dd_left{ width: 250px; }
 #left div.single .doc-date .dd_right{ float: right; line-height: 32px; /*width: 210px;*/ text-align: right; }
-#left div.single .doc-date .dd_right a.doc-donor-link{
+#left div.single .doc-date .dd_right .doc-donor-link{
     display: inline-block;
     float: right;
     background-repeat: no-repeat; background-position: right center;
@@ -490,7 +491,7 @@ hr {
     color: #999;
     background-size: 24px 24px;
 }
-#left div.single .doc-date .dd_right a.doc-donor-link:hover{ color: #009DDB; }
+#left div.single .doc-date .dd_right .doc-donor-link:hover{ color: #009DDB; }
 
 #left div.single .doc-date .social_btn{
     /*height: 25px;*/ 
@@ -523,7 +524,7 @@ hr {
 #left div.single .content-gAd-bottom{
     width: 616px;
     float: left;
-    margin-bottom: 35px;
+    /*margin-bottom: 35px;*/
 }    
 
 #left div.single .content-gAd-bottom .content-gAd-center{
@@ -1491,6 +1492,7 @@ color:
 	margin-right:2px;
         padding-top: 20px;
 }
+#left div.in-doc-listing{padding-top: 40px;}
 #left div.listing:nth-child(odd){
     /*background-color: #f0f0f0;*/
 }
@@ -3658,7 +3660,7 @@ img.alignleft,a img.alignleft {
 
 .serp_block{
     height: 500px;
-    width: 308px;
+    width: 304px;
     float: left;
     overflow: hidden;
     overflow-y: scroll;
@@ -3670,14 +3672,17 @@ img.alignleft,a img.alignleft {
     margin-bottom: 20px;
 }
     .serp_block a{ text-decoration: none; }
-    .serp_block h4{
+    .serp_block h4,
+    .serp_block a{
         font-size: 12px;
         font-weight: bold;
         line-height: 1.2em !important;
         color: #009DDB;
     }
-        .serp_block h4:hover{ text-decoration: underline;}
-        .serp_block h4 span{
+        .serp_block h4:hover,
+        .serp_block a:hover{ text-decoration: underline;}
+        .serp_block h4 span,
+        .serp_block a span{
             font-weight: normal;
             color: #209C00;
         }
@@ -3708,7 +3713,7 @@ img.alignleft,a img.alignleft {
         p.look_more_hdn img{
             float: left;
             width: 200px;
-            padding: 0 10px 5px 0;
+            margin: 0 10px 5px 0;
         }
         
         p.look_more_hdn span{
@@ -3735,6 +3740,7 @@ span.first-like-art-in-txt{
     display: block;
     position: absolute;
     left: 0; bottom: 0;
+    width: 100%;
 }        
         
 #left div.single div.content h2.look_more_hdn{
@@ -3762,6 +3768,13 @@ span.first-like-art-in-txt{
         color: #209C00;
         font-size: 14px;
     }
+    #left div.single div.content h2.look_more_hdn img.look_more_img_mobile{
+        display:none;
+        width: 120px;
+        height: 80px;
+        float: left;
+        margin-right: 10px;
+    }
     
     
     /*<top gAds>*/
@@ -3769,11 +3782,137 @@ span.first-like-art-in-txt{
     background-image: url('/img/slider-bg-long.png');
     background-position: 0px 0px;
     /*background-color: #F7F7F7;*/
-    border-top: 3px solid #009DDB;
+    border-top: 2px solid #009DDB;
     border-bottom: 2px solid #009DDB;
     /*height: 90px;*/
     float: left;
     width: 956px;
 }    
+    
+
+    /*==== <Video> ====*/
+    .respon_video{
+        position:relative;
+        padding-bottom:56.25%;
+        padding-top:30px;
+        height:0;
+        overflow:hidden;
+    }
+    .respon_video iframe, .respon_video object, .respon_video embed {
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+    }
+    /*==== </Video> ====*/
+
+
+    /*==== <Like Video> ====*/
+    #like-video-container{
+        margin-top: 20px;
+    }
+    #like-video-container .like-video-item{
+        padding: 15px 0;
+        border-bottom: 1px solid #009ddb;
+    }
+    #like-video-container .like-video-item .like-video-item-left{
+        width: 53%;
+        display: inline-block;
+    }
+    #like-video-container .like-video-item .like-video-item-right{
+        width: 45%;
+        float: right;
+    }
+    #like-video-container .like-video-item .like-video-item-right h3{
+        font-weight: normal; font-size: 17px; line-height: 1.3em;
+    }
+    /*==== </Like Video> ====*/
+    
+    
+    
+    /*==== <Out Window> ====*/
+    #top_hide_line{
+        position: fixed; top:0; left: 0;
+        height: 7px; width: 100%;
+        /*background: #209C00;*/
+        z-index: 3;
+    }
+    @media screen and (max-width: 980px){
+        #top_hide_line{display: none;}
+    }
+    #ow_bg{
+        position: fixed; top:0; left: 0; height: 100%; width: 100%;
+        background: #000;
+        opacity: 0.7;
+        z-index: 90;
+        
+        display: none;
+        opacity: 0;
+    }
+    #out_window{
+        position: fixed; 
+        top:50px;
+        left: calc(50% - 350px);
+        margin: 0 auto;
+        width: 700px;
+        background: #fff;
+        z-index: 91;
+        border-radius: 15px;
+        border: 6px #009DDB solid;
+        
+        display: none;
+        top: -800px;
+    }
+    #out_window #ow_close{
+        position: absolute;
+        top: 15px; right: 15px;
+        height: 20px; width: 20px;
+        background: url('/img/close_modal_btn.png');
+        background-position: center center;
+        cursor: pointer;
+        opacity: 0.5;
+    }
+    #out_window #ow_close:hover{opacity: 1;}
+    #out_window #ow_title{
+        /*border: #ff4b33 1px dashed;*/
+        font-size: 24px;
+        margin: 15px;
+    }
+    #out_window .ow_item{
+        border-top: #009DDB 1px solid;
+        border-bottom: #009DDB 1px solid;
+        margin: 0px 15px 15px 15px;
+        height: 150px;
+        padding: 10px;
+        background: #F7F7F7;
+    }
+    #out_window .ow_item img{
+        height: 150px; 
+        width: 225px;
+        float: left;
+        margin-right: 20px;
+    }
+    #out_window .ow_item img:hover{
+        box-shadow: 0 0 0 4px #009DDB;
+    }
+    #out_window a.ow_item_title{
+        font-size: 24px;
+        color: #009DDB;
+        text-decoration: none;
+        line-height: 1.4em;
+        padding-top: 20px;
+    }
+    #out_window a.ow_item_title:hover{
+       text-decoration: underline;
+    }
+    @media screen and (max-height: 768px)
+    {
+        #out_window{left: calc(50% - 300px); width: 600px; }
+        #out_window .ow_item img{ height: 120px; width: 180px;}
+        #out_window .ow_item{ height: 120px;}
+    }
+    /*==== </Out Window> ====*/
+    
     
 /*============== </My> ==============*/

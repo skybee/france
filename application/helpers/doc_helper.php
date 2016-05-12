@@ -114,7 +114,7 @@ function insertLikeArtInTxt($text, $likeList, $likeSerpAr)
         
         $likeArtHtml =  "\n"
                         .' <h2 class="look_more_hdn" rel="'.$newsUrl.'">'
-                        //.'<span>Смотрите также:</span> '
+                        . '<img src="/upload/images/small/'.$likeArticle['main_img'].'" alt="" onerror="imgError(this);" class="look_more_img_mobile"/>'."\n"
                         .$likeTitle
                         . "</h2>\n"
                         . '<p class="look_more_hdn"> '."\n "

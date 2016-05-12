@@ -28,11 +28,7 @@
         
         <?php if(isset($meta['noindex']) && $meta['noindex'] == true ): ?>
             <meta name="robots" content="noindex, follow" />
-        <?php endif; ?>
-            
-        <?php if(isset($meta['canonical']) && !empty($meta['canonical']) ): ?>
-            <link rel="canonical" href="<?=$meta['canonical']?>" />
-        <?php endif; ?>    
+        <?php endif; ?>   
 
         <script type='text/javascript' src='/js/skin1/jquery-1.11.3.min.js'></script>
         <script type='text/javascript' src='/js/skin1/jquery-ui.min-tabs.js'></script>
@@ -46,7 +42,7 @@
     </head>
 
     <body>
-
+        
         <?php  if( isset($this->catNameAr[0]) ): ?> <span style="display:none;" id="opt-tag-main-cat" ><?=$this->catNameAr[0]?></span> <?php endif; ?>
         <?php  if( isset($this->catNameAr[1]) ): ?> <span style="display:none;" id="opt-tag-sub-cat"  ><?=$this->catNameAr[1]?></span> <?php endif; ?>
         
@@ -65,7 +61,7 @@
                     </ul>    
                 </div><!-- #navigation closer -->
                 
-                <a href="/" title="СМИ Express" id="mobile_logo"></a>
+                <a href="/" title="<?=$this->multidomaine['site_name_str'];?>" id="mobile_logo" style="background-image: url('/img/<?=$this->multidomaine['logo_img_mobile'];?>')"></a>
                 
                 <!-- Mobile Menu -->
                 <?=$mobile_menu;?>
@@ -77,7 +73,7 @@
                 <div id="white_space">
                     <div id="content_holder">
                         <div id="header">
-                            <a href="/"><img src="/img/logo-ru.jpg" border="0" alt="Express Logo" class="logo"  /></a>
+                            <a href="/"><img src="/img/<?=$this->multidomaine['logo_img'];?>" border="0" alt="<?=$this->multidomaine['site_name_str'];?> Logo" class="logo"  /></a>
                             <!--                            <div class="ad "></div> #ad 468x60 closer -->
 
                             <div class="search_top_block">
@@ -110,7 +106,7 @@
                         <div class="cat_line"></div>
 
                         <div class="top_gads">
-                            <span class="gAd" data="under slider"></span>
+                            <!--<span class="gAd" data="under slider"></span>-->
                         </div>
 
                         <!-- !!! Top Slider Here-->
@@ -151,15 +147,15 @@
                         <?php endforeach; ?>
                     </div>
                     <div class="footer_contact">
-                        <span>Контакты</span><br />
-                        E-mail: <a href="mailto:mail@smiexpress.ru">mail@smiexpress.ru</a>
+                        <span><?=$this->multidomaine['contact_str'];?></span><br />
+                        E-mail: <a href="mailto:<?=$this->multidomaine['e_mail'];?>"><?=$this->multidomaine['e_mail'];?></a>
                     </div>
                 </div><!-- #inside -->
             </div><!-- #footer_widget closer -->
   
             <div id="footer">
                 <div class="inside">
-                    <div class="left">&copy; 2016 СМИ Express. All Rights Reserved.</div><!-- #left -->
+                    <div class="left">&copy; 2016 <?=$this->multidomaine['site_name_str'];?>. All Rights Reserved.</div><!-- #left -->
                     <div class="right"></div><!-- #right -->
                 </div><!-- #inside -->
             </div><!-- #footer -->
@@ -179,8 +175,41 @@
                         " часа, посетителей за 24 часа и за сегодня' " +
                         "border='0' width='88' height='31'><\/a>")
                         //--></script>
-            <!--/LiveInternet-->            
+            <!--/LiveInternet--> 
+            
+            <!-- Yandex.Metrika counter -->
+            <script type="text/javascript">
+                (function (d, w, c) {
+                    (w[c] = w[c] || []).push(function() {
+                        try {
+                            w.yaCounter36782165 = new Ya.Metrika({
+                                id:36782165,
+                                clickmap:true,
+                                trackLinks:true,
+                                accurateTrackBounce:true
+                            });
+                        } catch(e) { }
+                    });
+
+                    var n = d.getElementsByTagName("script")[0],
+                        s = d.createElement("script"),
+                        f = function () { n.parentNode.insertBefore(s, n); };
+                    s.type = "text/javascript";
+                    s.async = true;
+                    s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+                    if (w.opera == "[object Opera]") {
+                        d.addEventListener("DOMContentLoaded", f, false);
+                    } else { f(); }
+                })(document, window, "yandex_metrika_callbacks");
+            </script>
+            <noscript><div><img src="https://mc.yandex.ru/watch/36782165" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+            <!-- /Yandex.Metrika counter -->
         </div>
+        
+        <div id="top_hide_line"></div>
+        <div id="ow_bg"></div>
+        <?php if(isset($out_popup)) echo $out_popup;?>
         
     </body>
 </html>
