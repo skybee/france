@@ -942,6 +942,7 @@ class parseMsn extends parse_page{
         
         if( is_object( $this->html_obj->find('section.articlebody',0) ) ){
             $textObj = $this->html_obj->find('section.articlebody',0);
+            $textObj = $this->changeVideo($textObj);
             $textObj = $this->imgInTxt($textObj);
             $textObj = $this->slideerRewrite($textObj);
             $textObj = $this->delTagFromObj($textObj);
@@ -1006,7 +1007,8 @@ class parseMsn extends parse_page{
         
         if( is_object( $this->html_obj->find('meta[name=description]',0) ) ){
             $description = $this->html_obj->find('meta[name=description]',0)->content;
-            $this->data['description'] = $this->getBigDescription($description, $this->data['text'], 600);
+            $this->data['description'] = $this->getBigDescription($description, $this->data['text'], 600, 1500);
+            #echo "\n\n<br />------<br />\n".$this->data['description']."\n<br />------<br />\n\n";
         }
         
         if( is_object( $this->html_obj->find('link[rel=canonical]',0) ) ){
@@ -1015,6 +1017,31 @@ class parseMsn extends parse_page{
         #</DonorData>
     }
     
+    private function changeVideo($textObj){
+        if( !is_object($textObj->find('.wcvideoplayer',0)) )
+        {
+            return $textObj;
+        }
+        
+        foreach($textObj->find('.wcvideoplayer') as $videoObj)
+        {
+            $metaData   = $videoObj->attr['data-metadata'];
+            $metaData   = html_entity_decode($metaData);
+            $metaDataAr = json_decode($metaData,true);
+//            print_r($metaDataAr);
+            
+            $htmlVideo = '<video width="100%" height="auto"  poster="'.$metaDataAr['headlineImage']['url'].'" controls > '
+                    . '<source src="'.$metaDataAr['videoFiles'][0]['url'].'" > '
+                    . 'Your browser does not support this video'
+                    . '</video>';
+            
+            $videoObj->outertext = $htmlVideo;
+        }
+        
+        return $textObj;
+    }
+
+
     private function imgInTxt($textObj){
         if( !is_object($textObj->find('img',0)) )
         {
@@ -1023,6 +1050,11 @@ class parseMsn extends parse_page{
         
         foreach($textObj->find('img') as $imgObj)
         {
+            if(!isset($imgObj->attr['data-src']))
+            {
+                continue;
+            }
+            
             $imgJson    = $imgObj->attr['data-src'];
             $imgJson    = html_entity_decode($imgJson);
             $imgAr      = json_decode($imgJson, true);
@@ -1128,17 +1160,22 @@ class parseMsn extends parse_page{
         return $newHtml;
     }
     
-    private function getBigDescription($descripion, $txtHtml, $lenth=300){
+    private function getBigDescription($descripion, $txtHtml, $minLenth=300, $maxLenth = 1500){
         
         $descripion = str_ireplace('...', '', $descripion);
         
         $descLenth = $this->txtLenth($descripion);
-        if($descLenth > $lenth){
+        if($descLenth > $minLenth){
+            if($descLenth > $maxLenth)
+            {
+                $descripion = $this->get_short_txt($descripion, $maxLenth, 'dot');
+                #echo "\n\n<br />Max Lenth - ".$maxLenth."<br />\n\n";
+            }
             $descripion  = preg_replace("#\.[^\.]+$#iu", '.', $descripion);
             return $descripion;
         }
         
-        $intPlusDesc = $lenth - $descLenth + 30; //30 - deleted search str
+        $intPlusDesc = $minLenth - $descLenth + 30; //30 - deleted search str
 
         $text       = strip_tags($txtHtml);
         
@@ -1247,6 +1284,24 @@ class parseMsn extends parse_page{
         $htmlTxt = preg_replace("#{$marker}(.{0,{$afterCntSimbol}})$#iu", "$1", $htmlTxt);
         $htmlTxt = $marker.$htmlTxt;
         return $htmlTxt;
+    }
+    
+    private function get_short_txt( $text, $length = 100, $txtFin = 'word' ){
+        $text = strip_tags($text);
+        $text = mb_substr($text, 0, $length);
+        
+        if( $txtFin == 'word' ){
+            $replacePattern = "# \S+$#i";
+            $replace = '';
+        }
+        elseif( $txtFin == 'dot' ){
+            $replacePattern = "#\. [^\.]+$#i";
+            $replace = '.';
+        }
+        
+        $text = preg_replace( $replacePattern, $replace, $text );
+        
+        return $text;
     }
 }
 

@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html> 
+<html lang="<?=$this->multidomaine['lang'];?>"> 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><?= $meta['title'] ?></title>
@@ -58,7 +58,23 @@
                                 <div class="firstnav-menu-arrow"></div>
                             </li>
                         <?php endforeach; ?>
-                    </ul>    
+                    </ul> 
+                    
+                    <?php if(preg_match("#francais-express\.com$#i", $_SERVER['HTTP_HOST'])):?>
+                    <style>
+                        #headernavigation div.navigation a.lang-link{
+                            float:right;
+                            padding-right: 0;
+                            opacity: 0.9;
+                        }
+                        @media(max-width: 980px){#headernavigation div.navigation a.lang-link{display: none;}}
+                    </style>
+                    <a class="lang-link" href="//en.francais-express.com/">EN</a>
+                    <a class="lang-link" href="//de.francais-express.com/">DE</a>
+                    <a class="lang-link" href="//francais-express.com/">FR</a>
+                    <?php endif;?>
+                    
+                    
                 </div><!-- #navigation closer -->
                 
                 <a href="/" title="<?=$this->multidomaine['site_name_str'];?>" id="mobile_logo" style="background-image: url('/img/<?=$this->multidomaine['logo_img_mobile'];?>')"></a>

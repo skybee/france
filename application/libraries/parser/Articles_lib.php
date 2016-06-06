@@ -413,6 +413,11 @@ class parseMsnList extends parseArticleList{
     
     protected function secondLiParse(){
         
+//        if(!is_object($this->html_obj->find('li[data-id]',0)))
+//        {
+//            return false;
+//        }
+        
         $i=0;
         foreach( $this->html_obj->find('li[data-id]') as $list ){
             

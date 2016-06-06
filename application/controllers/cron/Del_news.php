@@ -78,6 +78,35 @@ class Del_news extends CI_Controller{
         echo $msg;
     }
     
+    function _del_news_from_donor($donorId,$code)
+    {
+        $code = (int) $code;
+        if($code != $this->get_code())
+        {
+            exit("Code Error");
+        }
+        
+        $donorId = (int) $donorId;
+        if($donorId<1){echo 'Bad Donor ID'; return;}
+        
+        $sql = "SELECT `id`,`scan_url_id` FROM `article` WHERE `donor_id`='{$donorId}' ";
+        $query = $this->db->query($sql);
+        
+        if($query->num_rows()<1)
+        {
+            echo 'No news ID';
+            return;
+        }
+        
+        foreach($query->result_array() as $row)
+        {
+            $code = $this->get_code();
+            $this->del_news($row['id'], $code);
+            
+            $this->db->query("UPDATE `scan_url` SET `scan`='0' WHERE `id`='{$row['scan_url_id']}' LIMIT 1"); //SET Scan URL = 0
+        }
+    }
+    
     
     private function del_img($fName){
         $msg = '';

@@ -100,7 +100,7 @@ $( document ).ready(function(){
             });
             cntShowOutWindow++;
             outWindow = 0;
-            setTimeout('setOutWindow()', 10000);
+            //setTimeout('setOutWindow()', 10000);
         }
     });
     $('#ow_close').click(function(){
@@ -110,6 +110,7 @@ $( document ).ready(function(){
                 $('#ow_bg').css({'display':'none'});
             })
         });
+        setTimeout('setOutWindow()', 5000);
     });
     // </show out window> //
     

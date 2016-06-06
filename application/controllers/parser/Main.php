@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-set_time_limit( 60 ); 
+set_time_limit( 90 ); 
 
 class Main extends CI_Controller
 {
@@ -14,6 +14,7 @@ class Main extends CI_Controller
 //        $this->load->helper('parser/download');
         $this->load->helper('donor_info_helper');
         $this->load->helper('parser/simple_html_dom');
+        $this->load->helper('parser/parser');
         $this->load->library('parser/rss_url_lib');
         $this->load->library('parser/parse_lib');
         $this->load->library('parser/news_parser_lib');
@@ -22,6 +23,11 @@ class Main extends CI_Controller
         $this->load->library('parser/video_replace_lib');
         $this->load->model('parser_m');
         $this->load->model('donor_m');
+        
+        $this->load->config('multidomaine');
+        $this->load->library('multidomaine_lib');
+        
+        $this->multidomaine = $this->multidomaine_lib->getHostData();
         
         unset( $this->parser_lib );
     }
@@ -74,10 +80,10 @@ class Main extends CI_Controller
     }
     
     function parse_news( $cnt_news = 1 ){
-        set_time_limit( 3600 );
+        set_time_limit( 300 );
         header("Content-type:text/html;Charset=utf-8");
         
-//        if( $this->single_work( 5, 'parse_news') == false ) exit('The work temporary Lock');
+        if( $this->single_work( 2, 'parse_news') == false ) exit('The work temporary Lock');
         
         $parse_list = $this->parser_m->get_news_url_to_parse( $cnt_news );
         
@@ -91,7 +97,7 @@ class Main extends CI_Controller
             $this->parser_m->set_url_scaning( $news_ar['id'] );
 			
             #<for test>
-//            $news_ar['url']     = 'http://www.msn.com/fr-fr/actualite/culture/jean-pierre-l%c3%a9aud-couronn%c3%a9-de-la-palme-dor-dhonneur/ar-BBsR9b5';  
+//            $news_ar['url']     = 'http://www.msn.com/en-gb/news/us/highway-patrol-3-dead-8-hurt-in-florida-wreck/ar-BBtFAy9';  
 //            $news_ar['host']    = 'www.msn.com';
             #</for test>
             
@@ -105,6 +111,13 @@ class Main extends CI_Controller
             
 //            $host                           = $this->news_parser_lib->get_donor_url( $news_ar['url'] );
             $insert_data                    = $this->parse_page_lib->get_data( $html, $news_ar );
+            
+            if(check_lock_donor($insert_data['donor-data']['host'], $this->multidomaine['lock_donor']))
+            {
+                echo "\n\n<br />Lock Donor Host<br />\n\n";
+                continue;
+            }
+            
             if( is_array($insert_data) == false ) continue;
             $insert_data['scan_url_id']     = $news_ar['id'];
             $insert_data['url']             = $news_ar['url'];
@@ -135,7 +148,7 @@ class Main extends CI_Controller
         
         $this->load->library('parser/articles_lib');
         
-        if(!isset($scanUrl) OR !  is_array($scanUrl) )
+        if(!isset($scanUrl) OR !is_array($scanUrl) )
         {
             $scanUrl    = $this->donor_m->getScanPageListUrl();
         }

@@ -72,7 +72,10 @@ class Main extends CI_Controller {
 
         $data_ar['doc_data']            = $this->article_m->get_doc_data($doc_id);
         if (!$data_ar['doc_data']){
-            show_404();
+            $cat_url = preg_replace("#/-\d+-\S+?/$#i", '/', $_SERVER['REQUEST_URI']);
+            header("HTTP/1.1 301 Moved Permanently");
+            header("Location: {$cat_url}#404");
+            exit();
         }
 
         $right['serp_list'] = serpDataFromJson($data_ar['doc_data']['serp_object']);
@@ -155,7 +158,7 @@ class Main extends CI_Controller {
         $mobile_menu_list               = $this->list_m->getMenuListForMobile();
         $data_ar['meta']['title']       = $data_ar['cat_ar']['title']; 
         if( $page > 1){
-            $data_ar['meta']['title']  .= ' - страница '.$page;
+            $data_ar['meta']['title']  .= ' - '.$this->multidomaine['page_str'].' '.$page;
             $data_ar['meta']['noindex'] = true;
         }
 
@@ -189,7 +192,7 @@ class Main extends CI_Controller {
         $data_ar['second_menu_list']    = $this->list_m->get_cat(1);
         $data_ar['footer_menu_list']    = $this->list_m->get_footer_cat_link();
         $mobile_menu_list               = $this->list_m->getMenuListForMobile();
-        $data_ar['meta']['title']       = 'Поиск: &laquo;'.$searchStr.'&raquo;  - страница '.$page;
+        $data_ar['meta']['title']       = 'Поиск: &laquo;'.$searchStr.'&raquo;  - '.$this->multidomaine['page_str'].' '.$page;
         
         $top_slider['articles']         = $this->article_m->get_top_slider_data(1, 8, $this->catConfig['right_top_news_time_h'], $this->topSliderTxtLength, true, true); // 1.5 sec.
         $right['right_top']             = $this->article_m->get_top_slider_data(1, 8, $this->catConfig['right_top_news_time_h'], $this->topSliderTxtLength, true, true, 'right_top');
@@ -244,7 +247,7 @@ class Main extends CI_Controller {
         
         if( $query->num_rows() < 1 ) exit("<h1>No link</h1>\n".$sql);
         
-        $html   = '<html><head><title>'.$catNmae.' страница - '.$page.'</title></head><body>';
+        $html   = '<html><head><title>'.$catNmae.' '.$this->multidomaine['page_str'].' - '.$page.'</title></head><body>';
         
         foreach( $query->result_array() as $catData ){
             $html   .= $catData['views'].' - '.$catData['title']."<br />\n";

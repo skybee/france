@@ -69,19 +69,7 @@ class Tmp extends CI_Controller{
             }
         }
     }
-    
-//    function womens( $page = 1 ){
-//        $this->load->helper('parser/download_helper');
-//        
-//        $url = 'http://www.womenshealthmag.com/channel_ui/ajax/'.$page.'/5';
-//        
-//        $json = down_with_curl($url);
-//        
-//        $jsonAr = json_decode($json);
-//        
-//        print_r($jsonAr);
-//    }
-    
+        
     function _create_cache_page_on_server($cat_name, $cnt_page = 1){
         set_time_limit(7200);
         

@@ -511,10 +511,14 @@ hr {
 }
 
 #left div.single .content-gAd{
-    background: #fcfcfc;
+    background-color: #F7F7F7;
+    background-image: url('/img/gad-loader.gif');
+    background-repeat: no-repeat;
+    background-position: center center;
     border:#eee 1px solid; border-width: 1px 0px;
     /*height: 100px;*/
     margin-top: 15px;
+    
 }
     #left div.single .content-gAd .content-gAd-center{
         width: 468px;
