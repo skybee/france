@@ -102,4 +102,4 @@ $config['multidomaine']['gb']['day_ar']             = array('Sunday','Monday','T
 $config['multidomaine']['gb']['xml_yandex_url']     = 'https://xmlsearch.yandex.com/xmlsearch?user=mail@lalalay.com&key=03.1130000018332401:db8ac7bad789ba8f7aabca04b0aa6308&maxpassages=5&groupby=groups-on-page%3D15';
 $config['multidomaine']['gb']['social_btn_list']    = 'facebook,twitter,gplus';
 $config['multidomaine']['gb']['outwindow_str']      = 'This is interesting!';
-$config['multidomaine']['gb']['lock_donor']         = array();
+$config['multidomaine']['gb']['lock_donor']         = array('telegraph.co.uk','theguardian.com', 'independent.co.uk', 'standard.co.uk', 'mirror.co.uk', 'birminghammail.co.uk', 'liverpoolecho.co.uk');

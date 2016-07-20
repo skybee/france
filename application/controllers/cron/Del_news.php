@@ -78,8 +78,10 @@ class Del_news extends CI_Controller{
         echo $msg;
     }
     
-    function _del_news_from_donor($donorId,$code)
+    function del_news_from_donor($donorId,$code)
     {
+        set_time_limit(180);
+        
         $code = (int) $code;
         if($code != $this->get_code())
         {
@@ -104,6 +106,20 @@ class Del_news extends CI_Controller{
             $this->del_news($row['id'], $code);
             
             $this->db->query("UPDATE `scan_url` SET `scan`='0' WHERE `id`='{$row['scan_url_id']}' LIMIT 1"); //SET Scan URL = 0
+        }
+    }
+    
+    function del_news_from_url_list()
+    {
+        $listPath   = './del_url_list_en.txt';
+        $urlAr      = file($listPath);
+        
+        foreach($urlAr as $url)
+        {
+            $pattern = "#-(\d+)-#i";
+            preg_match($pattern, $url, $matches);
+            
+            $this->del_news($matches[1], '130716');
         }
     }
     
@@ -189,4 +205,6 @@ class Del_news extends CI_Controller{
     private function get_code(){
         return date("dmy");
     }
+    
+    
 }
