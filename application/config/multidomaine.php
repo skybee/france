@@ -78,7 +78,7 @@ $config['multidomaine']['de']['day_ar']             = array('Sonntag','Montag','
 $config['multidomaine']['de']['xml_yandex_url']     = 'https://xmlsearch.yandex.com/xmlsearch?user=mail@lalalay.com&key=03.1130000018332401:db8ac7bad789ba8f7aabca04b0aa6308&maxpassages=5&groupby=groups-on-page%3D15';
 $config['multidomaine']['de']['social_btn_list']    = 'facebook,twitter,gplus';
 $config['multidomaine']['de']['outwindow_str']      = 'Das ist interessant!';
-$config['multidomaine']['de']['lock_donor']         = array();
+$config['multidomaine']['de']['lock_donor']         = array('homify.de');
 
 
 //===== Gb =====//
