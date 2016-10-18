@@ -27,7 +27,7 @@ $config['multidomaine']['ru']['repost_news_str']    = 'Поделится Нов
 $config['multidomaine']['ru']['page_str']           = 'Страница';
 $config['multidomaine']['ru']['month_ar']           = array( 1=>'января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря');
 $config['multidomaine']['ru']['day_ar']             = array('Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота');
-$config['multidomaine']['ru']['xml_yandex_url']     = 'https://xmlsearch.yandex.com/xmlsearch?user=skybee84&key=03.47372985:0ec36ca944189961ac6da27d41f5d404&maxpassages=5&groupby=groups-on-page%3D15';
+$config['multidomaine']['ru']['xml_yandex_url']     = 'https://xmlsearch.yandex.com/xmlsearch?user=mail@lalalay.com&key=03.1130000018332401:db8ac7bad789ba8f7aabca04b0aa6308&maxpassages=5&groupby=groups-on-page%3D15';
 $config['multidomaine']['ru']['social_btn_list']    = 'vkontakte,facebook,twitter,odnoklassniki';
 $config['multidomaine']['ru']['outwindow_str']      = 'Это интересно!';
 $config['multidomaine']['ru']['lock_donor']         = array();
@@ -78,7 +78,7 @@ $config['multidomaine']['de']['day_ar']             = array('Sonntag','Montag','
 $config['multidomaine']['de']['xml_yandex_url']     = 'https://xmlsearch.yandex.com/xmlsearch?user=mail@lalalay.com&key=03.1130000018332401:db8ac7bad789ba8f7aabca04b0aa6308&maxpassages=5&groupby=groups-on-page%3D15';
 $config['multidomaine']['de']['social_btn_list']    = 'facebook,twitter,gplus';
 $config['multidomaine']['de']['outwindow_str']      = 'Das ist interessant!';
-$config['multidomaine']['de']['lock_donor']         = array('homify.de');
+$config['multidomaine']['de']['lock_donor']         = array('homify.de','modepilot.com');
 
 
 //===== Gb =====//
@@ -102,4 +102,4 @@ $config['multidomaine']['gb']['day_ar']             = array('Sunday','Monday','T
 $config['multidomaine']['gb']['xml_yandex_url']     = 'https://xmlsearch.yandex.com/xmlsearch?user=mail@lalalay.com&key=03.1130000018332401:db8ac7bad789ba8f7aabca04b0aa6308&maxpassages=5&groupby=groups-on-page%3D15';
 $config['multidomaine']['gb']['social_btn_list']    = 'facebook,twitter,gplus';
 $config['multidomaine']['gb']['outwindow_str']      = 'This is interesting!';
-$config['multidomaine']['gb']['lock_donor']         = array('telegraph.co.uk','theguardian.com', 'independent.co.uk', 'standard.co.uk', 'mirror.co.uk', 'birminghammail.co.uk', 'liverpoolecho.co.uk');
+$config['multidomaine']['gb']['lock_donor']         = array('telegraph.co.uk','theguardian.com', 'independent.co.uk', 'standard.co.uk', 'mirror.co.uk', 'birminghammail.co.uk', 'liverpoolecho.co.uk','manchestereveningnews.co.uk','\.aol.co.uk');
