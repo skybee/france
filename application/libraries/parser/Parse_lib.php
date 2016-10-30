@@ -28,6 +28,7 @@ class Parse_lib{
         curl_setopt($ch, CURLOPT_ENCODING, '');
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_MAXREDIRS, 5);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
 	$content    = curl_exec($ch);
         $httpData   = curl_getinfo($ch);
