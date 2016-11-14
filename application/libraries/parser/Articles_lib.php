@@ -413,10 +413,9 @@ class parseMsnList extends parseArticleList{
     
     protected function secondLiParse(){
         
-//        if(!is_object($this->html_obj->find('li[data-id]',0)))
-//        {
-//            return false;
-//        }
+//        $this->rssParse(); return;
+        
+        $this->cleaner();
         
         $i=0;
         foreach( $this->html_obj->find('li[data-id]') as $list ){
@@ -425,7 +424,7 @@ class parseMsnList extends parseArticleList{
             {
                 continue;
             }
-            
+                
             $data[$i]['url']    =  $list->find('a',0)->href;
             
             if( is_object($list->find('img',0)) ){
@@ -457,6 +456,21 @@ class parseMsnList extends parseArticleList{
         }
         
         return $data;
+    }
+    
+    private function rssParse(){
+        echo "Carabo";
+    }
+    
+    private function cleaner(){
+        
+        if(is_object($this->html_obj->find('.financeheaderlistmodule6u',0))){
+            foreach ($this->html_obj->find('.financeheaderlistmodule6u') as $node){
+                $node->outertext = '';
+            }
+        }
+        
+        $this->html_obj->load($this->html_obj->save()); 
     }
 }
 
