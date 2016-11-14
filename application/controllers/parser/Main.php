@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-set_time_limit( 90 ); 
+set_time_limit( 180 ); 
 
 class Main extends CI_Controller
 {
@@ -118,7 +118,7 @@ class Main extends CI_Controller
                 continue;
             }
             
-            if( is_array($insert_data) == false ) continue;
+            if( is_array($insert_data) == false ){echo "\n<br />insert_data is false<br />\n"; continue;}
             $insert_data['scan_url_id']     = $news_ar['id'];
             $insert_data['url']             = $news_ar['url'];
             $insert_data['cat_id']          = $news_ar['cat_id'];
@@ -155,9 +155,9 @@ class Main extends CI_Controller
         
         $this->donor_m->updScanUrlTime( $scanUrl['id'] );
         
-//        $scanUrl['url']         = 'http://www.msn.com/ru-ru/money/markets';
+//        $scanUrl['url']         = 'http://www.msn.com/en-us/entertainment/';
 //        $scanUrl['host']        = 'www.msn.com';
-//        $scanUrl['cat_id']      = 12;
+//        $scanUrl['cat_id']      = 17;
 //        $scanUrl['donor_id']    = 1;
         
         echo '<pre>'.print_r( $scanUrl, 1 ).'</pre>';
@@ -184,6 +184,9 @@ class Main extends CI_Controller
     
     function get_articles_url_all(){
         set_time_limit(180);
+        
+        if( $this->single_work( 2, 'parse_articles_url_all') == false ) exit('The work temporary Lock');
+        
         $scanUrlAr = $this->donor_m->getAllScanPageListUrl();
         
         if(count($scanUrlAr)<1)
@@ -196,7 +199,7 @@ class Main extends CI_Controller
             {
                 $this->get_articles_url($scanUrl);
                 flush();
-                sleep(5);
+                sleep(rand(3,10));
             }
         }
     }
