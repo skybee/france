@@ -1,11 +1,12 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-$config['multidomaine']['host_set']['express.lh']               = 'fr';
+$config['multidomaine']['host_set']['express.lh']               = 'us';
 $config['multidomaine']['host_set']['smiexpress.ru']            = 'ru';
 $config['multidomaine']['host_set']['francais-express.com']     = 'fr';
 $config['multidomaine']['host_set']['de.francais-express.com']  = 'de';
 $config['multidomaine']['host_set']['en.francais-express.com']  = 'gb';
+$config['multidomaine']['host_set']['us.pressfrom.com']         = 'us'; 
 
 
 
@@ -103,3 +104,11 @@ $config['multidomaine']['gb']['xml_yandex_url']     = 'https://xmlsearch.yandex.
 $config['multidomaine']['gb']['social_btn_list']    = 'facebook,twitter,gplus';
 $config['multidomaine']['gb']['outwindow_str']      = 'This is interesting!';
 $config['multidomaine']['gb']['lock_donor']         = array('telegraph.co.uk','theguardian.com', 'independent.co.uk', 'standard.co.uk', 'mirror.co.uk', 'birminghammail.co.uk', 'liverpoolecho.co.uk','manchestereveningnews.co.uk','\.aol.co.uk');
+
+
+//===== US =====//
+$config['multidomaine']['us'] = $config['multidomaine']['gb'];
+$config['multidomaine']['us']['site_name_str']      = 'Press From - US';
+$config['multidomaine']['us']['e_mail']             = 'mail@pressfrom.com';
+$config['multidomaine']['us']['logo_img']           = 'logo-pressfrom-1.png';
+$config['multidomaine']['us']['logo_img_mobile']    = 'logo-fr-mobile.png';

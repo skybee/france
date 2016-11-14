@@ -87,21 +87,19 @@ $db['default'] = array(
 if($_SERVER['HTTP_HOST'] == 'express.lh')
 {
     $db['default']['pconnect'] = false;
+    
+    $db['default']['hostname'] = 'localhost';
+    $db['default']['username'] = 'root';
+    $db['default']['password'] = '';
+    $db['default']['database'] = 'express'; //DB: france, fr-express
+
+//    $db['default']['hostname'] = 'francais-express.com';
+//    $db['default']['username'] = 'admin_pf_us';
+//    $db['default']['password'] = 'pf-us-ujyrjyu8444';
+//    $db['default']['database'] = 'admin_pf_us';
 }
 
-
-$db['default']['hostname'] = '127.0.0.1';
-$db['default']['username'] = 'mysql';
-$db['default']['password'] = 'mysql';
-$db['default']['database'] = 'fr-express'; //DB: france, fr-express
-
-//$db['default']['hostname'] = 'francais-express.com';
-//$db['default']['username'] = 'admin_smi_de';
-//$db['default']['password'] = 'smi-de-ujyrjyu8444';
-//$db['default']['database'] = 'admin_smi_de';
-
-
-if( $_SERVER['HTTP_HOST'] == 'smiexpress.ru' || $_SERVER['HTTP_HOST'] == 'express.odnako.su'){
+if( $_SERVER['HTTP_HOST'] == 'smiexpress.ru' ){
     $db['default']['hostname'] = 'localhost';
     $db['default']['username'] = 'admin_smi_ru';
     $db['default']['password'] = 'smi-ru-ujyrjyu8444';
