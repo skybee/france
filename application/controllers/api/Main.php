@@ -21,7 +21,7 @@ class Main extends CI_Controller{
     
     function get_top_news()
     {   
-        $cacheName = 'api_top_news';
+        $cacheName = $_SERVER['HTTP_HOST'].'_'.'api_top_news';
         
         if( !$returnAr = $this->cache->file->get($cacheName) ){
             $newsAr = $this->article_m->get_popular_articles(1,6,72);

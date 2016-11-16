@@ -40,6 +40,10 @@ class Main extends CI_Controller {
 
         $data_ar['main_cat_ar']         = $this->article_m->get_cat_data_from_url_name($cat_name);
         
+        if(!isset($data_ar['main_cat_ar']['id'])){
+            show_404(); exit();
+        }
+        
         $data_ar['main_menu_list']      = $this->list_m->get_cat(0);
         $data_ar['second_menu_list']    = $this->list_m->get_sCat_from_name($this->catNameAr[0]);
         $data_ar['footer_menu_list']    = $this->list_m->get_footer_cat_link();

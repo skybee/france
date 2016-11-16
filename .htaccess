@@ -12,8 +12,8 @@
 	#Close slash 
 
     # <Image Flip>
-    #RewriteCond %{HTTP_USER_AGENT} (Googlebot|YandexImages|msnbot)
-    #RewriteRule ^upload/images/.*(jpg|jpeg|png)$ /imageflip/do.php [L]
+#    RewriteCond %{HTTP_USER_AGENT} (Googlebot|YandexImages|msnbot)
+#    RewriteRule ^upload/images/.*(jpg|jpeg|png)$ /imageflip/do.php [L]
     # </Image Flip>    
 
     RewriteRule ^(-_[a-z\d/]*[^/])$ $1/ [NC,L,R=301]
