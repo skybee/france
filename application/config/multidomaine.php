@@ -6,7 +6,8 @@ $config['multidomaine']['host_set']['smiexpress.ru']            = 'ru';
 $config['multidomaine']['host_set']['francais-express.com']     = 'fr';
 $config['multidomaine']['host_set']['de.francais-express.com']  = 'de';
 $config['multidomaine']['host_set']['en.francais-express.com']  = 'gb';
-$config['multidomaine']['host_set']['us.pressfrom.com']         = 'us'; 
+$config['multidomaine']['host_set']['us.pressfrom.com']         = 'us';
+$config['multidomaine']['host_set']['ca.pressfrom.com']         = 'ca';
 
 
 
@@ -112,3 +113,9 @@ $config['multidomaine']['us']['site_name_str']      = 'Press From - US';
 $config['multidomaine']['us']['e_mail']             = 'mail@pressfrom.com';
 $config['multidomaine']['us']['logo_img']           = 'logo-pressfrom-1.png';
 $config['multidomaine']['us']['logo_img_mobile']    = 'logo-fr-mobile.png';
+$config['multidomaine']['us']['lock_donor']         = array();
+
+
+//===== CA =====//
+$config['multidomaine']['ca'] = $config['multidomaine']['us'];
+$config['multidomaine']['ca']['site_name_str']      = 'Press From - Canada';

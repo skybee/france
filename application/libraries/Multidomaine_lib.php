@@ -23,4 +23,15 @@ class Multidomaine_lib
         
         return $this->multidomaine;
     }
+    
+    function getHostsList(){
+        $multidomaineAll    = $this->ci->config->item('multidomaine');
+        $hosts = array();
+        
+        foreach ($multidomaineAll['host_set'] as $host => $c_code){
+            $hostsList[] = $host;
+        }
+        
+        return $hostsList;
+    }
 }

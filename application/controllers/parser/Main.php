@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-set_time_limit( 180 ); 
+set_time_limit( 600 ); 
 
 class Main extends CI_Controller
 {
@@ -102,6 +102,7 @@ class Main extends CI_Controller
             #</for test>
             
             echo "<br />\n $i - <i>".$news_ar['url']."</i><br />\n";
+            flush();
             
             $html = $this->news_parser_lib->down_with_curl( $news_ar['url'] );
             
@@ -115,6 +116,7 @@ class Main extends CI_Controller
             if(check_lock_donor($insert_data['donor-data']['host'], $this->multidomaine['lock_donor']))
             {
                 echo "\n\n<br />Lock Donor Host<br />\n\n";
+                flush();
                 continue;
             }
             
@@ -161,11 +163,13 @@ class Main extends CI_Controller
 //        $scanUrl['donor_id']    = 1;
         
         echo '<pre>'.print_r( $scanUrl, 1 ).'</pre>';
+        flush();
         
         $this->articles_lib->setScanUrl( $scanUrl['url'] );
         $data = $this->articles_lib->getData( $scanUrl['host'] );
         
         echo '<pre>'.print_r( $data, 1 ).'</pre>'; 
+        flush();
         
         if( $data == null ) exit("No URLs to add");
         
@@ -183,7 +187,6 @@ class Main extends CI_Controller
     }
     
     function get_articles_url_all(){
-        set_time_limit(180);
         
         if( $this->single_work( 2, 'parse_articles_url_all') == false ) exit('The work temporary Lock');
         
@@ -192,6 +195,7 @@ class Main extends CI_Controller
         if(count($scanUrlAr)<1)
         {
             echo "<br />\n!Нет URL для сканирования\n<br />";
+            flush();
         }
         else 
         {
@@ -199,7 +203,7 @@ class Main extends CI_Controller
             {
                 $this->get_articles_url($scanUrl);
                 flush();
-                sleep(rand(3,10));
+                sleep(2);
             }
         }
     }

@@ -10,6 +10,11 @@ class Article_top extends CI_Controller{
     
     function upd_article_view(){
         
+        set_time_limit(600);
+        
+        echo date("H:i:s")." - Updated Start <br />\n";
+        flush();
+        
         if( $this->single_work( 45, 'upd_article_view') == false ) exit('The work temporary Lock');
         
         $sql = "UPDATE LOW_PRIORITY `article` ,
@@ -22,7 +27,12 @@ class Article_top extends CI_Controller{
                 WHERE  
                 `article`.`id` =  `t1`.`article_id` ";
         
-        $this->db->query($sql);
+        if($this->db->query($sql)){
+            echo date("H:i:s")."OK: Articles View Updated  <br />\n";
+        }  else {
+            echo date("H:i:s")."ERR: Articles View Update Error  <br />\n";
+        }
+        flush();
     }
     
     private function single_work( $minutes, $fname = 'null' ){

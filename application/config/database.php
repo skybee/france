@@ -136,5 +136,11 @@ if( $_SERVER['HTTP_HOST'] == 'us.pressfrom.com'){
     $db['default']['database'] = 'admin_pf_us';
 }
 
+if( $_SERVER['HTTP_HOST'] == 'ca.pressfrom.com'){
+    $db['default']['hostname'] = 'localhost';
+    $db['default']['username'] = 'admin_pf_ca';
+    $db['default']['password'] = 'pf-ca-ujyrjyu8444';
+    $db['default']['database'] = 'admin_pf_ca';
+}
 
 //$db['default']['dsn'] = 'pgsql:host='.$db['default']['hostname'].';port=5432;dbname='.$db['default']['database'];

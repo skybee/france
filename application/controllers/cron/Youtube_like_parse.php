@@ -21,6 +21,7 @@ class Youtube_like_parse extends CI_Controller
         if(!$articlesData)
         {
             echo 'No Articles';
+            flush();
             return;
         }
         
@@ -45,6 +46,7 @@ class Youtube_like_parse extends CI_Controller
         
         
         echo '<pre>'.print_r($articlesData,1).'</pre>';
+        flush();
     }
     
     private function getNewsIdWithoutVideo($cnt_articles = 10)
