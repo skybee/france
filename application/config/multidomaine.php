@@ -119,3 +119,4 @@ $config['multidomaine']['us']['lock_donor']         = array();
 //===== CA =====//
 $config['multidomaine']['ca'] = $config['multidomaine']['us'];
 $config['multidomaine']['ca']['site_name_str']      = 'Press From - Canada';
+$config['multidomaine']['ca']['lock_donor']         = array();

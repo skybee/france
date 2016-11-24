@@ -325,9 +325,8 @@ class Parse_lib{
                 $imgAlt = $imgObj->attr['alt'];
             }
             
-            $imgPathName   = $this->load_img($imgObj->src, $base_url, $imgAlt);
-            $imgPathName   = '/upload/images/real/'.$imgPathName; //!-- get from dir_lib
-            
+            $imgPathName   = $this->load_img($imgObj->src, $base_url, $imgAlt);            
+            $imgPathName   = '/'.$this->CI->dir_lib->getImgRdir(false,false).$imgPathName; //!-- get from dir_lib
             
 
             if( isset($imgObj->slider) && $imgObj->slider == 'slider' ){
@@ -337,7 +336,7 @@ class Parse_lib{
                 $imgObj->realimg   = $imgPathName;
             }
             else{
-                $imgObj->src       = $imgPathName; 
+                $imgObj->src       = $imgPathName;
             }
         }
         

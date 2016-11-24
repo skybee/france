@@ -21,6 +21,7 @@ class Main extends CI_Controller
         $this->load->library('parser/news_parser_msn_lib');
         $this->load->library('parser/parse_page_lib');
         $this->load->library('parser/video_replace_lib');
+        $this->load->library('dir_lib');
         $this->load->model('parser_m');
         $this->load->model('donor_m');
         
@@ -317,7 +318,7 @@ class Main extends CI_Controller
     }
     
     private function single_work( $minutes, $fname = 'null' ){
-        $lockFile   = 'lock/'.$fname.'.lock';
+        $lockFile   = 'lock/'.$_SERVER['HTTP_HOST'].'_'.$fname.'.lock';
         $lockTime   = time() + (60*$minutes);
         
         
@@ -363,12 +364,12 @@ class Main extends CI_Controller
                 $rowImg     = $query3->row_array();
                 $mainImg    = $rowImg['main_img'];
                 if( !empty($mainImg) ){
-                    if( is_file( 'upload/images/medium/'.$mainImg ) )
-                        if( unlink('upload/images/medium/'.$mainImg) ) echo '---- medium img удалена<br />';
-                    if( is_file( 'upload/images/real/'.$mainImg ) )
-                        if( unlink('upload/images/real/'.$mainImg) ) echo '---- real img удалена<br />';
-                    if( is_file( 'upload/images/small/'.$mainImg ) )
-                        if( unlink('upload/images/small/'.$mainImg) ) echo '---- small img удалена<br />';
+                    if(is_file($this->dir_lib->getImgMdir().$mainImg))
+                        if(unlink($this->dir_lib->getImgMdir().$mainImg)) echo '---- medium img удалена<br />';
+                    if(is_file($this->dir_lib->getImgRdir().$mainImg))
+                        if(unlink($this->dir_lib->getImgRdir().$mainImg)) echo '---- real img удалена<br />';
+                    if(is_file($this->dir_lib->getImgSdir().$mainImg))
+                        if(unlink($this->dir_lib->getImgSdir().$mainImg)) echo '---- small img удалена<br />';
                 }
                 if( $this->db->query("DELETE FROM `article`  WHERE `id` = '{$row['id']}' ") ) echo '----- новость удалена<br />';
                 if( $this->db->query("DELETE FROM `shingles` WHERE `article_id` = '{$row['id']}' ") )echo '----- шинглы удалены<br />';
@@ -501,11 +502,13 @@ class Main extends CI_Controller
     private function delAllImg( $imgDatePathName ){
         echo "\t Удаление: ".$imgDatePathName."\n";
         
-        $imgFolderAr = array('small','medium','real');
+//        $imgFolderAr = array('small','medium','real');
+        $imgFolderAr = array($this->dir_lib->getImgSdir(), $this->dir_lib->getImgMdir(), $this->dir_lib->getImgRdir());
         
         foreach( $imgFolderAr as $imgFolder ){
             
-            $filePathName = 'upload/images/'.$imgFolder.'/'.$imgDatePathName;
+//            $filePathName = 'upload/images/'.$imgFolder.'/'.$imgDatePathName;
+            $filePathName = $imgFolder.$imgDatePathName;
             if( is_file($filePathName) ){
                 if( unlink($filePathName) ){
                     echo "\t\t File was deleted: ".$filePathName."\n";

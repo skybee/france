@@ -38,27 +38,51 @@ class Dir_lib {
         }
     }
     
-    function getImgSdir(){
-        return $this->getImgDir( $this->sDir );
+    function getImgSdir($host=true, $dateStr=true){
+        return $this->getImgDir( $this->sDir, $host, $dateStr );
     }
     
-    function getImgMdir(){
-        return $this->getImgDir( $this->mDir );
+    function getImgMdir($host=true, $dateStr=true){
+        return $this->getImgDir( $this->mDir, $host, $dateStr );
     }
     
-    function getImgRdir(){
-        return $this->getImgDir( $this->rDir );
+    function getImgRdir($host=true, $dateStr=true){
+        return $this->getImgDir( $this->rDir, $host, $dateStr );
     }
     
     function getDatePath(){
         return $this->datePath;
     }
     
-    private function getImgDir( $sizeDir ){
-        $dir = $this->mainDir.$this->imgDir.$sizeDir.$this->datePath;
+    private function getImgDir( $sizeDir, $host=true, $dateStr=true ){
+        
+        $hostDir = '';
+        
+        if($host==true){
+            $hostDir = $this->getHostDir(); 
+        }
+        
+        if($dateStr){
+            $dir = $this->mainDir.$hostDir.$this->imgDir.$sizeDir.$this->datePath;
+        }
+        else{
+            $dir = $this->mainDir.$hostDir.$this->imgDir.$sizeDir;
+        }
+        
+        
+        
         if( !is_dir($dir) ){
             self::createDir($dir);
         }
         return $dir;
+    }
+    
+    private function getHostDir(){
+        $host = $_SERVER['HTTP_HOST'];
+        $host = preg_replace("#^www\.#i", '', $host);
+        
+        $hostDir = $host.'/';
+        
+        return $hostDir;
     }
 }

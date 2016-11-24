@@ -6,6 +6,7 @@ class Del_news extends CI_Controller{
         parent::__construct();
         
         $this->load->database();
+        $this->load->library('dir_lib');
     }
     
     function index(){}
@@ -58,9 +59,9 @@ class Del_news extends CI_Controller{
         
         if(!empty($row['main_img']))
         {
-            $msg .= $this->del_img('./upload/images/real/'.$row['main_img']);
-            $msg .= $this->del_img('./upload/images/medium/'.$row['main_img']);
-            $msg .= $this->del_img('./upload/images/small/'.$row['main_img']);
+            $msg .= $this->del_img($this->dir_lib->getImgRdir().$row['main_img']);
+            $msg .= $this->del_img($this->dir_lib->getImgMdir().$row['main_img']);
+            $msg .= $this->del_img($this->dir_lib->getImgSdir().$row['main_img']);
         }
         
         $imgPathAr = $this->get_img_from_txt($row['text']);

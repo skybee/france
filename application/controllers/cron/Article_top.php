@@ -15,7 +15,7 @@ class Article_top extends CI_Controller{
         echo date("H:i:s")." - Updated Start <br />\n";
         flush();
         
-        if( $this->single_work( 45, 'upd_article_view') == false ) exit('The work temporary Lock');
+        if( $this->single_work( 10, 'upd_article_view') == false ) exit('The work temporary Lock');
         
         $sql = "UPDATE LOW_PRIORITY `article` ,
                 (
@@ -36,7 +36,7 @@ class Article_top extends CI_Controller{
     }
     
     private function single_work( $minutes, $fname = 'null' ){
-        $lockFile   = 'lock/'.$fname.'.lock';
+        $lockFile   = 'lock/'.$_SERVER['HTTP_HOST'].'_'.$fname.'.lock';
         $lockTime   = time() + (60*$minutes);
         
         

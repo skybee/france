@@ -83,7 +83,7 @@ class Serp_parse extends CI_Controller
     }
 
     private function single_work( $minutes, $fname = 'null' ){
-        $lockFile   = 'lock/'.$fname.'.lock';
+        $lockFile   = 'lock/'.$_SERVER['HTTP_HOST'].'_'.$fname.'.lock';
         $lockTime   = time() + (60*$minutes);
 
 

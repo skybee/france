@@ -88,15 +88,15 @@ if($_SERVER['HTTP_HOST'] == 'express.lh')
 {
     $db['default']['pconnect'] = false;
     
-//    $db['default']['hostname'] = 'localhost';
-//    $db['default']['username'] = 'root';
-//    $db['default']['password'] = '';
-//    $db['default']['database'] = 'express'; //DB: france, fr-express
+    $db['default']['hostname'] = 'localhost';
+    $db['default']['username'] = 'root';
+    $db['default']['password'] = '';
+    $db['default']['database'] = 'express'; //DB: france, fr-express
 
-    $db['default']['hostname'] = 'francais-express.com';
-    $db['default']['username'] = 'admin_pf_us';
-    $db['default']['password'] = 'pf-us-ujyrjyu8444';
-    $db['default']['database'] = 'admin_pf_us';
+//    $db['default']['hostname'] = 'francais-express.com';
+//    $db['default']['username'] = 'admin_pf_us';
+//    $db['default']['password'] = 'pf-us-ujyrjyu8444';
+//    $db['default']['database'] = 'admin_pf_us';
 }
 
 if( $_SERVER['HTTP_HOST'] == 'smiexpress.ru' ){

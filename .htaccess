@@ -6,11 +6,6 @@
 	RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 	RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 
-#        RewriteCond %{HTTP_HOST} !^(mobile.|)odnako.(su|lh)$ [NC]
-#        RewriteRule ^(.*)$ http://odnako.su/$1 [L,R=301]
-	
-	#Close slash 
-
     # <Image Flip>
 #    RewriteCond %{HTTP_USER_AGENT} (Googlebot|YandexImages|msnbot)
 #    RewriteRule ^upload/images/.*(jpg|jpeg|png)$ /imageflip/do.php [L]
@@ -22,8 +17,15 @@
     RewriteRule ^(.*)/1/$ $1/ [NC,L,R=301] 
     
     #load img from server
-    RewriteCond %{HTTP_HOST} ^express\.lh$ [NC]
-    RewriteRule ^(.*?\.(png|jpg|jpeg|gif))$ http://us.pressfrom.com/$1 [L]
+#    RewriteCond %{HTTP_HOST} ^express\.lh$ [NC]
+#    RewriteRule ^(.*?\.(png|jpg|jpeg|gif))$ http://us.pressfrom.com/$1 [L]
+
+
+    # Host upload images rewright
+    #RewriteCond %{REQUEST_URI} ^upload/images.* [NC]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^upload/images(.*) /upload/%{HTTP_HOST}/images$1 [L]
 
     #Removes access to the system folder by users.
     #Additionally this will allow you to create a System.php controller,
