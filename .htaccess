@@ -21,6 +21,16 @@
 #    RewriteRule ^(.*?\.(png|jpg|jpeg|gif))$ http://us.pressfrom.com/$1 [L]
 
 
+    #Aliaces
+    RewriteCond %{HTTP_HOST} ^fr\.pressfrom\.com$ [NC]
+    RewriteRule ^upload/(.*) http://francais-express.com/upload/$1 [NC,L,R=301]
+    RewriteCond %{HTTP_HOST} ^de\.pressfrom\.com$ [NC]
+    RewriteRule ^upload/(.*) http://de.francais-express.com/upload/$1 [NC,L,R=301]
+    RewriteCond %{HTTP_HOST} ^uk\.pressfrom\.com$ [NC]
+    RewriteRule ^upload/(.*) http://en.francais-express.com/upload/$1 [NC,L,R=301]
+    RewriteCond %{HTTP_HOST} ^ru\.pressfrom\.com$ [NC]
+    RewriteRule ^upload/(.*) http://smiexpress.ru/upload/$1 [NC,L,R=301]
+
     # Host upload images rewright
     #RewriteCond %{REQUEST_URI} ^upload/images.* [NC]
     RewriteCond %{REQUEST_FILENAME} !-f

@@ -157,8 +157,6 @@
         <!-- /likeArticlesSlider -->
         
         
-        
-        
     </div><!-- #othernews -->
     
     <div class="doc-comments">

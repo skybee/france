@@ -65,8 +65,6 @@ class Combined extends CI_Controller
     private function each_http_query($urlTpl){
         
         foreach ($this->hosts as $host){
-            if($host == 'express.lh'){continue;}
-            
             $url            = preg_replace("#-host-#i", $host, $urlTpl);
             
             echo date("H:i:s")."- <b>Request:</b> ".$url."<br />\n<br />\n";

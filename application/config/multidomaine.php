@@ -1,13 +1,28 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-$config['multidomaine']['host_set']['express.lh']               = 'us';
 $config['multidomaine']['host_set']['smiexpress.ru']            = 'ru';
 $config['multidomaine']['host_set']['francais-express.com']     = 'fr';
 $config['multidomaine']['host_set']['de.francais-express.com']  = 'de';
 $config['multidomaine']['host_set']['en.francais-express.com']  = 'gb';
 $config['multidomaine']['host_set']['us.pressfrom.com']         = 'us';
 $config['multidomaine']['host_set']['ca.pressfrom.com']         = 'ca';
+
+//-------=== Aliases ===-------//
+$config['multidomaine']['host_set']['express.lh']               = 'us';
+$config['multidomaine']['host_set']['ru.pressfrom.com']         = 'ru-alias';
+$config['multidomaine']['host_set']['fr.pressfrom.com']         = 'fr-alias';
+$config['multidomaine']['host_set']['de.pressfrom.com']         = 'de-alias';
+$config['multidomaine']['host_set']['uk.pressfrom.com']         = 'uk-alias';
+
+$config['multidomaine']['aliases'] = array(
+    'express.lh',
+    'ru.pressfrom.com',
+    'fr.pressfrom.com',
+    'de.pressfrom.com',
+    'uk.pressfrom.com'
+);
+//-------=== /Aliases ===-------//
 
 
 
@@ -17,6 +32,7 @@ $config['multidomaine']['ru']['lang']               = 'ru';
 $config['multidomaine']['ru']['logo_img']           = 'logo-ru.jpg';
 $config['multidomaine']['ru']['logo_img_mobile']    = 'logo-ru-mobile.png';
 $config['multidomaine']['ru']['e_mail']             = 'mail@smiexpress.ru';
+$config['multidomaine']['ru']['host']               = 'smiexpress.ru';
 $config['multidomaine']['ru']['contact_str']        = 'Контакты';
 $config['multidomaine']['ru']['top_news_str']       = 'TOP Новости';
 $config['multidomaine']['ru']['last_news_str']      = 'Последние Новости';
@@ -41,6 +57,7 @@ $config['multidomaine']['fr']['lang']               = 'fr';
 $config['multidomaine']['fr']['logo_img']           = 'logo-fr.jpg';
 $config['multidomaine']['fr']['logo_img_mobile']    = 'logo-fr-mobile.png';
 $config['multidomaine']['fr']['e_mail']             = 'mail@francais-express.com';
+$config['multidomaine']['fr']['host']               = 'francais-express.com';
 $config['multidomaine']['fr']['contact_str']        = 'Contact';
 $config['multidomaine']['fr']['top_news_str']       = 'Actualités à la une';
 $config['multidomaine']['fr']['last_news_str']      = 'Les Dernières Nouvelles';
@@ -65,6 +82,7 @@ $config['multidomaine']['de']['lang']               = 'de';
 $config['multidomaine']['de']['logo_img']           = 'logo-fr.jpg';
 $config['multidomaine']['de']['logo_img_mobile']    = 'logo-fr-mobile.png';
 $config['multidomaine']['de']['e_mail']             = 'mail@francais-express.com';
+$config['multidomaine']['de']['host']               = 'de.francais-express.com';
 $config['multidomaine']['de']['contact_str']        = 'Kontakte';
 $config['multidomaine']['de']['top_news_str']       = 'Popular News';
 $config['multidomaine']['de']['last_news_str']      = 'Aktuelle Nachrichten';
@@ -89,6 +107,7 @@ $config['multidomaine']['gb']['lang']               = 'en';
 $config['multidomaine']['gb']['logo_img']           = 'logo-fr.jpg';
 $config['multidomaine']['gb']['logo_img_mobile']    = 'logo-fr-mobile.png';
 $config['multidomaine']['gb']['e_mail']             = 'mail@francais-express.com';
+$config['multidomaine']['gb']['host']               = 'en.francais-express.com';
 $config['multidomaine']['gb']['contact_str']        = 'Contacts';
 $config['multidomaine']['gb']['top_news_str']       = 'TOP News';
 $config['multidomaine']['gb']['last_news_str']      = 'Latest News';
@@ -111,6 +130,7 @@ $config['multidomaine']['gb']['lock_donor']         = array('telegraph.co.uk','t
 $config['multidomaine']['us'] = $config['multidomaine']['gb'];
 $config['multidomaine']['us']['site_name_str']      = 'Press From - US';
 $config['multidomaine']['us']['e_mail']             = 'mail@pressfrom.com';
+$config['multidomaine']['us']['host']               = 'us.pressfrom.com';
 $config['multidomaine']['us']['logo_img']           = 'logo-pressfrom-1.png';
 $config['multidomaine']['us']['logo_img_mobile']    = 'logo-fr-mobile.png';
 $config['multidomaine']['us']['lock_donor']         = array();
@@ -119,4 +139,39 @@ $config['multidomaine']['us']['lock_donor']         = array();
 //===== CA =====//
 $config['multidomaine']['ca'] = $config['multidomaine']['us'];
 $config['multidomaine']['ca']['site_name_str']      = 'Press From - Canada';
+$config['multidomaine']['ca']['host']               = 'ca.pressfrom.com';
 $config['multidomaine']['ca']['lock_donor']         = array();
+
+
+//-------=== Aliases ===-------//
+
+//===== RU =====//
+$config['multidomaine']['ru-alias'] = $config['multidomaine']['ru'];
+$config['multidomaine']['ru-alias']['site_name_str']    = 'Press From - Russia';
+$config['multidomaine']['ru-alias']['e_mail']           = $config['multidomaine']['us']['e_mail'];
+$config['multidomaine']['ru-alias']['logo_img']         = $config['multidomaine']['us']['logo_img'];
+$config['multidomaine']['ru-alias']['logo_img_mobile']  = $config['multidomaine']['us']['logo_img_mobile'];
+
+//===== FR =====//
+$config['multidomaine']['fr-alias'] = $config['multidomaine']['fr'];
+$config['multidomaine']['fr-alias']['site_name_str']    = 'Press From - France';
+$config['multidomaine']['fr-alias']['e_mail']           = $config['multidomaine']['us']['e_mail'];
+$config['multidomaine']['fr-alias']['logo_img']         = $config['multidomaine']['us']['logo_img'];
+$config['multidomaine']['fr-alias']['logo_img_mobile']  = $config['multidomaine']['us']['logo_img_mobile'];
+
+
+//===== DE =====//
+$config['multidomaine']['de-alias'] = $config['multidomaine']['de'];
+$config['multidomaine']['de-alias']['site_name_str']    = 'Press From - Deutschland';
+$config['multidomaine']['de-alias']['e_mail']           = $config['multidomaine']['us']['e_mail'];
+$config['multidomaine']['de-alias']['logo_img']         = $config['multidomaine']['us']['logo_img'];
+$config['multidomaine']['de-alias']['logo_img_mobile']  = $config['multidomaine']['us']['logo_img_mobile'];
+
+//===== GB =====//
+$config['multidomaine']['uk-alias'] = $config['multidomaine']['gb'];
+$config['multidomaine']['uk-alias']['site_name_str']    = 'Press From - United Kingdom';
+$config['multidomaine']['uk-alias']['e_mail']           = $config['multidomaine']['us']['e_mail'];
+$config['multidomaine']['uk-alias']['logo_img']         = $config['multidomaine']['us']['logo_img'];
+$config['multidomaine']['uk-alias']['logo_img_mobile']  = $config['multidomaine']['us']['logo_img_mobile'];
+
+//-------=== /Aliases ===-------//

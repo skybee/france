@@ -24,6 +24,8 @@
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         
+        <?php if(isset($meta['canonical'])) echo $meta['canonical']; ?>
+        
         <?php if(isset($meta['og'])) echo $meta['og']; ?>
         
         <?php if(isset($meta['noindex']) && $meta['noindex'] == true ): ?>
@@ -60,7 +62,7 @@
                         <?php endforeach; ?>
                     </ul> 
                     
-                    <?php if(preg_match("#francais-express\.com$#i", $_SERVER['HTTP_HOST'])):?>
+                    
                     <style>
                         #headernavigation div.navigation a.lang-link{
                             float:right;
@@ -69,9 +71,19 @@
                         }
                         @media(max-width: 980px){#headernavigation div.navigation a.lang-link{display: none;}}
                     </style>
+                    <?php if(preg_match("#francais-express\.com$#i", $_SERVER['HTTP_HOST'])):?>
                     <a class="lang-link" href="//en.francais-express.com/">EN</a>
                     <a class="lang-link" href="//de.francais-express.com/">DE</a>
                     <a class="lang-link" href="//francais-express.com/">FR</a>
+                    <?php endif;?>
+                    
+                    <?php if(preg_match("#pressfrom\.com$#i", $_SERVER['HTTP_HOST'])):?>
+                    <a class="lang-link" href="//us.pressfrom.com/">US</a>
+                    <a class="lang-link" href="//ca.pressfrom.com/">CA</a>
+                    <a class="lang-link" href="//uk.pressfrom.com/">UK</a>
+                    <a class="lang-link" href="//de.pressfrom.com/">DE</a>
+                    <a class="lang-link" href="//fr.pressfrom.com/">FR</a>
+                    <a class="lang-link" href="//ru.pressfrom.com/">RU</a>
                     <?php endif;?>
                     
                     

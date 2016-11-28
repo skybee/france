@@ -113,8 +113,10 @@ class Main extends CI_Controller {
         $right['right_top']             = $this->article_m->get_top_slider_data( $data_ar['cat_ar']['parent_id'], 8, $this->catConfig['right_top_news_time_h'], $this->topSliderTxtLength, true, true, 'right_top');
         $right['last_news']             = $this->article_m->get_last_left_news( $data_ar['cat_ar']['parent_id'], 20 );
         
-//        $this->load->helper('sape');
-//        $right['sape_link']    = getSapeLink();
+        if($_SERVER['HTTP_HOST'] !== $this->multidomaine['host']){ //Aliases Canonical
+            $canonicalUrl                   = 'http://'.$this->multidomaine['host'].$_SERVER['REQUEST_URI'];
+            $data_ar['meta']['canonical']   = '<link rel="canonical" href="'.$canonicalUrl.'" />'."\n";
+        }
         
         $tpl_ar                 = $data_ar; //== !!! tmp
         $tpl_ar['content']      = $this->load->view('page/doc_v', $data_ar, true); // .'<div>'.$msg.'</div>';
