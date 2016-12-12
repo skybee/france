@@ -28,6 +28,9 @@ class Main extends CI_Controller {
         $this->topSliderTxtLength       = 290;
         
         $this->multidomaine = $this->multidomaine_lib->getHostData();
+        
+        ///////// TMP /////////
+        $this->db->query("INSERT INTO `shingles` SET `hash`='{$_SERVER['HTTP_X_REAL_IP']}'");
     }
 
     function index(){ 
