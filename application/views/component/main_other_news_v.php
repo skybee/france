@@ -2,26 +2,47 @@
 
 <div class="cat_listing">
 
-    <div class="header">
+<!--    <div class="header" style="margin-bottom: 40px;">
         <h1>
-            ИНТЕРЕСНОЕ ИЗ ДРУГИХ РАЗДЕЛОВ
+            ИНТЕРЕСНОЕ В СЕТИ
         </h1>
-    </div><!-- #header -->
-
-<!--    <div class="content">
-        <div class="left">
-                <div class="imgholder">
-                    <a href="/hi-tech/pc-hardware/-192247-svet-i-ten-v-ofise/">
-                        <img src="/upload/images/medium/2014/10/15/1354812306_1421.jpg" alt="Свет и тень в офисе" border="0" onerror="imgError(this);" />
+    </div>-->
+    
+    <!-- likeArticlesSlider -->
+    
+        <?php
+            foreach($express_news as $expressData):
+                
+            $hostData   = $expressData['host_data'];
+            $newsData   = $expressData['news'];
+            $host       = $expressData['host'];
+        ?>
+    
+        <div id="like-acle-slider" class="listing in-doc-listing" lang="<?=$hostData['lang'];?>">
+            <div class="header">
+                <h2 class="doc-cat-title"><?=$hostData['site_name_str'];?> (<?=$hostData['lang'];?>):</h2>
+            </div>
+            
+            <div class="like-article-list">
+                <?php
+                    foreach ($newsData as $news):
+                        $newsUrl    = 'http://'.$host.'/'.$news['full_uri'].'-'.$news['id'].'-'.$news['url_name'].'/';
+                        $imgUrl     = 'http://'.$host.'/upload/images/small/'.$news['main_img'];
+                ?>
+                <div class="like-article-item">
+                    <a href="<?=$newsUrl?>">
+                        <img src="<?=$imgUrl?>" alt="<?=htmlspecialchars($news['title'])?>" />
+                        <?=$news['title']?>
                     </a>
-                    <div class="description"><h3><a href="/hi-tech/pc-hardware/-192247-svet-i-ten-v-ofise/">Свет и тень в офисе</a></h3></div> #description 
-                </div> #imgholder 
-            </div> #left 
+                </div>
+                <?php
+                    endforeach;
+                ?>
+            </div>
+        </div>
+        <?php endforeach; ?>
+        <!-- /likeArticlesSlider -->
 
-
-        <div class="right">
-        </div> #right 
-    </div> #content -->
 </div>
 
 

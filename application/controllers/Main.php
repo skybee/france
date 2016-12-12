@@ -18,6 +18,7 @@ class Main extends CI_Controller {
         $this->load->config('multidomaine');
         $this->load->library('multidomaine_lib');
         $this->load->library('cat_lib');
+        $this->load->library('Express_news_lib');
         
         $this->catNameAr = $this->cat_lib->getCatFromUri();
         $this->catConfig = $this->cat_lib->getCatConfig();
@@ -44,6 +45,12 @@ class Main extends CI_Controller {
             show_404(); exit();
         }
         
+//        if($cat_name == 'news')
+//        {
+            $data_ar['express_news'] = $this->express_news_lib->get_news();
+//        }
+        
+        
         $data_ar['main_menu_list']      = $this->list_m->get_cat(0);
         $data_ar['second_menu_list']    = $this->list_m->get_sCat_from_name($this->catNameAr[0]);
         $data_ar['footer_menu_list']    = $this->list_m->get_footer_cat_link();
@@ -59,7 +66,7 @@ class Main extends CI_Controller {
         $tpl_ar = $data_ar; //== !!! tmp    
         $tpl_ar['content']  = $this->load->view('component/main_latest_v', $data_ar, true);
         $tpl_ar['content'] .= $this->load->view('component/cat_listing_v', $data_ar, true);
-        //$tpl_ar['content'] .= $this->load->view('component/main_other_news_v', $data_ar, true);// .'<div>'.$msg.'</div>';
+        $tpl_ar['content'] .= $this->load->view('component/main_other_news_v', $data_ar, true);// .'<div>'.$msg.'</div>';
         
         $tpl_ar['right']        = $this->load->view('component/right_last_news_v', $right, true);
         $tpl_ar['top_slider']   = $this->load->view('component/slider_top_v', $top_slider, true);
