@@ -7,6 +7,7 @@ $config['multidomaine']['host_set']['de.francais-express.com']  = 'de';
 $config['multidomaine']['host_set']['en.francais-express.com']  = 'gb';
 $config['multidomaine']['host_set']['us.pressfrom.com']         = 'us';
 $config['multidomaine']['host_set']['ca.pressfrom.com']         = 'ca';
+$config['multidomaine']['host_set']['au.pressfrom.com']         = 'au';
 
 //-------=== Aliases ===-------//
 $config['multidomaine']['host_set']['express.lh']               = 'us';
@@ -98,7 +99,7 @@ $config['multidomaine']['de']['day_ar']             = array('Sonntag','Montag','
 $config['multidomaine']['de']['xml_yandex_url']     = 'https://xmlsearch.yandex.com/xmlsearch?user=mail@lalalay.com&key=03.1130000018332401:db8ac7bad789ba8f7aabca04b0aa6308&maxpassages=5&groupby=groups-on-page%3D15';
 $config['multidomaine']['de']['social_btn_list']    = 'facebook,twitter,gplus';
 $config['multidomaine']['de']['outwindow_str']      = 'Das ist interessant!';
-$config['multidomaine']['de']['lock_donor']         = array('homify.de','modepilot.com');
+$config['multidomaine']['de']['lock_donor']         = array('homify.de','modepilot.com','welt.de');
 
 
 //===== Gb =====//
@@ -141,6 +142,13 @@ $config['multidomaine']['ca'] = $config['multidomaine']['us'];
 $config['multidomaine']['ca']['site_name_str']      = 'Press From - Canada';
 $config['multidomaine']['ca']['host']               = 'ca.pressfrom.com';
 $config['multidomaine']['ca']['lock_donor']         = array();
+
+
+//===== AU =====//
+$config['multidomaine']['au'] = $config['multidomaine']['us'];
+$config['multidomaine']['au']['site_name_str']      = 'Press From - Australia';
+$config['multidomaine']['au']['host']               = 'au.pressfrom.com';
+$config['multidomaine']['au']['lock_donor']         = array();
 
 
 //-------=== Aliases ===-------//

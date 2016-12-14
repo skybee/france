@@ -78,12 +78,13 @@
                     <?php endif;?>
                     
                     <?php if(preg_match("#pressfrom\.com$#i", $_SERVER['HTTP_HOST'])):?>
-                    <a class="lang-link" href="//us.pressfrom.com/">US</a>
-                    <a class="lang-link" href="//ca.pressfrom.com/">CA</a>
-                    <a class="lang-link" href="//uk.pressfrom.com/">UK</a>
-                    <a class="lang-link" href="//de.pressfrom.com/">DE</a>
-                    <a class="lang-link" href="//fr.pressfrom.com/">FR</a>
                     <a class="lang-link" href="//ru.pressfrom.com/">RU</a>
+                    <a class="lang-link" href="//au.pressfrom.com/">AU</a>
+                    <a class="lang-link" href="//fr.pressfrom.com/">FR</a>
+                    <a class="lang-link" href="//de.pressfrom.com/">DE</a>
+                    <a class="lang-link" href="//uk.pressfrom.com/">UK</a>
+                    <a class="lang-link" href="//ca.pressfrom.com/">CA</a>
+                    <a class="lang-link" href="//us.pressfrom.com/">US</a>
                     <?php endif;?>
                     
                     

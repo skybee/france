@@ -41,6 +41,7 @@ class Express_news_lib{
         $hosts = array(
             'us.pressfrom.com',
             'ca.pressfrom.com',
+            'au.pressfrom.com',
             'en.francais-express.com',
             'de.francais-express.com',
             'francais-express.com',
