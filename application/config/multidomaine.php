@@ -8,6 +8,7 @@ $config['multidomaine']['host_set']['en.francais-express.com']  = 'gb';
 $config['multidomaine']['host_set']['us.pressfrom.com']         = 'us';
 $config['multidomaine']['host_set']['ca.pressfrom.com']         = 'ca';
 $config['multidomaine']['host_set']['au.pressfrom.com']         = 'au';
+$config['multidomaine']['host_set']['tr.pressfrom.com']         = 'tr';
 
 //-------=== Aliases ===-------//
 $config['multidomaine']['host_set']['express.lh']               = 'us';
@@ -50,6 +51,31 @@ $config['multidomaine']['ru']['xml_yandex_url']     = 'https://xmlsearch.yandex.
 $config['multidomaine']['ru']['social_btn_list']    = 'vkontakte,facebook,twitter,odnoklassniki';
 $config['multidomaine']['ru']['outwindow_str']      = 'Это интересно!';
 $config['multidomaine']['ru']['lock_donor']         = array();
+
+
+//===== Tr =====//
+$config['multidomaine']['tr']['site_name_str']      = 'Press From - Türkiye';
+$config['multidomaine']['tr']['lang']               = 'tr';
+$config['multidomaine']['tr']['logo_img']           = 'logo-pressfrom-1.png';
+$config['multidomaine']['tr']['logo_img_mobile']    = 'logo-fr-mobile.png';
+$config['multidomaine']['tr']['e_mail']             = 'mail@pressfrom.com';
+$config['multidomaine']['tr']['host']               = 'tr.pressfrom.com';
+$config['multidomaine']['tr']['contact_str']        = 'Ksontaklar';
+$config['multidomaine']['tr']['top_news_str']       = 'TOP Haberleri';
+$config['multidomaine']['tr']['last_news_str']      = 'Son Haberler';
+$config['multidomaine']['tr']['like_news_str']      = 'Ayrıca bakınız';
+$config['multidomaine']['tr']['like_video_str']     = 'Tematik bir video';
+$config['multidomaine']['tr']['serp_news_str']      = "Web'den Benzer";
+$config['multidomaine']['tr']['comments_str']       = 'Yorumlar';
+$config['multidomaine']['tr']['source_str']         = 'Kaynak';
+$config['multidomaine']['tr']['repost_news_str']    = 'Haberleri yayınla';
+$config['multidomaine']['tr']['page_str']           = 'Sayfa';
+$config['multidomaine']['tr']['month_ar']           = array( 1=>'Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık');
+$config['multidomaine']['tr']['day_ar']             = array('Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi');
+$config['multidomaine']['tr']['xml_yandex_url']     = 'https://xmlsearch.yandex.com/xmlsearch?user=mail@lalalay.com&key=03.1130000018332401:db8ac7bad789ba8f7aabca04b0aa6308&maxpassages=5&groupby=groups-on-page%3D15';
+$config['multidomaine']['tr']['social_btn_list']    = 'facebook,twitter,gplus';
+$config['multidomaine']['tr']['outwindow_str']      = 'Bu ilginç!';
+$config['multidomaine']['tr']['lock_donor']         = array();
 
 
 //===== Fr =====//

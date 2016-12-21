@@ -30,7 +30,7 @@ class Main extends CI_Controller {
         $this->multidomaine = $this->multidomaine_lib->getHostData();
         
         ///////// TMP /////////
-        $this->db->query("INSERT INTO `shingles` SET `hash`='{$_SERVER['HTTP_X_REAL_IP']}'");
+        //$this->db->query("INSERT INTO `shingles` SET `hash`='{$_SERVER['HTTP_X_REAL_IP']}'");
     }
 
     function index(){ 

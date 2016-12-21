@@ -45,6 +45,7 @@ class Express_news_lib{
             'en.francais-express.com',
             'de.francais-express.com',
             'francais-express.com',
+            'tr.pressfrom.com',
             'smiexpress.ru'
             );
         

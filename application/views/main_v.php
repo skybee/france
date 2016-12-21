@@ -80,6 +80,7 @@
                     <?php if(preg_match("#pressfrom\.com$#i", $_SERVER['HTTP_HOST'])):?>
                     <a class="lang-link" href="//ru.pressfrom.com/">RU</a>
                     <a class="lang-link" href="//au.pressfrom.com/">AU</a>
+                    <a class="lang-link" href="//tr.pressfrom.com/">TR</a>
                     <a class="lang-link" href="//fr.pressfrom.com/">FR</a>
                     <a class="lang-link" href="//de.pressfrom.com/">DE</a>
                     <a class="lang-link" href="//uk.pressfrom.com/">UK</a>
