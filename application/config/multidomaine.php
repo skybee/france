@@ -11,7 +11,7 @@ $config['multidomaine']['host_set']['au.pressfrom.com']         = 'au';
 $config['multidomaine']['host_set']['tr.pressfrom.com']         = 'tr';
 
 //-------=== Aliases ===-------//
-$config['multidomaine']['host_set']['express.lh']               = 'us';
+$config['multidomaine']['host_set']['express.lh']               = 'ru';
 $config['multidomaine']['host_set']['ru.pressfrom.com']         = 'ru-alias';
 $config['multidomaine']['host_set']['fr.pressfrom.com']         = 'fr-alias';
 $config['multidomaine']['host_set']['de.pressfrom.com']         = 'de-alias';
