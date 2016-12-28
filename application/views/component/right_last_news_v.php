@@ -139,22 +139,46 @@
     <span class="title"><?=$this->multidomaine['serp_news_str'];?></span>
 </h3>
 
-<div class="serp_block">
-    <?php $i=0; ?>
-    <?php foreach($serp_list as $serp): ?>
-    <a href="<?=$serp['url']?>" rel="nofollow" target="_blank">
-        <?=$serp['title']?>
-        <span>- <?=$serp['host']?></span>
-    </a>
-    <p><?=$serp['text']?></p>
-    
-    <?php
-        $i++;
-        if($i>=10){ break; }
-        endforeach; 
-    ?>
 
-</div>
+    
+    
+    <?php if($_SERVER['HTTP_HOST'] == 'francais-express.com' || $_SERVER['HTTP_HOST'] == 'smiexpress.ru'): ?>
+        <div class="serp_block">
+            <?php $i=0; ?>
+            <?php foreach($serp_list as $serp): ?>
+            <span class="out-link" src="<?=$serp['url']?>" rel="nofollow" target="_blank">
+                <?=$serp['title']?>
+                <span>- <?=$serp['host']?></span>
+            </span>
+            <p><?=$serp['text']?></p>
+
+            <?php
+                $i++;
+                if($i>=10){ break; }
+                endforeach; 
+            ?>
+        </div>
+    <?php else: ?>
+        <div class="serp_block">
+            <?php $i=0; ?>
+            <?php foreach($serp_list as $serp): ?>
+            <a href="<?=$serp['url']?>" rel="nofollow" target="_blank">
+                <?=$serp['title']?>
+                <span>- <?=$serp['host']?></span>
+            </a>
+            <p><?=$serp['text']?></p>
+
+            <?php
+                $i++;
+                if($i>=10){ break; }
+                endforeach; 
+            ?>
+
+            <?php if(!empty($sape_donor_link)):?>
+                <p><?=$sape_donor_link?></p>
+            <?php endif;?>
+        </div>
+    <?php endif;?>
 
 <?php endif; ?>
 

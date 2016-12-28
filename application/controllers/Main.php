@@ -120,6 +120,7 @@ class Main extends CI_Controller {
         //CCTV Linkator
         if($this->multidomaine['lang'] == 'ru'){
             $data_ar['doc_data']['text'] = cctv_article_linkator($data_ar['doc_data']['text']);
+            $right['sape_donor_link']    = get_sape_donor_link();
         }
 
         $data_ar['like_video']          = $this->article_m->get_like_video($data_ar['doc_data']['id'],2);

@@ -94,9 +94,9 @@ if($_SERVER['HTTP_HOST'] == 'express.lh')
 //    $db['default']['database'] = 'express'; //DB: france, fr-express
 
     $db['default']['hostname'] = 'francais-express.com';
-    $db['default']['username'] = 'admin_pf_us';
-    $db['default']['password'] = 'pf-us-ujyrjyu8444';
-    $db['default']['database'] = 'admin_pf_us';
+    $db['default']['username'] = 'admin_smi_ru';
+    $db['default']['password'] = 'smi-ru-ujyrjyu8444';
+    $db['default']['database'] = 'admin_smi_ru';
 }
 
 if( $_SERVER['HTTP_HOST'] == 'smiexpress.ru' || $_SERVER['HTTP_HOST'] == 'ru.pressfrom.com' ){

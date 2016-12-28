@@ -153,16 +153,31 @@ function addResponsiveVideoTag($text){
 
 function cctv_article_linkator( $text ){ 
     
-    $pattern_list['/category/CCTV-Cameras/']                        = "#(купол[а-я]*|уличн[а-я]+|поворотн[а-я]+|наружн[а-я]+|)\s*(ip-|cctv-|ptz-|)(теле|видео|)камер[а-я]*\s*((видео|)наблюден[а-я]+|)#ui";
-    $pattern_list['/category/CCTV-Kits/']                           = "#комплект.{1,20}видеонаблюден[а-я]+#ui";
-    $pattern_list['/']                                              = "#(устан[а-я]*|монт[а-я]*|инстал[а-я]*)\s*(систем.{0,20}|.{0,20}камер[а-я]*|)\s*видеонаблюден[а-я]+#ui";
-    $pattern_list['/']                                              = "#(систем.{1,20}|)видеонаблюден[а-я]+#ui";
-//    $pattern_list['/category/avto_videoregistratory/']              = "#авто(мобил[а-я]*|)\s*(видео|)регистр[а-я]*#ui";
-    $pattern_list['/category/CCTV-DVR/']                            = "#(цифров[а-я]*|сетев[а-я]*|ip-|)\s*видеорегистр[а-я]*#ui";
-    $pattern_list['/category/Intercom/']                            = "#(устан[а-я]*|монт[а-я]*)\s*(видео|аудио|)\s*домофон[а-я]*\s*(.{0,20}(дом[а-я]*|офис[а-я]*|квартир[а-я]*|commax)|)#ui";
-    $pattern_list['/category/Intercom/']                            = "#(панель|монитор|)\s*(видео|аудио|)\s*домофон[а-я]*\s*(.{0,20}(дом[а-я]*|офис[а-я]*|квартир[а-я]*|commax)|)#ui";
-//    $pattern_list['/category/ohranna_pozharnaja_signalizacija/']    = "#(систем[а-я]*.{0,15}|)\s*(охран[а-я]*|(охран[а-я]*.{0,3}|)пожар[а-я]*|)\s*сигнализ[а-я]*\s*(.{0,20}(дом[а-я]*|офис[а-я]*|квартир[а-я]*|магазин[а-я]*|склад[а-я]*)|)#ui";
-//    $pattern_list['/category/kontrol_dostupa/']                     = "#(систем[а-я]*.{0,15}|)\s*контр[а-я]*\s*(.{0,10}управ[а-я]*|)\s*доступ[а-я]*#ui";
+    $pattern_list['http://cctv-pro.com.ua/category/CCTV-Cameras/']                      = "#(купол[а-я]*|уличн[а-я]+|поворотн[а-я]+|наружн[а-я]+|)\s*(ip-|cctv-|ptz-|)(теле|видео|)камер[а-я]*\s*((видео|)наблюден[а-я]+|)#ui";
+    $pattern_list['http://cctv-pro.com.ua/category/CCTV-Kits/']                         = "#комплект.{1,20}видеонаблюден[а-я]+#ui";
+    $pattern_list['http://cctv-pro.com.ua/#home']                                       = "#(устан[а-я]*|монт[а-я]*|инстал[а-я]*)\s*(систем.{0,20}|.{0,20}камер[а-я]*|)\s*видеонаблюден[а-я]+#ui";
+    $pattern_list['http://cctv-pro.com.ua/']                                            = "#(систем.{1,20}|)видеонаблюден[а-я]+#ui";
+    $pattern_list['http://cctv-pro.com.ua/category/CCTV-DVR/']                          = "#(цифров[а-я]*|сетев[а-я]*|ip-|)\s*видеорегистр[а-я]*#ui";
+    $pattern_list['http://cctv-pro.com.ua/category/Intercom/#home']                     = "#(устан[а-я]*|монт[а-я]*)\s*(видео|аудио|)\s*домофон[а-я]*\s*(.{0,20}(дом[а-я]*|офис[а-я]*|квартир[а-я]*|commax)|)#ui";
+    $pattern_list['http://cctv-pro.com.ua/category/Intercom/']                          = "#(панель|монитор|)\s*(видео|аудио|)\s*домофон[а-я]*\s*(.{0,20}(дом[а-я]*|офис[а-я]*|квартир[а-я]*|commax)|)#ui";
+
+    
+    // -== House Control ==- //
+    $conditionPattern = "кондиционер[а-я]{0,4}";
+    $pattern_list['http://house-control.org.ua/category/kondicionery/']                 = "#\s[а-я\s-]{7,25}\s+{$conditionPattern}#ui";
+    $pattern_list['http://house-control.org.ua/category/kondicionery/#second']          = "#{$conditionPattern}\s+[а-я\s-]{7,25}\s#ui";
+    $pattern_list['http://house-control.org.ua/category/kondicionery/#third']           = "#\s[а-я-]{5,20}\s+{$conditionPattern}\s+[а-я-]{5,20}#ui";
+    
+    $pattern_list['http://house-control.org.ua/category/ohranna_pozharnaja_signalizacija/']     = "#(систем[а-я]*.{0,15}|)\s*(охран[а-я]*|(охран[а-я]*.{0,3}|)пожар[а-я]*|)\s*сигнализ[а-я]*\s*(.{0,20}(дом[а-я]*|офис[а-я]*|квартир[а-я]*|магазин[а-я]*|склад[а-я]*)|)#ui";
+    $pattern_list['http://house-control.org.ua/category/kontrol_dostupa/']                      = "#(систем[а-я]*.{0,15}|)\s*контр[а-я]*\s*(.{0,10}управ[а-я]*|)\s*доступ[а-я]*#ui";
+    
+    $pattern_list['http://house-control.org.ua/category/kamera/']                               = "#(купол[а-я]*|уличн[а-я]+|поворотн[а-я]+|наружн[а-я]+|)\s*(ip-|cctv-|ptz-|)(теле|видео|)камер[а-я]*\s*((видео|)наблюден[а-я]+|)#ui";
+    $pattern_list['http://house-control.org.ua/category/cctv-komplekt-videonabludenie/']        = "#комплект.{1,20}видеонаблюден[а-я]+#ui";
+    $pattern_list['http://house-control.org.ua/info/services/']                                 = "#(устан[а-я]*|монт[а-я]*|инстал[а-я]*)\s*(систем.{0,20}|.{0,20}камер[а-я]*|)\s*видеонаблюден[а-я]+#ui";
+    $pattern_list['http://house-control.org.ua/category/cctv-systems/']                         = "#(систем.{1,20}|)видеонаблюден[а-я]+#ui";
+    $pattern_list['http://house-control.org.ua/category/multiformatnye-registratory/']          = "#(цифров[а-я]*|сетев[а-я]*|ip-|)\s*видеорегистр[а-я]*#ui";
+    $pattern_list['http://house-control.org.ua/info/services/#domofone']                        = "#(устан[а-я]*|монт[а-я]*)\s*(видео|аудио|)\s*домофон[а-я]*\s*(.{0,20}(дом[а-я]*|офис[а-я]*|квартир[а-я]*|commax)|)#ui";
+    $pattern_list['http://house-control.org.ua/category/domofony/']                             = "#(панель|монитор|)\s*(видео|аудио|)\s*домофон[а-я]*\s*(.{0,20}(дом[а-я]*|офис[а-я]*|квартир[а-я]*|commax)|)#ui";
     
     
     $key = 1;
@@ -173,7 +188,7 @@ function cctv_article_linkator( $text ){
                 $replace_key = "#$key#";
                 
                 $replace_ar['search'][$key]     = $replace_key;
-                $replace_ar['replace'][$key]    = ' <a target="_blaank" href="http://cctv-pro.com.ua'.$url.'">'.$keyword_ar[0].'</a> ';
+                $replace_ar['replace'][$key]    = ' <a target="_blaank" href="'.$url.'">'.$keyword_ar[0].'</a> ';
                 
                 $text = preg_replace("#{$keyword_ar[0]}#ui", $replace_key, $text, 1);
             }
@@ -181,9 +196,39 @@ function cctv_article_linkator( $text ){
         $key++;
     }
     
-    if( $replace_ar['search'] > 1 ){
+    if( isset($replace_ar) && $replace_ar['search'] > 1 ){
         $text = str_ireplace( $replace_ar['search'], $replace_ar['replace'], $text);
     }
     
     return $text;
+}
+
+function get_sape_donor_link(){
+    
+    $file       = 'sape_a_link_donor.txt';
+    $rand_str   = $_SERVER['REQUEST_URI'];
+    
+    
+    if(!is_file($file)){return '';};
+    
+    $link_ar = file( $file );
+    
+    mt_srand( abs( crc32($rand_str) ) );
+    $rndInt     = mt_rand(1,1000);
+    $rndInt2    = mt_rand(1,1000);
+    $return     = $link_ar[mt_rand(0, count($link_ar)-1)];
+    mt_srand();
+    
+    if($rndInt <= 50){ // return Link
+        
+        if($rndInt2 <= 500) // Add nofollow
+        {
+            $return = preg_replace("#<a #", '<a rel="nofollow" ', $return);
+        }
+        
+        return $return;
+    }
+    else{
+        return '';
+    }
 }
