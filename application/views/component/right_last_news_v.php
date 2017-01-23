@@ -47,6 +47,9 @@
 </div>
 
 
+<h3 class="widget-title" style="margin-bottom: -10px; margin-top: 30px;">
+    <span class="title">Ads</span>
+</h3>
 
 
 <div class="right_gad_block" style="margin-top: 30px;">
