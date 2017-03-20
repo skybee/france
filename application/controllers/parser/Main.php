@@ -1,6 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 set_time_limit( 600 ); 
+ini_set('open_basedir','none');
+ini_set('safe_mode', false);
 
 class Main extends CI_Controller
 {
@@ -27,6 +29,7 @@ class Main extends CI_Controller
         
         $this->load->config('multidomaine');
         $this->load->library('multidomaine_lib');
+        $this->load->library('Remote_serv_transfer_lib');
         
         $this->multidomaine = $this->multidomaine_lib->getHostData();
         
@@ -140,6 +143,8 @@ class Main extends CI_Controller
             
             $this->news_parser_msn_lib->insert_news( $insert_data );
     
+            $this->remote_serv_transfer_lib->send_file_to_remote();
+            
             flush(); $i++;
             sleep(5);
         }

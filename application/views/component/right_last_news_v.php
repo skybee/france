@@ -41,7 +41,7 @@
         endif;
         unset($right_top[$key]);
         $i++;
-        if($i == 4 ){break;}
+        if($i == 6 ){break;}
         endforeach; 
     ?>    
 </div>

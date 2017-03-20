@@ -1789,6 +1789,7 @@ margin-top: 6px;
 }
 #left div.single div.content ul.slideshow li{
     padding-top: 0px !important;
+    list-style: none;
 }
 #left div.single div.content ul.slideshow li .imgcontainer{
     margin-bottom: 10px;

@@ -6,11 +6,13 @@ class Multidomaine_lib
         $this->ci = &get_instance();
     }
     
-    function getHostData()
-    {
+    function getHostData($thisHost=false)
+    {   
         $multidomaineAll    = $this->ci->config->item('multidomaine');
         $hostSet            = $multidomaineAll['host_set'];
-        $thisHost           = $_SERVER['HTTP_HOST'];
+        if($thisHost == false){
+            $thisHost           = $_SERVER['HTTP_HOST'];
+        }
         
         if(isset($hostSet[$thisHost]))
         {

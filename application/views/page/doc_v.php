@@ -47,11 +47,21 @@
         @media(max-width: 980px){ #left div.single div.content-gAd-bottom .mobile-noimg{width: 336px; height: 280px;} }
         @media(max-width: 340px){ #left div.single div.content-gAd-bottom .mobile-noimg{width: 300px; height: 250px;} }
     </style>
+    <?php if(0):?>
     <div class="content-gAd content-gAd-bottom" style="padding: 15px 0;border-color:#009ddb;" >
         <div class="content-gAd-center">
-            <span class="gAd" data="content bottom Netboard"></span>
+            <!--<span class="gAd" data="content bottom Netboard"></span>-->
+<!--            <ins class="adsbygoogle mobile-noimg"
+                style="display:block"
+                data-ad-client="ca-pub-6096727633142370"
+                data-ad-slot="8859464449"
+                data-ad-format="rectangle"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>-->
         </div>
     </div>
+    <?php endif;?>
 
     <div class="content copy-url">
 
@@ -159,6 +169,7 @@
         
     </div><!-- #othernews -->
     
+    <?php if(0): ?>
     <div class="doc-comments">
         <div class="listing in-doc-listing" style="margin-bottom:10px; margin-top: 15px;">
             <div class="header">
@@ -199,6 +210,8 @@
         <a href="#" class="hc-link" title="comments widget">comments powered by HyperComments</a>
         
     </div>
+    <?php endif; ?>
+    
 
 
 </div>

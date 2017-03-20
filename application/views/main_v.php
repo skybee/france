@@ -6,7 +6,7 @@
         <title><?= $meta['title'] ?></title>
         <link rel="shortcut icon" href="/img/favico.png" type="image/png" />
         
-        <link rel="stylesheet" type="text/css" href="/css/skin1/style.css" />
+<!--        <link rel="stylesheet" type="text/css" href="/css/skin1/style.css" />
         <link rel="stylesheet" type="text/css" href="/css/skin1/featured_long_style.css" />
         <link rel="stylesheet" type="text/css" href="/css/skin1/featured_long.css" />
         <link rel="stylesheet" type="text/css" href="/css/skin1/default.css" />
@@ -17,9 +17,9 @@
         <link rel="stylesheet" type="text/css" href="/css/skin1/msn-parse.css" />
         <link rel="stylesheet" type="text/css" href="/css/skin1/mobile.css" />
         <link rel="stylesheet" type="text/css" href="/css/skin1/media-queries.css" />
-        <link rel="stylesheet" type="text/css" href="/css/skin1/mobile_gads.css" />
+        <link rel="stylesheet" type="text/css" href="/css/skin1/mobile_gads.css" />-->
         
-        <!--<link rel="stylesheet" type="text/css" href="/css/all-style.min.css?v=21-11-02-07" />-->
+        <link rel="stylesheet" type="text/css" href="/css/all-style.min.css?v=240117-0220" />
         
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,14 +32,14 @@
             <meta name="robots" content="noindex, follow" />
         <?php endif; ?>   
 
-        <script type='text/javascript' src='/js/skin1/jquery-1.11.3.min.js'></script>
+<!--        <script type='text/javascript' src='/js/skin1/jquery-1.11.3.min.js'></script>
         <script type='text/javascript' src='/js/skin1/jquery-ui.min-tabs.js'></script>
         <script type='text/javascript' src='/js/skin1/jquery.magnific-popup.min.js'></script>
         <script type='text/javascript' src='/js/skin1/jquery.bxslider.min.js'></script>
-        <script type='text/javascript' src='/js/skin1/sb.js'></script>
+        <script type='text/javascript' src='/js/skin1/sb.js'></script>-->
             
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!--<script async type='text/javascript' src='/js/all-files.min.js?v=21-11-01-35'></script>-->
+        <script async type='text/javascript' src='/js/all-files.min.js?v=250117-2355'></script>
         
     </head>
 
@@ -80,7 +80,6 @@
                     <?php if(preg_match("#pressfrom\.com$#i", $_SERVER['HTTP_HOST'])):?>
                     <a class="lang-link" href="//ru.pressfrom.com/">RU</a>
                     <a class="lang-link" href="//au.pressfrom.com/">AU</a>
-                    <a class="lang-link" href="//tr.pressfrom.com/">TR</a>
                     <a class="lang-link" href="//fr.pressfrom.com/">FR</a>
                     <a class="lang-link" href="//de.pressfrom.com/">DE</a>
                     <a class="lang-link" href="//uk.pressfrom.com/">UK</a>

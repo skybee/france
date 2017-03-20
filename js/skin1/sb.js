@@ -56,6 +56,22 @@ $( document ).ready(function(){
         ifDesktop();
     }
     
+    // <top adsense after image> //
+    gAdsInContentHtml = '<div class="content-gAd content-gAd-bottom" style="padding: 15px 0; margin:30px 0px;border-color:#009ddb;" ><div class="content-gAd-center"><span class="gAd" data="content bottom Netboard"></span></div></div>';
+    
+    if( $('span.storyimage').length > 0 ){ //add after first(main) img
+        $('span.storyimage:first').after(gAdsInContentHtml);
+    }
+    else if( $('ul.slideshow').length > 0){ //add in slider
+        $('ul.slideshow:first li:first').after( '<li id="adsInSliderList"></li>');
+        $(gAdsInContentHtml).appendTo('li#adsInSliderList');
+    }
+    
+    if($('h2.look_more_hdn').length >= 3){ //add after like news block
+        $('p.look_more_hdn:eq(2)').after(gAdsInContentHtml);
+    }
+    
+    // </top adsense after image> //
     
     $('span.gAd').each(function(){
         blockName = $(this).attr('data');
@@ -113,6 +129,19 @@ $( document ).ready(function(){
         setTimeout('setOutWindow()', 5000);
     });
     // </show out window> //
+    
+    
+    // <top adsense after image> //
+//    if( $('span.storyimage').length > 0 ){
+//        $('span.storyimage:first').after($('#left .content-gAd:first'));
+//        $('#left .content-gAd:first').css({'margin-top':'30px', 'margin-bottom':'30px'});
+//    }
+//    else if( $('ul.slideshow').length > 0){
+//        $('ul.slideshow:first li:first').after( '<li id="adsInSliderList"></li>');
+//        $('#left .content-gAd:first').appendTo('li#adsInSliderList');
+//        $('#left .content-gAd:first').css({'margin-top':'20px', 'margin-bottom':'40px'});
+//    }
+    // </top adsense after image> //
     
 });
 
@@ -306,10 +335,12 @@ function ifDesktop(){
 //            pager: false
 //        });
         
-    $('ul.slideshow').bxSlider({
-        mode: 'fade',
-        pager: false
-    });    
+        
+        // Slider in content
+//    $('ul.slideshow').bxSlider({ 
+//        mode: 'fade',
+//        pager: false
+//    });    
 
 //    $('#right-top-news-slider').bxSlider({
 //        speed: 1000,
@@ -373,10 +404,6 @@ function ifDesktop(){
         }
     }
     // <serp result add link>
-    
-    
-    
-    
     
     //Load Games
 //    setTimeout('$("#bottom-games").load("/html/bottom-games.html");', 10000);

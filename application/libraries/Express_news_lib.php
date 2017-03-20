@@ -42,10 +42,9 @@ class Express_news_lib{
             'us.pressfrom.com',
             'ca.pressfrom.com',
             'au.pressfrom.com',
-            'en.francais-express.com',
-            'de.francais-express.com',
-            'francais-express.com',
-            'tr.pressfrom.com',
+            'uk.pressfrom.com',
+            'de.pressfrom.com',
+            'fr.pressfrom.com',
             'smiexpress.ru'
             );
         

@@ -10,6 +10,10 @@ class Tmp extends CI_Controller{
     }
     
     function index(){
+        $this->load->library('Remote_serv_transfer_lib');
+        
+        $this->remote_serv_transfer_lib->send_file_to_remote();
+        
         echo 'Tmp Index Controller';
     }
     

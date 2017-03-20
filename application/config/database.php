@@ -84,6 +84,9 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
+$db_ip = '5.9.104.44';
+
+
 if($_SERVER['HTTP_HOST'] == 'express.lh')
 {
     $db['default']['pconnect'] = false;
@@ -93,68 +96,68 @@ if($_SERVER['HTTP_HOST'] == 'express.lh')
 //    $db['default']['password'] = '';
 //    $db['default']['database'] = 'express'; //DB: france, fr-express
 
-    $db['default']['hostname'] = 'francais-express.com';
+    $db['default']['hostname'] = $db_ip;
+    $db['default']['username'] = 'admin_smi_en';
+    $db['default']['password'] = 'smi-en-ujyrjyu8444';
+    $db['default']['database'] = 'admin_smi_en';
+}
+
+if( $_SERVER['HTTP_HOST'] == 'smiexpress.ru' || $_SERVER['HTTP_HOST'] == 'ru.pressfrom.com' || $_SERVER['HTTP_HOST'] == 'ru.lalalay.com' ){
+    $db['default']['hostname'] = $db_ip;
     $db['default']['username'] = 'admin_smi_ru';
     $db['default']['password'] = 'smi-ru-ujyrjyu8444';
     $db['default']['database'] = 'admin_smi_ru';
 }
 
-if( $_SERVER['HTTP_HOST'] == 'smiexpress.ru' || $_SERVER['HTTP_HOST'] == 'ru.pressfrom.com' ){
-    $db['default']['hostname'] = 'localhost';
-    $db['default']['username'] = 'admin_smi_ru';
-    $db['default']['password'] = 'smi-ru-ujyrjyu8444';
-    $db['default']['database'] = 'admin_smi_ru';
-}
 
-
-if( $_SERVER['HTTP_HOST'] == 'francais-express.com' || $_SERVER['HTTP_HOST'] == 'fr.pressfrom.com'){
-    $db['default']['hostname'] = 'localhost';
+if( $_SERVER['HTTP_HOST'] == 'francais-express.com' || $_SERVER['HTTP_HOST'] == 'fr.pressfrom.com' || $_SERVER['HTTP_HOST'] == 'fr.lalalay.com'){
+    $db['default']['hostname'] = $db_ip;
     $db['default']['username'] = 'admin_smi_fr';
     $db['default']['password'] = 'smi-fr-ujyrjyu8444';
     $db['default']['database'] = 'admin_smi_fr';
 }
 
 
-if( $_SERVER['HTTP_HOST'] == 'de.francais-express.com' || $_SERVER['HTTP_HOST'] == 'de.pressfrom.com'){
-    $db['default']['hostname'] = 'localhost';
+if( $_SERVER['HTTP_HOST'] == 'de.francais-express.com' || $_SERVER['HTTP_HOST'] == 'de.pressfrom.com' || $_SERVER['HTTP_HOST'] == 'de.lalalay.com'){
+    $db['default']['hostname'] = $db_ip;
     $db['default']['username'] = 'admin_smi_de';
     $db['default']['password'] = 'smi-de-ujyrjyu8444';
     $db['default']['database'] = 'admin_smi_de';
 }
 
-if( $_SERVER['HTTP_HOST'] == 'en.francais-express.com' || $_SERVER['HTTP_HOST'] == 'uk.pressfrom.com'){
-    $db['default']['hostname'] = 'localhost';
+if( $_SERVER['HTTP_HOST'] == 'en.francais-express.com' || $_SERVER['HTTP_HOST'] == 'uk.pressfrom.com' || $_SERVER['HTTP_HOST'] == 'uk.lalalay.com'){
+    $db['default']['hostname'] = $db_ip;
     $db['default']['username'] = 'admin_smi_en';
     $db['default']['password'] = 'smi-en-ujyrjyu8444';
     $db['default']['database'] = 'admin_smi_en';
 }
 
-if( $_SERVER['HTTP_HOST'] == 'us.pressfrom.com'){
-    $db['default']['hostname'] = 'localhost';
+if( $_SERVER['HTTP_HOST'] == 'us.pressfrom.com' || $_SERVER['HTTP_HOST'] == 'us.lalalay.com'){
+    $db['default']['hostname'] = $db_ip;
     $db['default']['username'] = 'admin_pf_us';
     $db['default']['password'] = 'pf-us-ujyrjyu8444';
     $db['default']['database'] = 'admin_pf_us';
 }
 
-if( $_SERVER['HTTP_HOST'] == 'ca.pressfrom.com'){
-    $db['default']['hostname'] = 'localhost';
+if( $_SERVER['HTTP_HOST'] == 'ca.pressfrom.com' || $_SERVER['HTTP_HOST'] == 'ca.lalalay.com'){
+    $db['default']['hostname'] = $db_ip;
     $db['default']['username'] = 'admin_pf_ca';
     $db['default']['password'] = 'pf-ca-ujyrjyu8444';
     $db['default']['database'] = 'admin_pf_ca';
 }
 
-if( $_SERVER['HTTP_HOST'] == 'au.pressfrom.com'){
-    $db['default']['hostname'] = 'localhost';
+if( $_SERVER['HTTP_HOST'] == 'au.pressfrom.com' || $_SERVER['HTTP_HOST'] == 'au.lalalay.com'){
+    $db['default']['hostname'] = $db_ip;
     $db['default']['username'] = 'admin_pf_au';
     $db['default']['password'] = 'pf-au-ujyrjyu8444';
     $db['default']['database'] = 'admin_pf_au';
 }
 
-if( $_SERVER['HTTP_HOST'] == 'tr.pressfrom.com'){
-    $db['default']['hostname'] = 'localhost';
-    $db['default']['username'] = 'admin_pf_tr';
-    $db['default']['password'] = 'pf-tr-ujyrjyu8444';
-    $db['default']['database'] = 'admin_pf_tr';
-}
+//if( $_SERVER['HTTP_HOST'] == 'tr.pressfrom.com'){
+//    $db['default']['hostname'] = 'localhost';
+//    $db['default']['username'] = 'admin_pf_tr';
+//    $db['default']['password'] = 'pf-tr-ujyrjyu8444';
+//    $db['default']['database'] = 'admin_pf_tr';
+//}
 
 //$db['default']['dsn'] = 'pgsql:host='.$db['default']['hostname'].';port=5432;dbname='.$db['default']['database'];

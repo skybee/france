@@ -31,6 +31,7 @@ class Main extends CI_Controller {
         
         ///////// TMP /////////
         //$this->db->query("INSERT INTO `shingles` SET `hash`='{$_SERVER['HTTP_X_REAL_IP']}'");
+
     }
 
     function index(){ 
@@ -126,7 +127,7 @@ class Main extends CI_Controller {
         $data_ar['like_video']          = $this->article_m->get_like_video($data_ar['doc_data']['id'],2);
         
         $top_slider['articles']         = $this->article_m->get_top_slider_data( $data_ar['cat_ar']['id'], 8, $this->catConfig['top_news_time_h'], $this->topSliderTxtLength, true, false);
-        $right['right_top']             = $this->article_m->get_top_slider_data( $data_ar['cat_ar']['parent_id'], 8, $this->catConfig['right_top_news_time_h'], $this->topSliderTxtLength, true, true, 'right_top');
+        $right['right_top']             = $this->article_m->get_top_slider_data( $data_ar['cat_ar']['parent_id'], 10, $this->catConfig['right_top_news_time_h'], $this->topSliderTxtLength, true, true, 'right_top');
         $right['last_news']             = $this->article_m->get_last_left_news( $data_ar['cat_ar']['parent_id'], 20 );
         
         if($_SERVER['HTTP_HOST'] !== $this->multidomaine['host']){ //Aliases Canonical
