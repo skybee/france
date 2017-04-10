@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 set_time_limit( 600 ); 
-ini_set('open_basedir','none');
+//ini_set('open_basedir','none');
 ini_set('safe_mode', false);
 
 class Main extends CI_Controller
@@ -108,7 +108,7 @@ class Main extends CI_Controller
             echo "<br />\n $i - <i>".$news_ar['url']."</i><br />\n";
             flush();
             
-            $html = $this->news_parser_lib->down_with_curl( $news_ar['url'] );
+            $html = $this->news_parser_lib->down_with_curl( $news_ar['url'], false, true );
             
             if( empty($html) ){
                 continue;

@@ -37,6 +37,33 @@ class File_remote extends CI_Controller {
         $this->local_upload($fname, $dir);
     }
     
+    function del_file(){
+        $filePath   = $_POST['file_path'];
+        
+        if(!preg_match("#^\./upload.+#", $filePath)){
+            echo "\nERROR: путь не коректен {$filePath} \n";
+            exit();
+        }
+        
+        $fName = $filePath;
+        
+        $msg = '';
+        if(is_file($fName))
+        {
+            if(unlink($fName)){
+                $msg .= 'OK: Файл удален - '.$fName."\n";
+            }
+            else{
+                $msg .= 'ERROR: Ошибка удаления файла - '.$fName."\n";
+            }
+        }
+        else{
+            $msg .= 'NOTE: Файл не найден - '.$fName."\n";
+        }
+        
+        echo $msg;
+    }
+    
     
     private function allowIp(){
         $remoteIP   = $_SERVER['HTTP_X_REAL_IP'];

@@ -13,6 +13,7 @@ class Remote_serv_transfer_lib {
         
         $this->remoteHost   = STATIC_REMOTE_HOST;
         $this->remoteAddUri = STATIC_REMOTE_ADD_URI;
+        $this->remoteDelUri = STATIC_REMOTE_DEL_URI;
     }
     
     function __destruct() {
@@ -26,7 +27,8 @@ class Remote_serv_transfer_lib {
         $this->scan_upload();
         
         foreach($this->fileList as $filePath_Ar){
-            $fileData['file']       = '@'.realpath($filePath_Ar['file_path']);
+//            $fileData['file']       = '@'.realpath($filePath_Ar['file_path']);
+            $fileData['file']       = new CURLFile( realpath($filePath_Ar['file_path']) );
             $fileData['file_path']  = $filePath_Ar['remote_file_path'];
             
             $remoteURL = 'http://'.$this->remoteHost.$this->remoteAddUri;
@@ -35,6 +37,16 @@ class Remote_serv_transfer_lib {
             
             unlink($filePath_Ar['file_path']);
         }
+    }
+    
+    function del_remote_file($filePath){ //принимает путь файла на удаленном сервере
+        
+        $remoteURL  = 'http://'.$this->remoteHost.$this->remoteDelUri;
+        $fileData['file_path'] = $filePath;
+        
+        $answer = $this->curl_post($remoteURL, $fileData);
+        
+        return $answer;
     }
     
     private function scan_upload($path = false){
@@ -91,7 +103,7 @@ class Remote_serv_transfer_lib {
         $hostData = $this->ci->multidomaine_lib->getHostData($pathHost); 
         
         // Replace real Host in path on static Host 
-        $path = preg_replace("#{$pathHost}#i", $hostData['static_serer'], $path); 
+        $path = preg_replace("#{$pathHost}#i", $hostData['static_server'], $path); 
         
         return $path;
     }

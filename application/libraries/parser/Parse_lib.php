@@ -18,7 +18,12 @@ class Parse_lib{
     }
     
     
-    static function down_with_curl($url, $getInfo = false){
+    static function down_with_curl($url, $getInfo = false, $useProxy = false){
+        
+        if($useProxy !== false){
+            $proxy = self::getRandProxy();
+        }
+        
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko' );
@@ -30,6 +35,11 @@ class Parse_lib{
         curl_setopt($ch, CURLOPT_MAXREDIRS, 5);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
+        if(isset($proxy) && $proxy!=false){
+            curl_setopt($ch, CURLOPT_PROXY, $proxy);
+            echo "\n\n<br />USE PROXY: {$proxy}<br />\n\n";
+        }
+        
 	$content    = curl_exec($ch);
         $httpData   = curl_getinfo($ch);
 	curl_close($ch);
@@ -209,7 +219,7 @@ class Parse_lib{
         if( empty($img_url) ) return FALSE;
         
         $absolute_url   = $this->uri2absolute($img_url, $base_url);
-        $imgDataAr      = $this->down_with_curl($absolute_url, true); //скачивание изображения
+        $imgDataAr      = $this->down_with_curl($absolute_url, true, true); //скачивание изображения
         
 //        $new_img_name   = $this->get_fname_from_url($img_url);
         $new_img_name   = $this->getLoadImgFname($imgDataAr['http_data']['content_type'], $imgAlt);
@@ -515,5 +525,26 @@ class Parse_lib{
         
         
         return $html;
+    }
+    
+    static function getRandProxy(){
+        $proxyListFileName = './proxylist.txt';
+        $randProxy = '';
+        if(is_file($proxyListFileName)){
+            $proxyListAr = file($proxyListFileName);
+            
+            if(is_array($proxyListAr)){
+                shuffle($proxyListAr);
+                
+                $randProxy = $proxyListAr[0];
+            }
+        }
+        
+        if(!empty($randProxy)){
+            return $randProxy;
+        }
+        else{
+            return false;
+        }
     }
 }

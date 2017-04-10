@@ -42,7 +42,7 @@ abstract class parseArticleList{
     public function __construct( $url ) {
         $this->ci       = &get_instance();
         
-        $html           = $this->ci->news_parser_lib->down_with_curl( $url );
+        $html           = $this->ci->news_parser_lib->down_with_curl( $url, false, true ); //($url, $getInfo, $useProxy)
         $this->html_obj = str_get_html($html);
         $this->data     = $this->getUrlTitleImgFomPage();
         $this->data     = $this->convertToRealUrl( $this->data, $url );

@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+                                                                                                                            <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Del_news extends CI_Controller{
     
@@ -7,6 +7,12 @@ class Del_news extends CI_Controller{
         
         $this->load->database();
         $this->load->library('dir_lib');
+        $this->load->library('Remote_serv_transfer_lib');
+        
+        $this->load->config('multidomaine');
+        $this->load->library('multidomaine_lib');
+        
+        $this->hostData = $this->multidomaine_lib->getHostData($_SERVER['HTTP_HOST']); 
     }
     
     function index(){}
@@ -58,10 +64,14 @@ class Del_news extends CI_Controller{
         $row = $query->row_array();
         
         if(!empty($row['main_img']))
-        {
-            $msg .= $this->del_img($this->dir_lib->getImgRdir().$row['main_img']);
-            $msg .= $this->del_img($this->dir_lib->getImgMdir().$row['main_img']);
-            $msg .= $this->del_img($this->dir_lib->getImgSdir().$row['main_img']);
+        {   
+//            $msg .= $this->del_img($this->dir_lib->getImgRdir().$row['main_img']);
+//            $msg .= $this->del_img($this->dir_lib->getImgMdir().$row['main_img']);
+//            $msg .= $this->del_img($this->dir_lib->getImgSdir().$row['main_img']);
+            
+            $msg .= $this->del_img('./upload/'.$this->hostData['static_server'].'/images/medium/'.$row['main_img']);
+            $msg .= $this->del_img('./upload/'.$this->hostData['static_server'].'/images/real/'.$row['main_img']);
+            $msg .= $this->del_img('./upload/'.$this->hostData['static_server'].'/images/small/'.$row['main_img']);
         }
         
         $imgPathAr = $this->get_img_from_txt($row['text']);
@@ -70,6 +80,8 @@ class Del_news extends CI_Controller{
         {
             foreach($imgPathAr as $imgPath)
             {
+                $imgPath = $this->add_static_servname_to_path($imgPath); //File Path to Remote Server
+                
                 $msg .= $this->del_img('.'.$imgPath);
             }
         }
@@ -126,6 +138,11 @@ class Del_news extends CI_Controller{
     
     
     private function del_img($fName){
+        
+        return $this->remote_serv_transfer_lib->del_remote_file($fName);
+        
+        $fName = preg_replace("#^([a-z]+.+)#","./$1", $fName);
+        
         $msg = '';
         if(is_file($fName))
         {
@@ -205,6 +222,11 @@ class Del_news extends CI_Controller{
     
     private function get_code(){
         return date("dmy");
+    }
+    
+    private function add_static_servname_to_path($imgPath){
+        $newPath = preg_replace("#(upload/)(images)#", "$1".$this->hostData['static_server']."/$2", $imgPath);
+        return $newPath;
     }
     
     

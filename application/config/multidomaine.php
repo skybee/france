@@ -3,6 +3,7 @@
 
 define('STATIC_REMOTE_HOST', 'us.static.lalalay.com');
 define('STATIC_REMOTE_ADD_URI', '/file_remote/add_file/');
+define('STATIC_REMOTE_DEL_URI', '/file_remote/del_file/');
 
 $config_var['pressfrom']['mail']                = 'mail@pressfrom.com';
 $config_var['pressfrom']['logo_img']            = 'logo-pressfrom-1.png';
@@ -16,7 +17,7 @@ $config_var['lalalay']['mail']                  = 'mail@lalalay.com';
 $config_var['lalalay']['logo_img']              = 'logo-pressfrom-1.png';
 $config_var['lalalay']['logo_img_mobile']       = 'logo-fr-mobile.png';
 
-$config_var['default'] = $config_var['lalalay'];
+$config_var['default'] = $config_var['pressfrom'];
 
 
 $config['multidomaine']['host_set']['smiexpress.ru']            = 'ru';
@@ -24,19 +25,19 @@ $config['multidomaine']['host_set']['smiexpress.ru']            = 'ru';
 //$config['multidomaine']['host_set']['de.francais-express.com']  = 'de';
 //$config['multidomaine']['host_set']['en.francais-express.com']  = 'gb';
 
-//$config['multidomaine']['host_set']['fr.pressfrom.com']  = 'fr';
-//$config['multidomaine']['host_set']['de.pressfrom.com']  = 'de';
-//$config['multidomaine']['host_set']['uk.pressfrom.com']  = 'gb';
-//$config['multidomaine']['host_set']['us.pressfrom.com']  = 'us';
-//$config['multidomaine']['host_set']['ca.pressfrom.com']  = 'ca';
-//$config['multidomaine']['host_set']['au.pressfrom.com']  = 'au';
+$config['multidomaine']['host_set']['fr.pressfrom.com']  = 'fr';
+$config['multidomaine']['host_set']['de.pressfrom.com']  = 'de';
+$config['multidomaine']['host_set']['uk.pressfrom.com']  = 'gb';
+$config['multidomaine']['host_set']['us.pressfrom.com']  = 'us';
+$config['multidomaine']['host_set']['ca.pressfrom.com']  = 'ca';
+$config['multidomaine']['host_set']['au.pressfrom.com']  = 'au';
 
-$config['multidomaine']['host_set']['fr.lalalay.com']  = 'fr';
-$config['multidomaine']['host_set']['de.lalalay.com']  = 'de';
-$config['multidomaine']['host_set']['uk.lalalay.com']  = 'gb';
-$config['multidomaine']['host_set']['us.lalalay.com']  = 'us';
-$config['multidomaine']['host_set']['ca.lalalay.com']  = 'ca';
-$config['multidomaine']['host_set']['au.lalalay.com']  = 'au';
+//$config['multidomaine']['host_set']['fr.lalalay.com']  = 'fr';
+//$config['multidomaine']['host_set']['de.lalalay.com']  = 'de';
+//$config['multidomaine']['host_set']['uk.lalalay.com']  = 'gb';
+//$config['multidomaine']['host_set']['us.lalalay.com']  = 'us';
+//$config['multidomaine']['host_set']['ca.lalalay.com']  = 'ca';
+//$config['multidomaine']['host_set']['au.lalalay.com']  = 'au';
 
 //-------=== Aliases ===-------//
 $config['multidomaine']['host_set']['express.lh']               = 'gb';
@@ -50,7 +51,14 @@ $config['multidomaine']['aliases'] = array(
     'ru.pressfrom.com',
     'francais-express.com',
     'de.francais-express.com',
-    'en.francais-express.com'
+    'en.francais-express.com',
+    
+    'fr.lalalay.com',
+    'de.lalalay.com',
+    'uk.lalalay.com',
+    'us.lalalay.com',
+    'ca.lalalay.com',
+    'au.lalalay.com'
 );
 //-------=== /Aliases ===-------//
 
@@ -79,7 +87,7 @@ $config['multidomaine']['ru']['xml_yandex_url']     = 'https://xmlsearch.yandex.
 $config['multidomaine']['ru']['social_btn_list']    = 'vkontakte,facebook,twitter,odnoklassniki';
 $config['multidomaine']['ru']['outwindow_str']      = 'Это интересно!';
 $config['multidomaine']['ru']['lock_donor']         = array();
-$config['multidomaine']['ru']['static_serer']       = 'ru.static.lalalay.com';
+$config['multidomaine']['ru']['static_server']       = 'ru.static.lalalay.com';
 
 
 //===== Tr =====//
@@ -110,7 +118,7 @@ $config['multidomaine']['tr']['lock_donor']         = array();
 
 
 //===== Fr =====//
-$config['multidomaine']['fr']['site_name_str']      = 'Lalalay - France';
+$config['multidomaine']['fr']['site_name_str']      = 'PressFrom - France';
 $config['multidomaine']['fr']['lang']               = 'fr';
 $config['multidomaine']['fr']['logo_img']           = $config_var['default']['logo_img'];
 $config['multidomaine']['fr']['logo_img_mobile']    = $config_var['default']['logo_img_mobile'];
@@ -131,12 +139,12 @@ $config['multidomaine']['fr']['day_ar']             = array('Dimanche','Lundi','
 $config['multidomaine']['fr']['xml_yandex_url']     = 'https://xmlsearch.yandex.com/xmlsearch?user=mail@lalalay.com&key=03.1130000018332401:db8ac7bad789ba8f7aabca04b0aa6308&maxpassages=5&groupby=groups-on-page%3D15';
 $config['multidomaine']['fr']['social_btn_list']    = 'facebook,twitter,gplus';
 $config['multidomaine']['fr']['outwindow_str']      = 'C\'est intéressant!';
-$config['multidomaine']['fr']['lock_donor']         = array('750g.com');
-$config['multidomaine']['fr']['static_serer']       = 'fr.static.lalalay.com';
+$config['multidomaine']['fr']['lock_donor']         = array('750g.com','bfmtv.fr','bfmtv.com');
+$config['multidomaine']['fr']['static_server']       = 'fr.static.lalalay.com';
 
 
 //===== De =====//
-$config['multidomaine']['de']['site_name_str']      = 'Lalalay - Deutschland';
+$config['multidomaine']['de']['site_name_str']      = 'PressFrom - Deutschland';
 $config['multidomaine']['de']['lang']               = 'de';
 $config['multidomaine']['de']['logo_img']           = $config_var['default']['logo_img'];
 $config['multidomaine']['de']['logo_img_mobile']    = $config_var['default']['logo_img_mobile'];
@@ -158,11 +166,11 @@ $config['multidomaine']['de']['xml_yandex_url']     = 'https://xmlsearch.yandex.
 $config['multidomaine']['de']['social_btn_list']    = 'facebook,twitter,gplus';
 $config['multidomaine']['de']['outwindow_str']      = 'Das ist interessant!';
 $config['multidomaine']['de']['lock_donor']         = array('homify.de','modepilot.com','welt.de','teleschau.de');
-$config['multidomaine']['de']['static_serer']       = 'de.static.lalalay.com';
+$config['multidomaine']['de']['static_server']       = 'de.static.lalalay.com';
 
 
 //===== Gb =====//
-$config['multidomaine']['gb']['site_name_str']      = 'Lalalay - United Kingdom';
+$config['multidomaine']['gb']['site_name_str']      = 'PressFrom - United Kingdom';
 $config['multidomaine']['gb']['lang']               = 'en';
 $config['multidomaine']['gb']['logo_img']           = $config_var['default']['logo_img'];
 $config['multidomaine']['gb']['logo_img_mobile']    = $config_var['default']['logo_img_mobile'];
@@ -184,34 +192,34 @@ $config['multidomaine']['gb']['xml_yandex_url']     = 'https://xmlsearch.yandex.
 $config['multidomaine']['gb']['social_btn_list']    = 'facebook,twitter,gplus';
 $config['multidomaine']['gb']['outwindow_str']      = 'This is interesting!';
 $config['multidomaine']['gb']['lock_donor']         = array('telegraph.co.uk','theguardian.com', 'independent.co.uk', 'standard.co.uk', 'mirror.co.uk', 'birminghammail.co.uk', 'liverpoolecho.co.uk','manchestereveningnews.co.uk','\.aol.co.uk');
-$config['multidomaine']['gb']['static_serer']       = 'uk.static.lalalay.com';
+$config['multidomaine']['gb']['static_server']       = 'uk.static.lalalay.com';
 
 
 //===== US =====//
 $config['multidomaine']['us'] = $config['multidomaine']['gb'];
-$config['multidomaine']['us']['site_name_str']      = 'Lalalay - US';
+$config['multidomaine']['us']['site_name_str']      = 'PressFrom - US';
 $config['multidomaine']['us']['e_mail']             = 'mail@pressfrom.com';
 $config['multidomaine']['us']['host']               = 'us.lalalay.com';
 $config['multidomaine']['us']['logo_img']           = $config_var['default']['logo_img'];
 $config['multidomaine']['us']['logo_img_mobile']    = $config_var['default']['logo_img_mobile'];
 $config['multidomaine']['us']['lock_donor']         = array();
-$config['multidomaine']['us']['static_serer']       = 'us.static.lalalay.com';
+$config['multidomaine']['us']['static_server']       = 'us.static.lalalay.com';
 
 
 //===== CA =====//
 $config['multidomaine']['ca'] = $config['multidomaine']['us'];
-$config['multidomaine']['ca']['site_name_str']      = 'Lalalay - Canada';
+$config['multidomaine']['ca']['site_name_str']      = 'PressFrom - Canada';
 $config['multidomaine']['ca']['host']               = 'ca.lalalay.com';
 $config['multidomaine']['ca']['lock_donor']         = array('telegraph.co.uk');
-$config['multidomaine']['ca']['static_serer']       = 'ca.static.lalalay.com';
+$config['multidomaine']['ca']['static_server']       = 'ca.static.lalalay.com';
 
 
 //===== AU =====//
 $config['multidomaine']['au'] = $config['multidomaine']['us'];
-$config['multidomaine']['au']['site_name_str']      = 'Lalalay - Australia';
+$config['multidomaine']['au']['site_name_str']      = 'PressFrom - Australia';
 $config['multidomaine']['au']['host']               = 'au.lalalay.com';
 $config['multidomaine']['au']['lock_donor']         = array('telegraph.co.uk');
-$config['multidomaine']['au']['static_serer']       = 'au.static.lalalay.com';
+$config['multidomaine']['au']['static_server']       = 'au.static.lalalay.com';
 
 
 //-------=== Aliases ===-------//
