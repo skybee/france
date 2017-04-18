@@ -27,6 +27,11 @@ class Multidomaine_lib
     }
     
     function getHostsList(){
+        
+        //<UPD multidomain>
+        return $this->getMainHostList();
+        //</UPD multidomain>
+        
         $multidomaineAll    = $this->ci->config->item('multidomaine');
         $aliases = $multidomaineAll['aliases'];
         
@@ -36,5 +41,11 @@ class Multidomaine_lib
         }
         
         return $hostsList;
+    }
+    
+    function getMainHostList(){
+        $multidomaineAll    = $this->ci->config->item('multidomaine');
+        
+        return $multidomaineAll['main_host'];
     }
 }

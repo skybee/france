@@ -56,39 +56,39 @@
 
         
     //<Redirect Host>
-    if(preg_match("#([a-z]{2})\.pressfrom\.com#i", $_SERVER['HTTP_HOST'],$hostAr)){
-        if(preg_match("#google#i", $_SERVER['HTTP_USER_AGENT']) || preg_match("#google#i", $_SERVER['HTTP_REFERER']) ){
-
-            $location_url = 'http://'.$hostAr[1].'.lalalay.com'.$_SERVER['REQUEST_URI'];
-
-            header("HTTP/1.1 301 Moved Permanently"); 
-            header("Location: {$location_url}");
-        }
-        else{
-            header('HTTP/1.1 503 Service Temporarily Unavailable');
-            header('Status: 503 Service Temporarily Unavailable');
-            header('Retry-After: 300');//300 seconds
-        }
-        
-        exit();
-    }
-
-    if(preg_match("#francais-express.com#i", $_SERVER['HTTP_HOST'])){
-        if($_SERVER['HTTP_HOST'] == 'francais-express.com')
-            $hostRedirect = 'fr.lalalay.com';
-        elseif($_SERVER['HTTP_HOST'] == 'de.francais-express.com')
-            $hostRedirect = 'de.lalalay.com';
-        elseif($_SERVER['HTTP_HOST'] == 'en.francais-express.com')
-            $hostRedirect = 'uk.lalalay.com';
-    
-        $location_url = 'http://'.$hostRedirect.$_SERVER['REQUEST_URI'];
-
-        header("HTTP/1.1 301 Moved Permanently"); 
-        header("Location: {$location_url}");
-
-        exit();
-        
-    }
+//    if(preg_match("#([a-z]{2})\.pressfrom\.com#i", $_SERVER['HTTP_HOST'],$hostAr)){
+//        if(preg_match("#google#i", $_SERVER['HTTP_USER_AGENT']) || preg_match("#google#i", $_SERVER['HTTP_REFERER']) ){
+//
+//            $location_url = 'http://'.$hostAr[1].'.lalalay.com'.$_SERVER['REQUEST_URI'];
+//
+//            header("HTTP/1.1 301 Moved Permanently"); 
+//            header("Location: {$location_url}");
+//        }
+//        else{
+//            header('HTTP/1.1 503 Service Temporarily Unavailable');
+//            header('Status: 503 Service Temporarily Unavailable');
+//            header('Retry-After: 300');//300 seconds
+//        }
+//        
+//        exit();
+//    }
+//
+//    if(preg_match("#francais-express.com#i", $_SERVER['HTTP_HOST'])){
+//        if($_SERVER['HTTP_HOST'] == 'francais-express.com')
+//            $hostRedirect = 'fr.lalalay.com';
+//        elseif($_SERVER['HTTP_HOST'] == 'de.francais-express.com')
+//            $hostRedirect = 'de.lalalay.com';
+//        elseif($_SERVER['HTTP_HOST'] == 'en.francais-express.com')
+//            $hostRedirect = 'uk.lalalay.com';
+//    
+//        $location_url = 'http://'.$hostRedirect.$_SERVER['REQUEST_URI'];
+//
+//        header("HTTP/1.1 301 Moved Permanently"); 
+//        header("Location: {$location_url}");
+//
+//        exit();
+//        
+//    }
         
         //</Redirect Host>
         

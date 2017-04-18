@@ -70,21 +70,16 @@
                             opacity: 0.9;
                         }
                         @media(max-width: 980px){#headernavigation div.navigation a.lang-link{display: none;}}
-                    </style>
-                    <?php if(preg_match("#francais-express\.com$#i", $_SERVER['HTTP_HOST'])):?>
-                    <a class="lang-link" href="//en.francais-express.com/">EN</a>
-                    <a class="lang-link" href="//de.francais-express.com/">DE</a>
-                    <a class="lang-link" href="//francais-express.com/">FR</a>
-                    <?php endif;?>
+                    </style>    
                     
-                    <?php if(preg_match("#pressfrom\.com$#i", $_SERVER['HTTP_HOST'])):?>
-                    <a class="lang-link" href="//ru.pressfrom.com/">RU</a>
-                    <a class="lang-link" href="//au.pressfrom.com/">AU</a>
-                    <a class="lang-link" href="//fr.pressfrom.com/">FR</a>
-                    <a class="lang-link" href="//de.pressfrom.com/">DE</a>
-                    <a class="lang-link" href="//uk.pressfrom.com/">UK</a>
-                    <a class="lang-link" href="//ca.pressfrom.com/">CA</a>
-                    <a class="lang-link" href="//us.pressfrom.com/">US</a>
+                    <?php if(preg_match("#(pressfrom.com|lalalay.com|francais-express.com)$#i", $_SERVER['HTTP_HOST'], $pregHostResult)):?>
+                    <a class="lang-link" href="//ru.<?=$pregHostResult[1]?>/">RU</a>
+                    <a class="lang-link" href="//au.<?=$pregHostResult[1]?>/">AU</a>
+                    <a class="lang-link" href="//fr.<?=$pregHostResult[1]?>/">FR</a>
+                    <a class="lang-link" href="//de.<?=$pregHostResult[1]?>/">DE</a>
+                    <a class="lang-link" href="//uk.<?=$pregHostResult[1]?>/">UK</a>
+                    <a class="lang-link" href="//ca.<?=$pregHostResult[1]?>/">CA</a>
+                    <a class="lang-link" href="//us.<?=$pregHostResult[1]?>/">US</a>
                     <?php endif;?>
                     
                     
