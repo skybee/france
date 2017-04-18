@@ -78,6 +78,13 @@
         
     <?=$doc_data['text']?>
         
+    <?php if(isset($source_url)):?>
+    <p style="font-size: 0.7em; margin-top: 20px; margin-bottom: 0;">
+        <span>Source:</span>
+        <a style="font-size: 0.9em" href="<?=$source_url?>"><?=$source_url?></a>
+    </p>
+    <?php endif;?>
+
     </div><!-- #content -->
     
     <div class="doc-date doc-date-bottom">
