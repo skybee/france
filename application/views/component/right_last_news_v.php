@@ -145,7 +145,7 @@
 
     
     
-    <?php if($_SERVER['HTTP_HOST'] == 'francais-express.com' || $_SERVER['HTTP_HOST'] == 'smiexpress.ru'): ?>
+    <?php #if($_SERVER['HTTP_HOST'] == 'francais-express.com' || $_SERVER['HTTP_HOST'] == 'smiexpress.ru'): ?>
         <div class="serp_block">
             <?php $i=0; ?>
             <?php foreach($serp_list as $serp): ?>
@@ -161,7 +161,7 @@
                 endforeach; 
             ?>
         </div>
-    <?php else: ?>
+    <?php /*else:*/ if(0): ?>
         <div class="serp_block">
             <?php $i=0; ?>
             <?php foreach($serp_list as $serp): ?>

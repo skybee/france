@@ -21,35 +21,35 @@
     RewriteRule ^(.*?\.(png|jpg|jpeg|gif))$ http://en.francais-express.com/$1 [L]
 
 
+    RewriteCond %{HTTP_HOST} ^en\.francais-express\.com$ [NC]
+    RewriteRule (.*) http://uk.francais-express.com/$1 [NC,L,R=301]
+
+    RewriteCond %{HTTP_HOST} ^fr\.francais-express\.com$ [NC]
+    RewriteRule (.*) http://francais-express.com/$1 [NC,L,R=301]
+
     #Aliaces
     RewriteCond %{HTTP_HOST} ^francais-express\.com$ [NC]
     RewriteRule ^upload/(.*) http://fr.pressfrom.com/upload/$1 [NC,L,R=301]
-    RewriteCond %{HTTP_HOST} ^de\.francais-express\.com$ [NC]
-    RewriteRule ^upload/(.*) http://de.pressfrom.com/upload/$1 [NC,L,R=301]
-    RewriteCond %{HTTP_HOST} ^en\.francais-express\.com$ [NC]
-    RewriteRule ^upload/(.*) http://uk.pressfrom.com/upload/$1 [NC,L,R=301]
-    RewriteCond %{HTTP_HOST} ^ru\.pressfrom\.com$ [NC]
-    RewriteRule ^upload/(.*) http://smiexpress.ru/upload/$1 [NC,L,R=301]
 
-    RewriteCond %{HTTP_HOST} ^ru\.(lalalay|pressfrom)\.com$ [NC]
+    RewriteCond %{HTTP_HOST} ^ru\.(lalalay|pressfrom|francais-express)\.com$ [NC]
     RewriteRule ^upload/(.*) http://smiexpress.ru/upload/$1 [NC,L,R=301]
     
-    RewriteCond %{HTTP_HOST} ^us\.(lalalay|pressfrom)\.com$ [NC]
+    RewriteCond %{HTTP_HOST} ^us\.(lalalay|pressfrom|francais-express)\.com$ [NC]
     RewriteRule ^upload/(.*) http://us.static.lalalay.com/upload/$1 [NC,L,R=301]
 
-    RewriteCond %{HTTP_HOST} ^ca\.(lalalay|pressfrom)\.com$ [NC]
+    RewriteCond %{HTTP_HOST} ^ca\.(lalalay|pressfrom|francais-express)\.com$ [NC]
     RewriteRule ^upload/(.*) http://ca.static.lalalay.com/upload/$1 [NC,L,R=301]
 
-    RewriteCond %{HTTP_HOST} ^au\.(lalalay|pressfrom)\.com$ [NC]
+    RewriteCond %{HTTP_HOST} ^au\.(lalalay|pressfrom|francais-express)\.com$ [NC]
     RewriteRule ^upload/(.*) http://au.static.lalalay.com/upload/$1 [NC,L,R=301]
     
-    RewriteCond %{HTTP_HOST} ^uk\.(lalalay|pressfrom)\.com$ [NC]
+    RewriteCond %{HTTP_HOST} ^uk\.(lalalay|pressfrom|francais-express)\.com$ [NC]
     RewriteRule ^upload/(.*) http://uk.static.lalalay.com/upload/$1 [NC,L,R=301]
     
-    RewriteCond %{HTTP_HOST} ^de\.(lalalay|pressfrom)\.com$ [NC]
+    RewriteCond %{HTTP_HOST} ^de\.(lalalay|pressfrom|francais-express)\.com$ [NC]
     RewriteRule ^upload/(.*) http://de.static.lalalay.com/upload/$1 [NC,L,R=301]
 
-    RewriteCond %{HTTP_HOST} ^fr\.(lalalay|pressfrom)\.com$ [NC]
+    RewriteCond %{HTTP_HOST} ^fr\.(lalalay|pressfrom|francais-express)\.com$ [NC]
     RewriteRule ^upload/(.*) http://fr.static.lalalay.com/upload/$1 [NC,L,R=301]
 
     # Host upload images rewright
