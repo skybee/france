@@ -18,7 +18,7 @@ class Parse_lib{
     }
     
     
-    static function down_with_curl($url, $getInfo = false, $useProxy = false){
+    static function down_with_curl($url, $getInfo = false, $useProxy = false, $useCount=0){
         
         if($useProxy !== false){
             $proxy = self::getRandProxy();
@@ -46,10 +46,16 @@ class Parse_lib{
         
         if($getInfo==false)
         {
+            if(empty($content) && $useCount<5){
+                $content = Parse_lib::down_with_curl($url, $getInfo, $useProxy, $useCount+1);
+            }
             return $content;
         }
         else
         {
+            if(empty($content) && $useCount<5){
+                $returnAr = Parse_lib::down_with_curl($url, $getInfo, $useProxy, $useCount+1);
+            }
             $returnAr['data']       = $content;
             $returnAr['http_data']  = $httpData;
             
@@ -60,15 +66,15 @@ class Parse_lib{
     static function uri2absolute($link, $base){
         
         $link = preg_replace("#^//#i", "http://", $link);
-        $link = str_ireplace('https://', 'http://', $link);
+//        $link = str_ireplace('https://', 'http://', $link);
         
-        if (!preg_match('~^(http://[^/?#]+)?([^?#]*)?(\?[^#]*)?(#.*)?$~i', $link.'#', $matchesLink)) {
+        if (!preg_match('~^(http[s]?://[^/?#]+)?([^?#]*)?(\?[^#]*)?(#.*)?$~i', $link.'#', $matchesLink)) {
             return false;
         }
         if (!empty($matchesLink[1])) {
             return $link;
         }
-        if (!preg_match('~^(http://)?([^/?#]+)(/[^?#]*)?(\?[^#]*)?(#.*)?$~i', $base.'#', $matchesBase)) {
+        if (!preg_match('~^(http[s]?://)?([^/?#]+)(/[^?#]*)?(\?[^#]*)?(#.*)?$~i', $base.'#', $matchesBase)) {
             return false;
         }
         if (empty($matchesLink[2])) {

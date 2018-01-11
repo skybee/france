@@ -58,13 +58,16 @@ class Remote_serv_transfer_lib {
         
         if(is_array($dirList)){
             foreach($dirList as  $fname){
-                if($fname == '.' || $fname == '..'){
+                if($fname == '.' || $fname == '..' ){
                     continue;
                 }
                 
                 $filePath = $path.'/'.$fname;
                 
                 if(is_dir($filePath)){
+                    if(preg_match("#^_.+#i", $fname)){ //не сканировать папки начинающиеся с _
+                        continue;
+                    }
                     $this->scan_upload($path.'/'.$fname);
                 }
                 else{

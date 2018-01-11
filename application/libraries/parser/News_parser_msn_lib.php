@@ -168,7 +168,7 @@ class donorMsn{
     private function loadImg(){
         $imgData = Parse_lib::down_with_curl($this->donorData['img']);
         $ImgFileName = $this->donorData['host'].'.png';
-        $ImgFilePath = './upload/donor-logo/'.$ImgFileName;
+        $ImgFilePath = './upload/_donor-logo/'.$ImgFileName;
         
         if(!empty($imgData)){
             file_put_contents($ImgFilePath, $imgData);

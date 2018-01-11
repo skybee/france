@@ -125,7 +125,7 @@
         </span>
         -->
         <a href="<?="/{$lnews['full_uri']}-{$lnews['id']}-{$lnews['url_name']}/"?>" class="right-last-news-item">
-            <img src="/upload/donor-logo/<?=$lnews['d_img']?>" alt="<?=$lnews['d_name']?>" title="<?=$lnews['d_name']?>" />
+            <img src="/upload/_donor-logo/<?=$lnews['d_img']?>" alt="<?=$lnews['d_name']?>" title="<?=$lnews['d_name']?>" />
             <?=$lnews['title']?>
         </a>    
     </div>

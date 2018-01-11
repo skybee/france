@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 $host_lang = array(
-    'express.lh'=>              'ru', //defult code = lh
+    'express.lh'=>              'ca', //defult code = lh
     
     'smiexpress.ru'=>           'ru',
     'ru.pressfrom.com'=>        'ru',

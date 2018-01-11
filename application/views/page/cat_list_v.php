@@ -28,7 +28,7 @@
                                 $imgUrl = '/img/default_news.jpg';
                         ?>
                         <img src="<?=$imgUrl?>" class="imgf" style="opacity: 1;" onerror="imgError(this);">
-                        <div class="cat-list-donor-logo" style="background-image: url('/upload/donor-logo/<?=$news_page_ar['d_img']?>');"></div>
+                        <div class="cat-list-donor-logo" style="background-image: url('/upload/_donor-logo/<?=$news_page_ar['d_img']?>');"></div>
                     </a>
                 </div><!-- #imgholder -->
             </div><!-- #left -->
