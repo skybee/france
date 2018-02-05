@@ -6,6 +6,12 @@ function imgError(image){
 
 $( document ).ready(function(){
     
+    $('#left .copy-url img, .like-article-list img, #out_window img').error( //удаление изображений 404
+                function(){
+                    $(this).remove();
+                }
+            );
+    
     // <add url link to copy post>
     var source_link = '<p>Source: <a href="' + location.href + '">' + location.href + '</a></p>';
     $(

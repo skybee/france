@@ -32,14 +32,14 @@
             <meta name="robots" content="noindex, follow" />
         <?php endif; ?>   
 
-<!--        <script type='text/javascript' src='/js/skin1/jquery-1.11.3.min.js'></script>
+        <script type='text/javascript' src='/js/skin1/jquery-1.11.3.min.js'></script>
         <script type='text/javascript' src='/js/skin1/jquery-ui.min-tabs.js'></script>
         <script type='text/javascript' src='/js/skin1/jquery.magnific-popup.min.js'></script>
         <script type='text/javascript' src='/js/skin1/jquery.bxslider.min.js'></script>
-        <script type='text/javascript' src='/js/skin1/sb.js'></script>-->
+        <script type='text/javascript' src='/js/skin1/sb.js?v=050218-1705'></script>
             
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script async type='text/javascript' src='/js/all-files.min.js?v=250117-2355'></script>
+        <!--<script async type='text/javascript' src='/js/all-files.min.js?v=050218-1515'></script>-->
         
     </head>
 
