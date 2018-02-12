@@ -1,6 +1,32 @@
 function imgError(image){
     image.onerror = "";
-    image.src = "/img/default_news_error.jpg";
+//    image.src = "/img/default_news_error.jpg";
+//    return true;
+    
+    
+    
+    imgNameAr = [
+        'no_img_340x220-1.jpg',
+        'no_img_340x220-2.jpg',
+        'no_img_340x220-3.jpg',
+        'no_img_340x220-4.jpg',
+        'no_img_340x220-5.jpg',
+        'no_img_340x220-6.jpg',
+        'no_img_340x220-7.jpg',
+        'no_img_340x220-8.jpg',
+        'no_img_340x220-9.jpg'
+    ];
+    
+    // использование Math.round() даст неравномерное распределение!
+    function getRandomInt(min, max)
+    {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+   
+    rndImgName = imgNameAr[getRandomInt(0,imgNameAr.length-1)];
+    
+    image.src   = "/img/no_img/"+rndImgName;
+    image.style.transform = "none";  
     return true;
 }
 
