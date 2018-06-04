@@ -36,12 +36,21 @@ class Parse_lib{
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
         if(isset($proxy) && $proxy!=false){
-            curl_setopt($ch, CURLOPT_PROXY, $proxy);
+            $proxyIpPortAr = explode(':', $proxy);
+            curl_setopt($ch, CURLOPT_PROXY, $proxyIpPortAr[0]);
+            curl_setopt($ch, CURLOPT_PROXYPORT, $proxyIpPortAr[1]);
+//            curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
             echo "\n\n<br />USE PROXY: {$proxy}<br />\n\n";
         }
         
 	$content    = curl_exec($ch);
         $httpData   = curl_getinfo($ch);
+        
+//        echo "\n<br/>----------------------<br/>\n";
+//        print_r($httpData);
+//        echo curl_error($ch);
+//        echo "\n<br/>----------------------<br/>\n";
+        
 	curl_close($ch);
         
         if($getInfo==false)

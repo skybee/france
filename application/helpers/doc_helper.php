@@ -153,6 +153,8 @@ function addResponsiveVideoTag($text){
 
 function cctv_article_linkator( $text ){ 
     
+    return $text;
+    
     $pattern_list['http://cctv-pro.com.ua/category/CCTV-Cameras/']                      = "#(купол[а-я]*|уличн[а-я]+|поворотн[а-я]+|наружн[а-я]+|)\s*(ip-|cctv-|ptz-|)(теле|видео|)камер[а-я]*\s*((видео|)наблюден[а-я]+|)#ui";
     $pattern_list['http://cctv-pro.com.ua/category/CCTV-Kits/']                         = "#комплект.{1,20}видеонаблюден[а-я]+#ui";
     $pattern_list['http://cctv-pro.com.ua/#home']                                       = "#(устан[а-я]*|монт[а-я]*|инстал[а-я]*)\s*(систем.{0,20}|.{0,20}камер[а-я]*|)\s*видеонаблюден[а-я]+#ui";

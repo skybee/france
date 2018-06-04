@@ -261,4 +261,99 @@ class Tmp extends CI_Controller{
 	$content = curl_exec($ch);
 	curl_close($ch);
     }
+    
+    function delDoubleNews(){
+        
+        //=== Find Double ID in `scan_url` ===//
+        $sqlFindDouble = "  SELECT `t1`.`donor_url_id`
+                            FROM 
+                                `scan_url` AS t1, `scan_url` AS t2
+                            WHERE 
+                                `t1`.`donor_url_id` = `t2`.`donor_url_id`
+                                AND 
+                                `t1`.`id` != `t2`.`id` 
+                            LIMIT 1 ";
+        $query = $this->db->query($sqlFindDouble);
+        
+            if($query->num_rows() < 1 ){ // EXIT IF 0 Double rows
+                echo "Нет дублирующих записей в таблице `scan_url` \n";
+                return false;
+            }
+        
+        $row = $query->row_array();
+        $donorUrlId = $row['donor_url_id'];
+        
+        //=== Get Double ID Rows From `scan_url` ===//
+        $scanUrlAr = array();
+        $sqlGetDouble = "SELECT * FROM `scan_url` WHERE `donor_url_id`='{$donorUrlId}' ";
+        $query = $this->db->query($sqlGetDouble);
+        foreach($query->result_array() as $row){
+            $scanUrlAr[]    = $row;
+            $scanUrlIdAr[]  = $row['id']; // for next sql query: IN (id-1, id-2, ...) 
+        }
+        
+        //=== Get Double News ===//
+        $scanUrlIdStr = implode(', ', $scanUrlIdAr); 
+        
+        $sqlGetDoubleNews = "SELECT * FROM `article` WHERE `scan_url_id` IN ({$scanUrlIdStr}) ORDER BY `views` DESC, `id` ASC ";
+        $query = $this->db->query($sqlGetDoubleNews);
+        
+            if($query->num_rows()<1){ // EXIT & DEL scan_url IF no news with scan_url id 
+                echo "Нет записей в таблице `article` \n";
+                foreach ($scanUrlIdAr as $suID){
+                        $this->delScanURLrow($suID);
+                    echo "- Del from scan_url ID:{$suID} \n";
+                }
+                return false;
+            }
+            elseif($query->num_rows()==1){ // EXIT & DEL scan_url IF one news in table `article`
+                echo "Одна запись в таблице `article` \n";
+                $row = $query->row_array();
+                $trueScanUrl = $row['scan_url_id'];
+                foreach ($scanUrlIdAr as $suID){
+                    if($suID == $trueScanUrl){ continue; }
+                        $this->delScanURLrow($suID);
+                    echo "- Del from scan_url ID:{$suID} \n";
+                }
+                return false;
+            }
+            
+        //=== Del Double News & scan_url records ===//
+        $doubleNewsAr = array();
+        foreach ($query->result_array() as $row){
+            $doubleNewsAr[] = $row;
+            echo "- ID:{$row['id']} | Views:{$row['views']} | TITLE:{$row['title']} \n";
+        }
+        
+        foreach ($doubleNewsAr as $key => $newsData){
+            if($key==0){continue;} // True News (max views)
+            
+            $this->delScanURLrow($newsData['scan_url_id']);
+            echo "\n\n";
+            echo "- Del from scan_url ID:{$newsData['scan_url_id']} \n";
+            $delKey = date("dmy");
+            $delNewsanswer = file_get_contents("http://{$_SERVER['HTTP_HOST']}/cron/del_news/del_news/{$newsData['id']}/{$delKey}/");
+            echo "- Del from article ID:{$newsData['id']} | TITLE: {$newsData['title']} \n";
+            
+            echo $delNewsanswer;
+        }
+        
+        
+    }
+    
+    private function delScanURLrow($rowID){
+        $this->db->query("DELETE FROM `scan_url` WHERE `id`='{$rowID}' LIMIT 1 ");
+    }
+    
+    function delDoubleNewsMany($cnt=1){
+        header('Content-Type: text/plain; charset=utf-8');
+        $i=1;
+        
+        do{
+            $this->delDoubleNews();
+            echo "\n\n\t\t------------ Next Clean ------------\n\n";
+            $i++;
+        }
+        while($i<=$cnt);
+    }
 }

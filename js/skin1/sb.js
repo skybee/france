@@ -105,11 +105,13 @@ $( document ).ready(function(){
     
     // </top adsense after image> //
     
-    $('span.gAd').each(function(){
-        blockName = $(this).attr('data');
-        toWrite = loadGAd(blockName);
-        $(this).replaceWith(toWrite);
-    });
+    if(addGadPosition()){ // добовляет дополнительные места(теги) для рекламы
+        $('span.gAd').each(function(){ // простановка блоков рекламы
+            blockName = $(this).attr('data');
+            toWrite = loadGAd(blockName);
+            $(this).replaceWith(toWrite);
+        });
+    }
     
     
     // <Content Link>
@@ -190,6 +192,19 @@ function loadGAd( blockName ){
     else{
         return loadGAdDesctop(blockName);
     }  
+}
+
+
+function addGadPosition(){ // добовляет дополнительные места(теги) для рекламы 
+    
+    // 2й блок справа
+    leftHeight     = $("#left").outerHeight(true); 
+    rightHeight    = $("#right").outerHeight(true);
+    if(leftHeight-rightHeight > 700){
+        $("#right").append('<h3 class="widget-title" style="margin-bottom: -10px; margin-top: 30px;"><span class="title">Ads</span></h3><div class="right_gad_block" style="margin-top: 30px;"><span class="gAd" data="right top"></span></div>');   
+    }
+    
+    return true;
 }
 
 

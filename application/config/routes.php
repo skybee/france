@@ -5,6 +5,25 @@ $hostRoutes['ru'] = array('smiexpress.ru','express.odnako.su');
 $hostRoutes['fr'] = array('france.lh');
 
 
+// <404 Image redirect>
+$imageUriPatter = "#/upload/images/#i";
+if(preg_match($imageUriPatter, $_SERVER['REQUEST_URI'])){
+    include_once './noimage.php';
+    
+    if(isset($_GET['content'])){
+        $noImageUrl = getNoImageUrlContent(); // изображения внутри текста
+    }
+    else{
+        $noImageUrl = getNoImageUrl();
+    }
+    
+    header("HTTP/1.1 301 Moved Permanently"); 
+    header("Location: ".$noImageUrl); 
+    exit($_SERVER['REQUEST_URI']);
+}
+// </404 Image redirect>
+
+
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING

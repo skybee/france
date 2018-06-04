@@ -445,6 +445,9 @@ class parseMsnList extends parseArticleList{
                     {
                         $img = preg_replace("#\.img\?#", ".{$ar[1]}?", $img);
                     }
+                    else{ // experemental .img to .jpg if "f=(jpg|jpeg|png|gif)" empty
+                        $img = preg_replace("#\.img\?#", ".jpg?", $img);
+                    }
                 }
 
                 $data[$i]['img']    =  $img;

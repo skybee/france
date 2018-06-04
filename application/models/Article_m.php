@@ -170,7 +170,7 @@ class Article_m extends CI_Model{
         $sql = "SELECT "
                 . "`article`.*, "
                 . "`category`.`full_uri`,"
-                . "`donor`.`name` AS 'd_name', `donor`.`img` AS 'd_img' "
+                . "`donor`.`name` AS 'd_name', `donor`.`img` AS 'd_img', `donor`.`host` AS 'd_host' "
                 . "FROM "
                 . "`article` "
                 . "LEFT JOIN  `donor` ON  `article`.`donor_id` =  `donor`.`id` "

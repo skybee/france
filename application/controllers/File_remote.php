@@ -4,7 +4,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class File_remote extends CI_Controller {
     
-    private $allowIpList = array('109.86.165.207','82.146.49.219');
+    private $allowIpList = array('109.86.165.207','82.146.49.219', '185.159.131.88', '185.246.67.131');
             
     function __construct() {
         parent::__construct();

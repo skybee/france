@@ -939,6 +939,9 @@ class parseMsn extends parse_page{
         if( is_object( $this->html_obj->find('.collection-headline h1',0) ) ){
             $this->data['title'] = $this->html_obj->find('.collection-headline h1',0)->innertext;
         }
+        elseif(is_object( $this->html_obj->find('.collection-headline-flex h1',0) )){ //new page stile
+            $this->data['title'] = $this->html_obj->find('.collection-headline-flex h1',0)->innertext;
+        }
         
         if( is_object( $this->html_obj->find('section.articlebody',0) ) ){
             $textObj = $this->html_obj->find('section.articlebody',0);
@@ -958,9 +961,10 @@ class parseMsn extends parse_page{
         }
         
         #<DonorData>
-        if( is_object( $this->html_obj->find('.partnerlogo-img .partnermainlogo img',0) ) )
+        if( is_object( $this->html_obj->find('.partnerlogo-img img',0) ) )
         {
-            $imgJson    = $this->html_obj->find('.partnerlogo-img .partnermainlogo img',0)->attr['data-src'];
+            $imgJson    = $this->html_obj->find('.partnerlogo-img img',0)->attr['data-src'];
+            
             $imgJson    = html_entity_decode($imgJson);
             $imgAr      = json_decode($imgJson, true);
             $imgSrc     = 'http:'.$imgAr['default'];
@@ -977,6 +981,14 @@ class parseMsn extends parse_page{
             $this->data['donor-data']['name'] = $this->html_obj->find('.sourcename-txt a',0)->innertext;
             
             $donorUrl   = $this->html_obj->find('.sourcename-txt a',0)->href;
+            $donorUrlAr = parse_url($donorUrl);
+            
+            $this->data['donor-data']['host'] = trim($donorUrlAr['host']);
+        }
+        elseif ( is_object($this->html_obj->find('.partnerlogo-img a',0)) ) { // ===== new page style =====
+            $this->data['donor-data']['name'] = $this->html_obj->find('.partnerlogo-img a',0)->title;
+            
+            $donorUrl   = $this->html_obj->find('.partnerlogo-img a',0)->href;
             $donorUrlAr = parse_url($donorUrl);
             
             $this->data['donor-data']['host'] = trim($donorUrlAr['host']);
@@ -1119,6 +1131,21 @@ class parseMsn extends parse_page{
         
         $cleaner->delAll('div.thumbnail-container'); //del fullScreen btn in photoSlider
         $cleaner->delAllWrapper('div.arsegment'); //del virtual page tag
+        
+        $cleaner->delAll('#findacar'); // del auto search block 
+        $cleaner->delAll('button'); // del all <button>
+        $cleaner->delAll('div.ec-module'); //msn <iframe> in div.ec-module
+        
+        //<video player content>
+        $cleaner->delAll('div.metadata'); //del video info
+        $cleaner->delAll('div.playlist-and-storepromo'); //del video info
+        $cleaner->delAll('div.nextvideo-outer'); //del video info
+        //<video player content>
+        
+        
+        //<image slider follow>
+        
+        //</image slider follow>
         
         
         return $textObj;

@@ -19,6 +19,12 @@ class Serp_parse_lib
         $queryUrl   = $this->yandexUrl .'&query='.$title.'&lang='.$this->lang;
         
         $serpXmlStr = $this->down_with_curl($queryUrl);
+        
+//        echo "\n<br />------\n".$queryUrl."\n------<br />\n";
+//        echo $serpXmlStr;
+//        print_r($articleData);
+        
+        
         $serpXmlStr = $this->cleanXmlStr($serpXmlStr);
 
         $xmlObj     = simplexml_load_string($serpXmlStr);

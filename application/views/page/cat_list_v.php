@@ -28,7 +28,8 @@
                                 $imgUrl = '/img/default_news.jpg';
                         ?>
                         <img src="<?=$imgUrl?>" class="imgf" style="opacity: 1;" onerror="imgError(this);">
-                        <div class="cat-list-donor-logo" style="background-image: url('/upload/_donor-logo/<?=$news_page_ar['d_img']?>');"></div>
+                        <!--<div class="cat-list-donor-logo" style="background-image: url('/upload/_donor-logo/<?=$news_page_ar['d_img']?>');"></div>-->
+                        <!--<div class="cat-list-donor-logo" style="background-image: url('https://favicon.yandex.net/favicon/<?=$news_page_ar['d_host']?>');"></div>-->
                     </a>
                 </div><!-- #imgholder -->
             </div><!-- #left -->
@@ -37,8 +38,9 @@
                     <!--<h3><a href="<?=$news_url?>"><?=$news_page_ar['title']?></a></h3>-->
                     <div class="date_source">
                         <div class="cat-list-date"><?=$dateStr?></div>
-                        <div class="cat-list-donor">
-                                <?=$news_page_ar['d_name']?>
+                        <div class="cat-list-donor" style="text-transform: uppercase;">
+                            <!-- <?=$news_page_ar['d_name']?> -->
+                            <?=  preg_replace("#(www\.|\.com$)#i", '', $news_page_ar['d_host'])?>
                         </div>
                     </div>
                     <p><?=$news_page_ar['text']?>[...]</p>

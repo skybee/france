@@ -57,7 +57,7 @@ class Serp_parse extends CI_Controller
             if(!$serpData){
                 echo "Parse Error: ID-".$articleData['id'].' '.$articleData['title']."\n\n";
                 flush();
-                continue;
+//                continue;
             }
             $jsonData = json_encode($serpData);
             

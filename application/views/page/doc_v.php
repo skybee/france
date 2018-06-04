@@ -35,9 +35,12 @@
             </span>
             <span class="long_date_str">
                 <span id="source_str"><?=$this->multidomaine['source_str'];?></span>:&nbsp;&nbsp;
-            <span class="doc-donor-link out-link" src="http://<?=$doc_data['d_host']?>/" <?=$donor_rel;?> target="_blank" style="background-image: url('/upload/_donor-logo/<?=$doc_data['d_img']?>');">
+<!--            <span class="doc-donor-link out-link" src="http://<?=$doc_data['d_host']?>/" <?=$donor_rel;?> target="_blank" style="background-image: url('/upload/_donor-logo/<?=$doc_data['d_img']?>');">
                 <?=$doc_data['d_name']?>
-            </span>
+            </span>-->
+            <span class="doc-donor-link out-link" src="http://<?=$doc_data['d_host']?>/" <?=$donor_rel;?> target="_blank" style="background-image: url('https://favicon.yandex.net/favicon/<?=$doc_data['d_host']?>');">
+                <?=  preg_replace("#www\.#i", '', $doc_data['d_host'])?>
+            </span>    
             </span>
         </div>
     </div><!-- #date -->
