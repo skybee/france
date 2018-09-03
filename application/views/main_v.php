@@ -45,6 +45,14 @@
 
     <body>
         
+<!--        <div style="position: fixed; top:0; left: 0; width: 100%; height: 200%; background-color: #009DDB; z-index: 100; " class="sbtmplock">
+            <div style="color: #fff; font-size: 24px; text-align: center; margin-top: 20%;">
+                The page you are looking for is temporarily unavailable. 
+                <br />
+                Please try again later
+            </div>
+        </div>-->
+        
         <?php  if( isset($this->catNameAr[0]) ): ?> <span style="display:none;" id="opt-tag-main-cat" ><?=$this->catNameAr[0]?></span> <?php endif; ?>
         <?php  if( isset($this->catNameAr[1]) ): ?> <span style="display:none;" id="opt-tag-sub-cat"  ><?=$this->catNameAr[1]?></span> <?php endif; ?>
         

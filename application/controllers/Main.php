@@ -86,6 +86,7 @@ class Main extends CI_Controller {
         $doc_urlname = $url_id_name_ar[2];
 
         $data_ar['doc_data']            = $this->article_m->get_doc_data($doc_id);
+        
         if (!$data_ar['doc_data']){
             $cat_url = preg_replace("#/-\d+-\S+?/$#i", '/', $_SERVER['REQUEST_URI']);
             header("HTTP/1.1 301 Moved Permanently");
@@ -103,6 +104,9 @@ class Main extends CI_Controller {
             header("Location: ".$true_url);
             exit();
         }
+        
+        # Redirect to PR24
+        $this->docRedirectToPR24('document', $data_ar['doc_data']['date']);
         
         $data_ar['cat_ar']              = $this->category_m->get_cat_data_from_id($data_ar['doc_data']['cat_id']);
         $data_ar['like_articles']       = $this->article_m->get_like_articles( $data_ar['doc_data']['id'], $data_ar['doc_data']['cat_id'] /*$data_ar['cat_ar']['parent_id']*/, $data_ar['doc_data']['title'], 8, $this->catConfig['like_news_day_d'], $data_ar['doc_data']['date'] );
@@ -177,6 +181,9 @@ class Main extends CI_Controller {
 //        {
 //            return $this->main_page($data_ar['url_name']);
 //        }
+        
+        // TMP PR24 Link
+        if($page <=10){ $this->PR24CatLink = "https://pressreview24.com/".TMP_HOST_LANG.preg_replace("#\d+/$#i", '', $_SERVER['REQUEST_URI']); }
         
         if($page > 100) { // temp redirect 
             header("Location: /{$data_ar['cat_ar']['full_uri']}", true, 302);
@@ -298,6 +305,29 @@ class Main extends CI_Controller {
         $data['html'] = $html;
         
         $this->load->view('page/spe_link_v', $data );
+    }
+    
+    private function docRedirectToPR24($page=false, $timestamp=false) { 
+        $pr24Url = 'https://pressreview24.com/'.TMP_HOST_LANG.$_SERVER['REQUEST_URI'];
+       
+        if($page=='document'){ // If this page = News(document)
+            $pr24Url = preg_replace("#/$#i", '', $pr24Url);
+            $pr24Url = $pr24Url.'.html   ';
+        }
+
+        if($timestamp != false){ //cnt Day redirect
+            $periodTime = 90*(3600*24);  //cnt sec.
+            $newsTime   = strtotime($timestamp);
+            $nowTime    = time();
+            
+            if($nowTime < $newsTime+$periodTime){ return false; }
+        }
+       
+       if(preg_match("#Googlebot#i", $_SERVER['HTTP_USER_AGENT'])){
+            header("HTTP/1.1 301 Moved Permanently"); 
+            header("Location: {$pr24Url}"); 
+            exit();
+       }
     }
 
 }

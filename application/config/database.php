@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 $host_lang = array(
-    'express.lh'=>              'lh', //defult code = lh
+    'express.lh'=>              'uk', //defult code = lh
     
     'smiexpress.ru'=>           'ru',
     'ru.pressfrom.com'=>        'ru',
@@ -121,6 +121,8 @@ $db['default'] = array(
 
 $db_ip = '5.9.104.44';
 
+
+define('TMP_HOST_LANG', $host_lang[$_SERVER['HTTP_HOST']]);
 
 //if($_SERVER['HTTP_HOST'] == 'express.lh')
 //{

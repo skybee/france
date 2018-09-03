@@ -47,7 +47,8 @@ $lock_host = array(
     '750g.com',
     'bfmtv.fr',
     'bfmtv.com',
-    'mamamia.com.au'
+    'mamamia.com.au',
+    'cbs.com'
 );
 
 function get_country_code(){
